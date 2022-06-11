@@ -1,5 +1,5 @@
-from entidades.treino import Treino
-from entidades.aluno import Aluno
+from treino import Treino
+from aluno import Aluno
 from datetime import date
 
 
