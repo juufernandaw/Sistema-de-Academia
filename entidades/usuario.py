@@ -8,34 +8,34 @@ class Usuario(ABC):
 
     @property
     def nome(self):
-        pass
+        return self.__nome
 
     @nome.setter
     def nome(self, nome: str):
-        pass
+        self.__nome = nome
 
     @property
     def login(self):
-        pass
+        return self.__login
 
     @login.setter
     def login(self, login: str):
-        pass
+        self.__login = login
 
     @property
     def senha(self):
-        pass
+        return self.__senha
 
     @senha.setter
-    def nome(self, senha: str):
-        pass
+    def senha(self, senha: str):
+        self.__senha = senha
 
     @property
     def cpf(self):
-        pass
+        return self.__cpf
 
     @cpf.setter
     def cpf(self, cpf: str):
-        pass
+        self.__cpf = cpf
 
 
