@@ -1,11 +1,11 @@
 from entidades.personaltrainer import PersonalTrainer
 from controladores.controladorsistema import ControladorSistema
-from telas.telapersonaltrainer import TelaPersonal
+from telas.telapersonaltrainer import TelaPersonalTrainer
 
 
 class ControladorPersonalTrainer():
     def __init__(self, controlador_sistema):
-        self.__tela_personal = TelaPersonal()
+        self.__tela_personal = TelaPersonalTrainer()
         self.__manter_tela = bool
         self.__controlador_sistema = controlador_sistema
 
