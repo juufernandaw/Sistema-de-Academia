@@ -1,5 +1,5 @@
 
-class TelaTreino():
+class TelaTreinoDiario():
     def __init__(self):
         pass
 

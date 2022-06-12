@@ -30,6 +30,11 @@ class ControladorSistema:
     def controlador_personal_trainer(self):
         return self.__controlador_personal_trainer
 
+    def logar(self):
+        if self.__tela_sistema.mostrarMenu_inicial() == 1:
+
+        pass
+
     def abre_logins(self):
         lista_opcoes = {1: self.controlador_aluno.abre_tela_inicial,
                         2: self.controlador_personal_trainer.abre_tela_inicial,

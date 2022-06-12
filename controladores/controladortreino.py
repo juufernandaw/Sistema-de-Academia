@@ -1,5 +1,6 @@
-from entidades.treino import Treino
-from telas.telatreino import TelaTreino
+from TrabalhoPOO.entidades.treino import Treino
+from TrabalhoPOO.telas.telatreino import TelaTreino
+
 
 class ControladorTreino():
     
@@ -9,20 +10,20 @@ class ControladorTreino():
         self.__manter_tela = True
         self.__tela_treino = TelaTreino()
 
-    def incluir_treino():
+    def incluir_treino(self):
         pass
 
-    def excluir_treino():
+    def excluir_treino(self):
         pass
 
-    def alterar_treino():
+    def alterar_treino(self):
         pass
 
-    def consultar_treino():
+    def consultar_treino(self):
         pass
 
-    def vincular_treino_aluno():
+    def vincular_treino_aluno(self):
         pass
 
-    def retornar():
+    def retornar(self):
         pass
