@@ -32,8 +32,7 @@ class ControladorSistema:
 
     def logar(self):
         if self.__tela_sistema.mostrarMenu_inicial() == 1:
-
-        pass
+            pass
 
     def abre_logins(self):
         lista_opcoes = {1: self.controlador_aluno.abre_tela_inicial,
