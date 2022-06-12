@@ -1,5 +1,5 @@
-from entidades.treinodiario import TreinoDiario
-from telas.telatreinodiario import TelaTreinoDiario
+from TrabalhoPOO.entidades.treinodiario import TreinoDiario
+from TrabalhoPOO.telas.telatreinodiario import TelaTreinoDiario
 
 
 class ControladorTreinoDiario():

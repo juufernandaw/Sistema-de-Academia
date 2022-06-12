@@ -1,6 +1,6 @@
-from entidades.personaltrainer import PersonalTrainer
-from controladores.controladorsistema import ControladorSistema
-from telas.telapersonaltrainer import TelaPersonalTrainer
+from TrabalhoPOO.entidades.personaltrainer import PersonalTrainer
+from TrabalhoPOO.controladores.controladorsistema import ControladorSistema
+from TrabalhoPOO.telas.telapersonaltrainer import TelaPersonalTrainer
 
 
 class ControladorPersonalTrainer():
