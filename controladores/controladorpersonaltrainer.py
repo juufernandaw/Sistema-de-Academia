@@ -25,6 +25,7 @@ class ControladorPersonalTrainer():
     def retornar(self):
         pass
 
-    def logar(self, login: str, senha: str):
+    def verificar_login_senha(self, login: str, senha: str):
         if isinstance(login, str) and isinstance(senha, str):
-            pass
+
+            return True

@@ -3,5 +3,5 @@ class TelaTreinoDiario():
     def __init__(self):
         pass
 
-    def mostrarTela_desenpenho(self):
+    def mostrar_tela_desempenho(self):
         pass
