@@ -45,7 +45,7 @@ class Exercicio():
         return self.__tipo_exercicio
 
     @tipo_exercicio.setter
-    def tipo_exercicio(self, tipo_exercicio: int):
+    def tipo_exercicio(self, tipo_exercicio: TipoExercicio):
         self.__tipo_exercicio = tipo_exercicio
 
 
