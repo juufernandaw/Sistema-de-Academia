@@ -4,6 +4,7 @@ from controladortreinodiario import ControladorTreinoDiario
 from controladorpersonaltrainer import ControladorPersonalTrainer
 from telas.telasistema import TelaSistema
 
+
 class ControladorSistema:
 
     def __init__(self):
@@ -34,4 +35,3 @@ class ControladorSistema:
 
     def encerrar_sistema(self):
         exit(0)
-
