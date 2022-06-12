@@ -6,7 +6,7 @@ class TelaSistema:
             print("Olá, bem vindo! Aqui começa sua jornada"
                   " para superar seus limites!")
             print("Escolha sua opcao")
-            print("1 - Iniciar a jornada: Login")
+            print("1 - Login")
             print("0 - Sair da jornada")
             opcao = input()
         except Exception:
