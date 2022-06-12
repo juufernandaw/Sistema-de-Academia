@@ -30,25 +30,18 @@ class ControladorSistema:
     def controlador_personal_trainer(self):
         return self.__controlador_personal_trainer
 
-    def logar(self):
-        escolha = None
-        if self.__tela_sistema == 1:
-            print("Bem vindo ao login:")
-            print("1: Caso você seja aluno:")
-            print("2: Caso você seja professor:")
-            escolha = input()
-        elif self.__tela_sistema == 0:
-            self.encerrar_sistema()
-        return escolha
-
     def abre_logins(self):
-        lista_opcoes = {1: 'aluno', 2: 'professor'}
+        lista_opcoes = {1: self.controlador_aluno.abre_tela_inicial,
+                        2: self.controlador_personal_trainer.abre_tela_inicial,
+                        0: self.encerrar_sistema}
         while True:
             opcao_escolhida = self.__tela_sistema.mostrarMenu_inicial()
             funcao_escolhida = lista_opcoes[opcao_escolhida]
+            funcao_escolhida()
 
     def iniciar_tela_sistema(self):
-        return self.__tela_sistema
+        self.__tela_sistema.mostrarMenu_inicial()
+        self.abre_logins()
 
     def encerrar_sistema(self):
         exit(0)
