@@ -10,13 +10,14 @@ class ControladorAluno():
         self.__manter_tela = True
         self.__tela_aluno = TelaAluno()
 
+    #adicionar o treino ao aluno
     def incluir_aluno(self):
-        dados_aluno = self.__tela_aluno.pega_dados_aluno() #implementar método pega_dados_aluno(): usuário digita tds as infos 
+        dados_aluno = self.__tela_aluno.pega_dados_aluno() 
         aluno = Aluno(dados_aluno["nome"], dados_aluno["login"], dados_aluno["senha"], dados_aluno["cpf"])
         self.__alunos.append(aluno)
 
     def alterar_aluno(self):
-        cpf = self.__tela_aluno.seleciona_aluno() #implementar seleciona_aluno()
+        cpf = self.__tela_aluno.seleciona_aluno() 
         aluno = self.consultar_aluno(cpf) 
         if (aluno is not None):
             novos_dados_aluno = self.__tela_aluno.pega_dados_aluno()
@@ -28,7 +29,7 @@ class ControladorAluno():
             self.__tela_aluno.mostrar_msg("ATENCAO: aluno não existente")
 
     def excluir_aluno(self):
-        cpf_aluno = self.__tela_aluno.seleciona_aluno() #implementar seleciona_aluno()
+        cpf_aluno = self.__tela_aluno.seleciona_aluno() 
         aluno = self.consultar_aluno(cpf_aluno) 
         if (aluno is not None):
             self.__alunos.remove(aluno)
