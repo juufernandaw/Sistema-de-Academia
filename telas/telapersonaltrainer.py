@@ -4,6 +4,7 @@ class TelaPersonalTrainer():
         pass
 
     def mostrar_tela_opcoes(self):
+
         pass
 
     def mostrar_tela_login(self):
