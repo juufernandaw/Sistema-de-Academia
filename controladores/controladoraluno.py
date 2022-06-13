@@ -47,7 +47,11 @@ class ControladorAluno():
             self.__tela_aluno.mostrar_aluno({"nome": aluno.nome, "login": aluno.login, "senha": aluno.senha, "cpf": aluno.cpf})
 
     def abre_tela_inicial(self):
-        pass
+        lista_opcoes = {1: self.incluir_aluno, 2: self.alterar_aluno, 3: self.listar_alunos, 4: self.excluir_aluno, 5: self.consultar_aluno, 6: self.retornar}
+
+        #continua = True
+        #while continua:
+        #lista_opcoes[self.__tela_amigo.tela_opcoes()]
 
     def retornar(self):
         pass
