@@ -40,7 +40,7 @@ class TelaAluno():
         print("2 - Alterar aluno")
         print("3 - Excluir aluno")
         print("2 - Consultar aluno")
-        print("3 - Listar alunoss")
+        print("3 - Listar alunos")
         print("4 - Sair")
 
 

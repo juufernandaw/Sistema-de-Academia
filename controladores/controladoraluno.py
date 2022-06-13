@@ -46,14 +46,14 @@ class ControladorAluno():
         for aluno in self.__alunos:
             self.__tela_aluno.mostrar_aluno({"nome": aluno.nome, "login": aluno.login, "senha": aluno.senha, "cpf": aluno.cpf})
 
-    def abre_tela_inicial(self):
+    def abre_tela_funcoes_aluno(self):
         lista_opcoes = {1: self.incluir_aluno, 2: self.alterar_aluno, 3: self.listar_alunos, 4: self.excluir_aluno, 5: self.consultar_aluno, 6: self.retornar}
 
-        #tela aluno contém a tela q o aluno vê ou as funções envolvendo o aluno?
+        #tela aluno contém as funções envolvendo o aluno!!!
 
-        #continua = True
-        #while continua:
-        #lista_opcoes[self.__tela_amigo.tela_opcoes()]
+        continua = True
+        while continua:
+            lista_opcoes[self.__tela_aluno.mexer_aluno()]
 
     def retornar(self):
         pass
