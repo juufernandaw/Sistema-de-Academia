@@ -45,6 +45,7 @@ class ControladorAluno():
         for aluno in self.__alunos:
             self.__tela_aluno.mostrar_aluno({"nome": aluno.nome, "login": aluno.login, "senha": aluno.senha, "cpf": aluno.cpf})
             #implementar metodo mostrar aluno
+            
     def abre_tela_inicial(self):
         pass
 
