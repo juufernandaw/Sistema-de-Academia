@@ -1,3 +1,5 @@
+from entidades.exercicio import Exercicio
+
 class Treino():
 
     def __init__(self, nome: str):
@@ -15,3 +17,7 @@ class Treino():
     @property
     def exercicios(self):
         return self.__exercicios
+
+    def incluir_exercicio(self, nome, serie, repeticao, tempo_descanso, tipo_exercicio):
+        exercicio = Exercicio(nome, serie, repeticao, tempo_descanso, tipo_exercicio)
+        self.__exercicios.append(exercicio)
