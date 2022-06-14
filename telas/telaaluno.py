@@ -4,10 +4,10 @@ class TelaAluno():
         print(msg)
 
     def mostrar_aluno(self, dados_aluno): #mostra os dados do aluno
-        print("Nome:",dados_aluno["nome"])
-        print("Login:",dados_aluno["login"])
-        print("Senha:",dados_aluno["senha"])
-        print("CPF:",dados_aluno["cpf"])
+        print("Nome:", dados_aluno["nome"])
+        print("Login:", dados_aluno["login"])
+        print("Senha:", dados_aluno["senha"])
+        print("CPF:", dados_aluno["cpf"])
 
     def seleciona_aluno(self): #seleciona aluno por cpf
         cpf = input("Digite o cpf do aluno:")

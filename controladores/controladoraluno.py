@@ -1,6 +1,6 @@
-from telas.telaaluno import TelaAluno
-from entidades.aluno import Aluno
-
+from TrabalhoPOO.telas.telaaluno import TelaAluno
+from TrabalhoPOO.entidades.aluno import Aluno
+from TrabalhoPOO.controladores.controladorpersonaltrainer import PersonalTrainer
 
 class ControladorAluno():
 
@@ -9,6 +9,12 @@ class ControladorAluno():
         self.__alunos = []
         self.__manter_tela = True
         self.__tela_aluno = TelaAluno()
+
+#implementar essa verificacao
+    # def verificar_login_senha(self, login, senha):  # VERIFICAR o login e senha.
+    #     if isinstance(login, str) and isinstance(senha, str):
+    #         if self.__alunos == login and self.__personal.senha == senha: #Set Para Mudar
+    #             return True
 
     #adicionar o treino ao aluno
     def incluir_aluno(self):

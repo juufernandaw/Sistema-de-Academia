@@ -1,4 +1,3 @@
-
 class TelaSistema:
     def mostrarMenu_inicial(self):
         global opcao
@@ -6,16 +5,32 @@ class TelaSistema:
             print("Olá, bem vindo! Aqui começa sua jornada"
                   " para superar seus limites!")
             print("Faça seu login")
-            print("1 - Professor")
-            print("2 - Aluno")
+            print("1 - Aluno")
+            print("2 - Professor")
             print("0 - Sair")
-            opcao = input()
+            opcao = int(input())
         except Exception:
             if opcao != 1 and opcao != 2:
                 print("Você só pode apertar 1 ou 2, caro padawan")
         return opcao
 
-    def mostrar_tela_aluno(self): #método tela inicial aluno
+    def logar(self, opcao_escolhida):
+        login = None
+        senha = None
+        print("Bem vindo ao login")
+        if opcao_escolhida == 1:
+            print('Aluno, digite seu login')
+            login = input()
+            print('Aluno, digite sua senha')
+            senha = input()
+        elif opcao_escolhida == 2:
+            print('Professor, digite seu login')
+            login = input()
+            print('Professor, digite sua senha')
+            senha = input()
+        return login, senha
+
+    def mostrar_tela_aluno(self):  # método tela inicial aluno
         print("----- INÍCIO -----")
         print("Seja bem-vindo, aluno!")
         print("O que você deseja fazer hoje? Digite o número correspondente:")
@@ -27,16 +42,13 @@ class TelaSistema:
         opcao = int(input())
         return opcao
 
-    def mostrar_tela_personal(self): #método tela inicial personal
+    def mostrar_tela_personal(self):  # método tela inicial personal
         print("----- INÍCIO -----")
         print("Seja bem-vindo, personal!")
         print("O que você deseja fazer hoje? Digite o número correspondente:")
-        print("1 - Aba aluno")
-        print("2 - Aba personal")
-        print("3 - Aba treino")
-        print("4 - Aba treino diário")
-        print("5 - Sair")
+        print("1 - Modificar minhas informações")
+        print("2 - Cadastrar alunos")
+        print("0 - Sair")
 
-        opcao = int(input())
-        return opcao
-
+        escolha = int(input())
+        return escolha

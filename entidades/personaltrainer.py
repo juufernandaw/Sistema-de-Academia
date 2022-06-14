@@ -14,14 +14,16 @@ class PersonalTrainer(Usuario):
     def habilitacao(self, habilitacao):
         self.__habilitacao = habilitacao
 
-    def nome(self):
-        pass
+    # def nome(self):
+    #     pass
+    #
+    # def cpf(self):
+    #     pass
+    #
+    # def login(self):
+    #     pass
+    #
+    # def senha(self):
+    #     pass
 
-    def cpf(self):
-        pass
 
-    def login(self):
-        pass
-
-    def senha(self):
-        pass
