@@ -30,7 +30,6 @@ class ControladorSistema:
     def controlador_personal_trainer(self):
         return self.__controlador_personal_trainer
 
-    
     def abre_logins(self):
         lista_opcoes = {1: self.controlador_aluno.abre_tela_inicial,
                         2: self.controlador_personal_trainer.abre_tela_inicial,
@@ -45,9 +44,10 @@ class ControladorSistema:
                     funcao_escolhida()
                 else:
                     self.logar(f"{opcao_escolhida} invalida, digite 1, 2 ou 0 para sair. ")
+                    
             elif opcao_escolhida == 2:
                 self.__tela_sistema.logar(2)
-                if self.__controlador_aluno.verificar_login_senha():
+                if self.__controlador_aluno.verificar_login_senha(): #perguntar
                     funcao_escolhida = lista_opcoes[opcao_escolhida]
                     funcao_escolhida()
             elif opcao_escolhida == 0:
@@ -56,10 +56,6 @@ class ControladorSistema:
 
     def iniciar_tela_sistema(self):
         self.__tela_sistema.mostrarMenu_inicial()
-        if self.__tela_sistema.mostrarMenu_inicial() == 1:
-            
-        
-        self.abre_logins()
 
     def encerrar_sistema(self):
         exit(0)
