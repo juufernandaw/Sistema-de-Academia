@@ -12,3 +12,5 @@ class TelaPersonalTrainer():
 
     def mostrar_msg(self):
         pass
+
+    #implementar o mexer_personal() -> ABA PERSONAL

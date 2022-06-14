@@ -31,7 +31,6 @@ class ControladorSistema:
         return self.__controlador_personal_trainer
 
     
-
     def abre_logins(self):
         lista_opcoes = {1: self.controlador_aluno.abre_tela_inicial,
                         2: self.controlador_personal_trainer.abre_tela_inicial,

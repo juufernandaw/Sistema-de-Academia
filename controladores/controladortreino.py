@@ -20,8 +20,8 @@ class ControladorTreino():
 
     def incluir_treino(self):
         dados_treino = self.__tela_treino.montar_treino() #checar tipo_Exercicio
-        exercicio = Exercicio(dados_treino["nome"], dados_treino["serie"], dados_treino["repeticao"], dados_treino["tempo_descanso"], tipo_exercicio)
-
+        exercicio = Exercicio(dados_treino["nome"], dados_treino["serie"], dados_treino["repeticao"], dados_treino["tempo_descanso"], self.__tipos_exercicio[dados_treino["tipo_exercicio"]])
+        #tipo_exercicio
     def excluir_treino(self):
         pass
 
