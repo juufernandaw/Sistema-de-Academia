@@ -1,5 +1,5 @@
 
-class TelaPersonalTrainer:
+class TelaPersonalTrainer():
     def __init__(self):
         pass
 
@@ -34,6 +34,7 @@ class TelaPersonalTrainer:
     def mostrar_msg(self, msg):
         print(msg)
 
-    def seleciona_personal(self):  # seleciona personal por cpf
-        cpf = input("Digite seu cpf, personal:")
-        return cpf
+    # Não precisa porque o personal é somente 1, ou seja, já ta instaciado.
+    # def seleciona_personal(self):  # seleciona personal por cpf
+    #     habilitacao = input("Digite seu cpf, personal:")
+    #     return habilitacao

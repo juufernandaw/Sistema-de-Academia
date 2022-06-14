@@ -1,7 +1,7 @@
-from controladoraluno import ControladorAluno
-from controladortreino import ControladorTreino
-from controladortreinodiario import ControladorTreinoDiario
-from controladorpersonaltrainer import ControladorPersonalTrainer
+from TrabalhoPOO.controladores.controladoraluno import ControladorAluno
+from TrabalhoPOO.controladores.controladortreino import ControladorTreino
+from TrabalhoPOO.controladores.controladortreinodiario import ControladorTreinoDiario
+from TrabalhoPOO.controladores.controladorpersonaltrainer import ControladorPersonalTrainer
 from TrabalhoPOO.telas.telasistema import TelaSistema
 
 
