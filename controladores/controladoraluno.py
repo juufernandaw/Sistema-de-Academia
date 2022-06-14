@@ -15,9 +15,10 @@ class ControladorAluno():
     #     if isinstance(login, str) and isinstance(senha, str):
     #         if self.__alunos == login and self.__personal.senha == senha: #Set Para Mudar
     #             return True
+#adc uma funcao abre tela inicial q nem personal
 
     #adicionar o treino ao aluno
-    def incluir_aluno(self):
+    def incluir_aluno(self): # Esse método é o cadastrar aluno
         dados_aluno = self.__tela_aluno.pega_dados_aluno() 
         aluno = Aluno(dados_aluno["nome"], dados_aluno["login"], dados_aluno["senha"], dados_aluno["cpf"])
         self.__alunos.append(aluno)
