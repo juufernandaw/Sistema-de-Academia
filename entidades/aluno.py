@@ -1,4 +1,5 @@
 from entidades.usuario import Usuario
+from entidades.treino import Treino
 
 
 class Aluno(Usuario):
@@ -10,3 +11,8 @@ class Aluno(Usuario):
     @property
     def treinos(self):
         return self.__treinos
+
+    def vincular_treino_aluno(self, treino: Treino):
+        if (treino is not None) and (isinstance(treino, Treino)):
+            if treino not in self.__treinos:
+                self.__treinos.append(treino)
