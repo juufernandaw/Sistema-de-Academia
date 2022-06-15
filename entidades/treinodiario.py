@@ -27,7 +27,6 @@ class TreinoDiario():
         if isinstance(data, date):
             self.__data = data
 
-    def treinos(self, treinos: Treino):
-        if isinstance(treinos, Treino):
-            pass
-
+    @property
+    def treinos(self):
+        return self.__treinos
