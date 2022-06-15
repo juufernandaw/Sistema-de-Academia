@@ -27,37 +27,41 @@ class ControladorTreino():
                 dados_exercicio["tempo_descanso"], self.__tipos_exercicio[dados_exercicio["tipo_exercicio"]])
                 novo_exercicio, dados_exercicio = self.__tela_treino.montar_exercicio()
             novo_treino, nome_treino = self.__tela_treino.montar_treino()
-            self.vincular_treino_aluno(treino)
             self.__treinos.append(treino)
+            cpf_aluno = self.__controlador_sistema.controlador_aluno.tela_aluno.seleciona_aluno() #seleciona o cpf do aluno pra vincular
+            aluno = self.__controlador_sistema.controlador_aluno.consultar_aluno(cpf_aluno) #seleciona a instancia do aluno
+            aluno.vincular_treino_aluno(treino) #chama o método pela instancia do aluno
+#           #!!!!perguntar como chamar o método de forma certa
 
     def excluir_treino(self):
-        pass
+        nome_treino = self.__tela_treino.seleciona_treino() #implementar usuario digita o nome do treino
+        treino = self.pega_treino_por_nome(nome_treino) #implementar busca infos do treino requisitado
+        if (treino is not None):
+            self.__treinos.remove(treino)
+            #remover do aluno o treino
+#           #como pegar a instancia de aluno da lista de alunos?
+            aluno.desvincular_treino_aluno(treino)
+        else:
+            self.__tela_treino.mostra_mensagem("ATENCAO: treino não existente")
 
     def alterar_treino(self):
-
-        nome_treino = self.__tela_treino.seleciona_treino() #implementar
-        treino = self.pega_treino_por_nome(nome_treino) #implementar
-        if(treino is not None):
-            novos_dados_treino = self.__tela_treino.pega_dados_treino() #implementar
+        nome_treino = self.__tela_treino.seleciona_treino() #implementar usuario digita o nome do treino
+        treino = self.pega_treino_por_nome(nome_treino) #implementar busca infos do treino requisitado
+        if (treino is not None):
+            novos_dados_treino = self.__tela_treino.pega_dados_treino() #implementar usuario passa os novos dados pro treino
             treino.nome = novos_dados_treino["nome"]
-#           #!!!!perguntar se aqui eu devo permitir alterar os exercícios que compõem o treino
+#           #!!!!perguntar se aqui eu devo permitir alterar os exercícios que compõem o treino ou se só o nome já tá ok
         else:
             self.__tela_treino.mostra_mensagem("ATENCAO: treino não existente")
         
     def consultar_treino(self):
         nome_treino = self.__tela_treino.seleciona_treino() #implementar
         for treino in self.__treinos:
-            if treino.nome == nome_treino:
+            if (treino.nome == nome_treino):
                 treino = {"nome":treino.nome, "exercicios":treino.exercicios}
                 self.__tela_treino.mostrar_tela_treino(treino)
             else:    
                 self.__tela_treino.mostra_mensagem("ATENCAO: treino não existente")
-
-    def vincular_treino_aluno(self, treino: Treino):
-        cpf_aluno = self.__controlador_sistema.controlador_aluno.tela_aluno.seleciona_aluno() #retorna o cpf do aluno q deseja vincular
-
-        #chama o método seleciona_aluno() aí dá um append nos exercicios[] do Aluno
-        pass
 
     def retornar(self):
         pass

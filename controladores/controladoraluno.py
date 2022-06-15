@@ -10,15 +10,15 @@ class ControladorAluno():
         self.__manter_tela = True
         self.__tela_aluno = TelaAluno()
 
-#implementar essa verificacao
-    # def verificar_login_senha(self, login, senha):  # VERIFICAR o login e senha.
-    #     if isinstance(login, str) and isinstance(senha, str):
-    #         if self.__alunos == login and self.__personal.senha == senha: #Set Para Mudar
-    #             return True
-#adc uma funcao abre tela inicial q nem personal
+    def verificar_login_senha(self, login, senha):  # VERIFICAR o login e senha.
+        if isinstance(login, str) and isinstance(senha, str):
+            for aluno in self.__alunos:
+                if (aluno.login == login) and (aluno.senha == senha):
+                    return True
+            else:
+                return False
 
-    #adicionar o treino ao aluno
-    def incluir_aluno(self): # Esse método é o cadastrar aluno
+    def incluir_aluno(self): 
         dados_aluno = self.__tela_aluno.pega_dados_aluno() 
         aluno = Aluno(dados_aluno["nome"], dados_aluno["login"], dados_aluno["senha"], dados_aluno["cpf"])
         self.__alunos.append(aluno)

@@ -16,3 +16,8 @@ class Aluno(Usuario):
         if (treino is not None) and (isinstance(treino, Treino)):
             if treino not in self.__treinos:
                 self.__treinos.append(treino)
+
+    def desvincular_treino_aluno(self, treino: Treino):
+        if (treino is not None) and (isinstance(treino, Treino)):
+            if treino in self.__treinos:
+                self.__treinos.remove(treino)

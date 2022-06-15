@@ -13,6 +13,7 @@ class TelaAluno():
         cpf = input("Digite o cpf do aluno:")
         return cpf
 
+
     def pega_dados_aluno(self): #usuario informa os dados pro usuario
         nome = input("Digite o nome do aluno:")
         login = input("Digite o login do aluno:")
