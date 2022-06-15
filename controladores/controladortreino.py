@@ -27,7 +27,7 @@ class ControladorTreino():
                 dados_exercicio["tempo_descanso"], self.__tipos_exercicio[dados_exercicio["tipo_exercicio"]])
                 novo_exercicio, dados_exercicio = self.__tela_treino.montar_exercicio()
             novo_treino, nome_treino = self.__tela_treino.montar_treino()
-            self.__treinos.append(treino)
+            self.__treinos.append(treino) #adiciona o treino a lista de todos os treinos do sistema
             cpf_aluno = self.__controlador_sistema.controlador_aluno.tela_aluno.seleciona_aluno() #seleciona o cpf do aluno pra vincular
             aluno = self.__controlador_sistema.controlador_aluno.consultar_aluno(cpf_aluno) #seleciona a instancia do aluno
             aluno.vincular_treino_aluno(treino) #chama o método pela instancia do aluno

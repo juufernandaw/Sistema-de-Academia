@@ -12,6 +12,10 @@ class Aluno(Usuario):
     def treinos(self):
         return self.__treinos
 
+    @treinos.setter
+    def treinos(self, treinos: list):
+        self.__treinos = treinos
+
     def vincular_treino_aluno(self, treino: Treino):
         if (treino is not None) and (isinstance(treino, Treino)):
             if treino not in self.__treinos:
