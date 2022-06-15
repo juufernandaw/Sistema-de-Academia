@@ -35,7 +35,7 @@ class ControladorPersonalTrainer():
             self.__controlador_sistema.controladoraluno.mexer_aluno()  # mostrar as opcoes q está na tela aluno q o
             # prof acessa.
             while True:  # aqui ele vai fazer o laço e verificar a opcao do mexer alu.
-                if self.__tela_aluno.mexer_aluno() == 1:
+                if self.__tela_aluno.mexer_aluno() == 1: # COntrolador sistema {Dicionario com lista de opcao}
                     self.__controlador_sistema.controladoraluno.incluir_aluno()
                 elif self.__tela_aluno.mexer_aluno() == 2:
                     self.__controlador_sistema.controladoraluno.alterar_aluno()

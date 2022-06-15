@@ -1,13 +1,12 @@
-<<<<<<< Updated upstream
-from telas.telaaluno import TelaAluno
-from entidades.aluno import Aluno
-from controladores.controladorpersonaltrainer import PersonalTrainer
-#from controladores.controladorsistema import ControladorSistema
-=======
+# from telas.telaaluno import TelaAluno
+# from entidades.aluno import Aluno
+# from controladores.controladorpersonaltrainer import PersonalTrainer
+# from controladores.controladorsistema import ControladorSistema
+
 from TrabalhoPOO.telas.telaaluno import TelaAluno
 from TrabalhoPOO.entidades.aluno import Aluno
 from TrabalhoPOO.controladores.controladorpersonaltrainer import PersonalTrainer
->>>>>>> Stashed changes
+
 
 class ControladorAluno():
 
@@ -21,7 +20,7 @@ class ControladorAluno():
         if isinstance(login, str) and isinstance(senha, str):
             for aluno in self.__alunos:
                 if (aluno.login == login) and (aluno.senha == senha):
-                    return True
+                    return True, aluno # aluno q achou retornar
             else:
                 return False
 

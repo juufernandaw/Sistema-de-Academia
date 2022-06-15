@@ -11,6 +11,9 @@ class TelaTreinoDiario():
         escolha = int(input())
         return escolha
 
+    def registrar_treino(self):
+
+
     def mostrar_desempenho(self):
         print("Aqui está seu desempenho:")
 
