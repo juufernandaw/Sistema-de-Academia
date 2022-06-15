@@ -59,9 +59,10 @@ class ControladorAluno():
             #vincular_treino_aluno
         else:
             self.__tela_aluno.mostrar_msg("ATENCAO: aluno não existente")
+        #incluir treinos
 
     def excluir_aluno(self):
-        cpf_aluno = self.__tela_aluno.seleciona_aluno() 
+        cpf_aluno = self.__tela_aluno.seleciona_aluno() #encurtar esses 2 métodos em 1
         aluno = self.consultar_aluno(cpf_aluno) 
         if (aluno is not None):
             self.__alunos.remove(aluno)
@@ -73,10 +74,12 @@ class ControladorAluno():
             if aluno.cpf == cpf:
                 return aluno
         return None
+        #incluir treinos
 
     def listar_alunos(self):
         for aluno in self.__alunos:
             self.__tela_aluno.mostrar_aluno({"nome": aluno.nome, "login": aluno.login, "senha": aluno.senha, "cpf": aluno.cpf})
+        #incluir treinos
 
     def abre_tela_funcoes_aluno(self):
         lista_opcoes = {1: self.incluir_aluno, 2: self.alterar_aluno, 3: self.excluir_aluno, 4: self.listar_alunos, 5: self.consultar_aluno, 6: self.retornar}
