@@ -9,7 +9,7 @@ class TelaAluno():
         print("Senha:", dados_aluno["senha"])
         print("CPF:", dados_aluno["cpf"])
 
-    def seleciona_aluno(self): #seleciona aluno por cpf
+    def selecionar_aluno_cpf(self): #seleciona aluno por cpf
         cpf = input("Digite o cpf do aluno:")
         return cpf
 

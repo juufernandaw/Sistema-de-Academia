@@ -2,6 +2,9 @@
 
 class TelaTreino():
 
+    def mostrar_msg(self, msg: str):
+        print(msg)
+
     def mostrar_tela_treino(self, treino): #mostra tela com os dados do treino
         print("Nome do treino",treino["nome"])
         for exercicio in treino["exercicios"]:
@@ -35,5 +38,10 @@ class TelaTreino():
             nome, serie, repeticao, tempo_descanso, tipo_exercicio = None
         return opcao,{"nome":nome, "serie":serie, "repeticao":repeticao, "tempo_descanso":tempo_descanso, "tipo_exercicio":tipo_exercicio}
 
+    def selecionar_treino_por_nome(self):
+        nome_treino = input("Nome do treino:")
+        return nome_treino
 
-    
+    def escolher_alteracao_treino(self):
+        opcao = int(input("Escolha o que deseja fazer: 1) Alterar nome do treino 2) Excluir e incluir novos exercícios no treino"))
+        return opcao

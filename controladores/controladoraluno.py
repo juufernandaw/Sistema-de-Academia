@@ -29,6 +29,22 @@ class ControladorAluno():
         aluno = Aluno(dados_aluno["nome"], dados_aluno["login"], dados_aluno["senha"], dados_aluno["cpf"])
         self.__alunos.append(aluno)
 
+    def selecionar_aluno(self):
+        cpf_aluno = self.__tela_aluno.selecionar_aluno_cpf()
+        for aluno in self.__alunos:
+            if aluno.cpf == cpf_aluno:
+                return aluno
+        else:
+            self.__tela_aluno.mostrar_msg("ATENCAO: aluno não existente")
+
+    def buscar_aluno_por_treino(self, treino):
+        for aluno in self.__alunos:
+            for treino_individual in aluno.treinos:
+                if treino_individual.nome == treino.nome:
+                    return aluno
+        else:
+            return None
+
     def alterar_aluno(self):
         cpf = self.__tela_aluno.seleciona_aluno() 
         aluno = self.consultar_aluno(cpf) 
