@@ -52,3 +52,6 @@ class TelaSistema:
 
         escolha = int(input())
         return escolha
+
+    def mostrar_msg_telasistema(self, msg):
+        return msg

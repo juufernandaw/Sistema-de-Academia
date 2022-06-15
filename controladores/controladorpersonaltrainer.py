@@ -28,11 +28,12 @@ class ControladorPersonalTrainer():
             self.__personal.senha = novos_dados["senha"]
             self.__personal.habilitacao = novos_dados["habilitacao"]
         else:
-            print("Dados não alterados")
+            self.__tela_personal.mostrar_msg("Dados não alterados")
 
     def tela_alterar_dados_alunos(self):
         if self.__tela_personal.mexer_personal() == 2:  # na tela personal tem a opcao do personal escolher
-            self.__controlador_sistema.controladoraluno.mexer_aluno()  # mostrar as opcoes q está na tela aluno q o prof acessa.
+            self.__controlador_sistema.controladoraluno.mexer_aluno()  # mostrar as opcoes q está na tela aluno q o
+            # prof acessa.
             while True:  # aqui ele vai fazer o laço e verificar a opcao do mexer alu.
                 if self.__tela_aluno.mexer_aluno() == 1:
                     self.__controlador_sistema.controladoraluno.incluir_aluno()
@@ -43,11 +44,12 @@ class ControladorPersonalTrainer():
                 elif self.__tela_aluno.mexer_aluno() == 4:
                     self.__controlador_sistema.controladoraluno.listar_alunos()
                 elif self.__tela_aluno.mexer_aluno() == 5:  # Duvida aqui o consultar! COMO fazer? se precisa do cpf
-                    self.__controlador_sistema.controladoraluno.consultar_aluno("aqui seria o CPF")
+                    self.__controlador_sistema.controladoraluno.consultar_aluno()  # Talvez na tela aluno pedir o cpf
+                    # junto e ??
                 elif self.__tela_aluno.mexer_aluno() == 6:
                     self.__controlador_sistema.controladoraluno.retornar()
                 else:
-                    print("opcao de escolha invalida")
+                    self.__tela_personal.mostrar_msg("opcao de escolha invalida")
                     self.tela_alterar_dados_alunos()  # Pode fazer isso? Para voltar ao método
 
     @property

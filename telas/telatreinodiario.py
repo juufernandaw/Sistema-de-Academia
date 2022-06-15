@@ -13,3 +13,6 @@ class TelaTreinoDiario():
 
     def mostrar_desempenho(self):
         print("Aqui está seu desempenho:")
+
+    def checkin(self):
+        print(" Você frequentou em dias: ")
