@@ -1,6 +1,7 @@
 from telas.telaaluno import TelaAluno
 from entidades.aluno import Aluno
 from controladores.controladorpersonaltrainer import PersonalTrainer
+#from controladores.controladorsistema import ControladorSistema
 
 class ControladorAluno():
 
@@ -19,8 +20,9 @@ class ControladorAluno():
                 return False
 
     def incluir_aluno(self): 
-        dados_aluno = self.__tela_aluno.pega_dados_aluno() 
-        aluno = Aluno(dados_aluno["nome"], dados_aluno["login"], dados_aluno["senha"], dados_aluno["cpf"])
+        dados_aluno = self.__tela_aluno.pega_dados_aluno()
+        treinos = [] #!!!! perguntar se é a melhor saída
+        aluno = Aluno(dados_aluno["nome"], dados_aluno["login"], dados_aluno["senha"], dados_aluno["cpf"], treinos)
         self.__alunos.append(aluno)
 
     def alterar_aluno(self):
@@ -32,6 +34,9 @@ class ControladorAluno():
             aluno.login = novos_dados_aluno["login"]
             aluno.senha = novos_dados_aluno["senha"]
             aluno.cpf = novos_dados_aluno["cpf"]
+            #!!!perguntar
+            #desvincular_treino_aluno
+            #vincular_treino_aluno
         else:
             self.__tela_aluno.mostrar_msg("ATENCAO: aluno não existente")
 

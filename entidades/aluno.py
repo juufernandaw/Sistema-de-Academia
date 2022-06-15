@@ -4,9 +4,9 @@ from entidades.treino import Treino
 
 class Aluno(Usuario):
 
-    def __init__(self, nome: str, login: str, senha: str, cpf: str):
+    def __init__(self, nome: str, login: str, senha: str, cpf: str, treinos: list):
         super().__init__(nome, login, senha, cpf)
-        self.__treinos = []
+        self.__treinos = treinos
 
     @property
     def treinos(self):
