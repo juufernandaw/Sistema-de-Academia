@@ -31,6 +31,7 @@ class ControladorSistema:
         return self.__controlador_personal_trainer
 
     def abre_logins(self):
+        self.__tela_sistema.mostrarMenu_inicial()
         lista_opcoes = {1: self.__controlador_aluno.abre_tela_funcoes_aluno,
                         2: self.__controlador_personal_trainer.abre_tela_inicial,
                         0: self.encerrar_sistema}
@@ -40,7 +41,8 @@ class ControladorSistema:
             opcao_escolhida = self.__tela_sistema.mostrarMenu_inicial()
             if opcao_escolhida == 1:
                 self.__tela_sistema.logar(1)  # se for vdd ele vai entrar no menu de cada: aluno ou personal
-                verficar = self.__controlador_aluno.verificar_login_senha()
+                login, senha = self.__tela_sistema.logar(1)
+                verficar = self.__controlador_aluno.verificar_login_senha(login, senha)
                 if verficar:
                     funcao_escolhida = lista_opcoes[opcao_escolhida]
                     return funcao_escolhida()
@@ -57,7 +59,7 @@ class ControladorSistema:
                 funcao_escolhida = lista_opcoes[opcao_escolhida]
                 return funcao_escolhida()
 
-    def iniciar_tela_sistema(self):
+    def iniciar_tela_sistema(self): # Pode ficar no abre_logins ?
         self.__tela_sistema.mostrarMenu_inicial()
 
     def encerrar_sistema(self):

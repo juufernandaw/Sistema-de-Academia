@@ -52,6 +52,10 @@ class ControladorPersonalTrainer():
                     self.__tela_personal.mostrar_msg("opcao de escolha invalida")
                     self.tela_alterar_dados_alunos()  # Pode fazer isso? Para voltar ao método
 
+    def alterar_treino_aluno(self):
+
+        pass
+
     @property
     def consultar_personal(self):
         return self.__personal
