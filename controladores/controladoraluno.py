@@ -21,8 +21,7 @@ class ControladorAluno():
 
     def incluir_aluno(self): 
         dados_aluno = self.__tela_aluno.pega_dados_aluno()
-        treinos = [] #!!!! perguntar se é a melhor saída
-        aluno = Aluno(dados_aluno["nome"], dados_aluno["login"], dados_aluno["senha"], dados_aluno["cpf"], treinos)
+        aluno = Aluno(dados_aluno["nome"], dados_aluno["login"], dados_aluno["senha"], dados_aluno["cpf"])
         self.__alunos.append(aluno)
 
     def alterar_aluno(self):

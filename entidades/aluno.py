@@ -4,9 +4,9 @@ from entidades.treino import Treino
 
 class Aluno(Usuario):
 
-    def __init__(self, nome: str, login: str, senha: str, cpf: str, treinos: list):
+    def __init__(self, nome: str, login: str, senha: str, cpf: str):
         super().__init__(nome, login, senha, cpf)
-        self.__treinos = treinos
+        self.__treinos = []
 
     @property
     def treinos(self):
@@ -16,12 +16,12 @@ class Aluno(Usuario):
     def treinos(self, treinos: list):
         self.__treinos = treinos
 
-    def vincular_treino_aluno(self, treino: Treino):
+    def adicionar_treino_aluno(self, treino: Treino):
         if (treino is not None) and (isinstance(treino, Treino)):
             if treino not in self.__treinos:
                 self.__treinos.append(treino)
 
-    def desvincular_treino_aluno(self, treino: Treino):
+    def remover_treino_aluno(self, treino: Treino):
         if (treino is not None) and (isinstance(treino, Treino)):
             if treino in self.__treinos:
                 self.__treinos.remove(treino)

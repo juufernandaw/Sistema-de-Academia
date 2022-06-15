@@ -21,17 +21,21 @@ class ControladorTreino():
         novo_treino, nome_treino = self.__tela_treino.montar_treino() #pedir o nome do treino e os exercicios
         while (novo_treino==1) and (nome_treino is not None): #pra criar novo treino
             treino = Treino(nome_treino) #instancia o treino
-            novo_exercicio, dados_exercicio = self.__tela_treino.montar_exercicio(self.__tipos_exercicio)
-            while novo_exercicio==1: #pra criar novo exercicio
-                treino.incluir_exercicio(dados_exercicio["nome"], dados_exercicio["serie"], dados_exercicio["repeticao"],\
-                dados_exercicio["tempo_descanso"], self.__tipos_exercicio[dados_exercicio["tipo_exercicio"]])
-                novo_exercicio, dados_exercicio = self.__tela_treino.montar_exercicio()
-            novo_treino, nome_treino = self.__tela_treino.montar_treino()
+            novo_treino, nome_treino = self.criar_exercicio(treino)
+            #verificar se já existe o treino
             self.__treinos.append(treino) #adiciona o treino a lista de todos os treinos do sistema
-            cpf_aluno = self.__controlador_sistema.controlador_aluno.tela_aluno.seleciona_aluno() #seleciona o cpf do aluno pra vincular
-            aluno = self.__controlador_sistema.controlador_aluno.consultar_aluno(cpf_aluno) #seleciona a instancia do aluno
-            aluno.vincular_treino_aluno(treino) #chama o método pela instancia do aluno
-#           #!!!!perguntar como chamar o método de forma certa
+            #tornar esses 2 um 
+            aluno = self.__controlador_sistema.controlador_aluno.seleciona_aluno() #seleciona o aluno pra vincular #seleciona a instancia do aluno
+            aluno.adicionar_treino_aluno(treino) #chama o método pela instancia do aluno
+#         
+
+    def criar_exercicio(self, treino: Treino):
+        novo_exercicio, dados_exercicio = self.__tela_treino.montar_exercicio(self.__tipos_exercicio)
+        while novo_exercicio==1: #pra criar novo exercicio
+            treino.incluir_exercicio(dados_exercicio["nome"], dados_exercicio["serie"], dados_exercicio["repeticao"],\
+            dados_exercicio["tempo_descanso"], self.__tipos_exercicio[dados_exercicio["tipo_exercicio"]])
+            novo_exercicio, dados_exercicio = self.__tela_treino.montar_exercicio()
+        return novo_exercicio, dados_exercicio
 
     def excluir_treino(self):
         nome_treino = self.__tela_treino.seleciona_treino() #implementar usuario digita o nome do treino
@@ -40,7 +44,9 @@ class ControladorTreino():
             self.__treinos.remove(treino)
             #remover do aluno o treino
 #           #como pegar a instancia de aluno da lista de alunos?
-            aluno.desvincular_treino_aluno(treino)
+            #método no controlador_aluno que busca_alunos_treino get_alunos_by_treino: retorna lista de alunos
+            #for aluno in lista_alunos:
+            #    aluno.remove_treino_aluno(treino)
         else:
             self.__tela_treino.mostra_mensagem("ATENCAO: treino não existente")
 
@@ -50,7 +56,9 @@ class ControladorTreino():
         if (treino is not None):
             novos_dados_treino = self.__tela_treino.pega_dados_treino() #implementar usuario passa os novos dados pro treino
             treino.nome = novos_dados_treino["nome"]
-#           #!!!!perguntar se aqui eu devo permitir alterar os exercícios que compõem o treino ou se só o nome já tá ok
+            #quer alterar exercicios? se sim:
+            treino.excluir_exercicios()
+            novo_treino, nome_treino = self.cria_exercicio(treino)
         else:
             self.__tela_treino.mostra_mensagem("ATENCAO: treino não existente")
         

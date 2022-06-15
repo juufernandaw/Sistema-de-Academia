@@ -21,3 +21,6 @@ class Treino():
     def incluir_exercicio(self, nome, serie, repeticao, tempo_descanso, tipo_exercicio):
         exercicio = Exercicio(nome, serie, repeticao, tempo_descanso, tipo_exercicio)
         self.__exercicios.append(exercicio)
+
+    def excluir_exercicios(self):
+        self.__exercicios = []
