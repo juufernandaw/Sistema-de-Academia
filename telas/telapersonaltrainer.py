@@ -4,7 +4,7 @@ class TelaPersonalTrainer():
         pass
 
     def tela_alterar_dados(self):  # Esse seria o mexer personal?
-        print("Olá, você pode alterar todos os seus dados: Qual você deseja?")
+        print("Olá, Renove seus Dados:")
         nome = input("Digite o nome:")
         cpf = input("Digite o cpf:")
         login = input("Digite o login:")
@@ -22,7 +22,7 @@ class TelaPersonalTrainer():
             print("0 - Sair")
             opcao = int(input())
             if opcao == 1:
-                self.tela_alterar_dados()
+                return 1
             elif opcao == 2:
                 return 2
             elif opcao == 0:
@@ -33,8 +33,3 @@ class TelaPersonalTrainer():
 
     def mostrar_msg(self, msg):
         print(msg)
-
-    # Não precisa porque o personal é somente 1, ou seja, já ta instaciado.
-    # def seleciona_personal(self):  # seleciona personal por cpf
-    #     habilitacao = input("Digite seu cpf, personal:")
-    #     return habilitacao

@@ -12,10 +12,18 @@ class TelaTreinoDiario():
         return escolha
 
     def registrar_treino(self):
-
+        print("Registre seu treino")
+        print("1- sim")
+        print("2- não")
+        registro_treino = int(input())
+        return registro_treino
 
     def mostrar_desempenho(self):
-        print("Aqui está seu desempenho:")
+        print("Quer vê seu desempenho ?")
+        print("1- sim")
+        print("2- não")
+        mostrar_desempenho = int(input())
+        return mostrar_desempenho
 
     def checkin(self):
         print(" Você frequentou em dias: ")

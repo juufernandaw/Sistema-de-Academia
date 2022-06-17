@@ -1,4 +1,7 @@
-from entidades.tipoexercicio import TipoExercicio
+# from entidades.tipoexercicio import TipoExercicio
+from TrabalhoPOO.entidades.tipoexercicio import TipoExercicio
+
+
 
 class Exercicio():
     def __init__(self, nome: str, serie: int, repeticao: int, tempo_descanso: int, tipo_exercicio: TipoExercicio):

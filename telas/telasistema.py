@@ -42,16 +42,5 @@ class TelaSistema:
         opcao = int(input())
         return opcao
 
-    def mostrar_tela_personal(self):  # método tela inicial personal
-        print("----- INÍCIO -----")
-        print("Seja bem-vindo, personal!")
-        print("O que você deseja fazer hoje? Digite o número correspondente:")
-        print("1 - Modificar minhas informações")
-        print("2 - Cadastrar alunos")
-        print("0 - Sair")
-
-        escolha = int(input())
-        return escolha
-
     def mostrar_msg_telasistema(self, msg):
         return msg

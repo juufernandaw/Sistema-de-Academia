@@ -82,7 +82,8 @@ class ControladorAluno():
         #incluir treinos
 
     def abre_tela_funcoes_aluno(self):
-        lista_opcoes = {1: self.incluir_aluno, 2: self.alterar_aluno, 3: self.excluir_aluno, 4: self.listar_alunos, 5: self.consultar_aluno, 6: self.retornar}
+        lista_opcoes = {1: self.incluir_aluno, 2: self.alterar_aluno,
+                        3: self.excluir_aluno, 4: self.listar_alunos, 5: self.consultar_aluno, 6: self.retornar}
         continua = True
         while continua:
             lista_opcoes[self.__tela_aluno.mexer_aluno()]

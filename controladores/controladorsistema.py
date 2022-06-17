@@ -56,25 +56,25 @@ class ControladorSistema:
                                                             f"digite 1, 2 ou 0 para sair. ")
                 self.__tela_sistema.mostrarMenu_inicial()
 
-            # if opcao_escolhida == 1:
-            #     self.__tela_sistema.logar(1)  # se for vdd ele vai entrar no menu de cada: aluno ou personal
-            #     login, senha = self.__tela_sistema.logar(1)
-            #     verficar = self.__controlador_aluno.verificar_login_senha(login, senha)
-            #     if verficar:
-            #         funcao_escolhida = lista_opcoes[opcao_escolhida]
-            #         return funcao_escolhida()
-            #     else:
-            #         self.__tela_sistema.mostrar_msg_telasistema(f"{opcao_escolhida} invalida, "
-            #                                                     f"digite 1, 2 ou 0 para sair. ")
-            #         self.__tela_sistema.mostrarMenu_inicial()
-            # elif opcao_escolhida == 2:
-            #     login, senha = self.__tela_sistema.logar(2)
-            #     if self.__controlador_personal_trainer.verificar_login_senha(login, senha):
-            #         funcao_escolhida = lista_opcoes[opcao_escolhida]
-            #         return funcao_escolhida()
-            # elif opcao_escolhida == 0:
-            #     funcao_escolhida = lista_opcoes[opcao_escolhida]
-            #     return funcao_escolhida()
-
     def encerrar_sistema(self):
         exit(0)
+
+    # if opcao_escolhida == 1:
+    #     self.__tela_sistema.logar(1)  # se for vdd ele vai entrar no menu de cada: aluno ou personal
+    #     login, senha = self.__tela_sistema.logar(1)
+    #     verficar = self.__controlador_aluno.verificar_login_senha(login, senha)
+    #     if verficar:
+    #         funcao_escolhida = lista_opcoes[opcao_escolhida]
+    #         return funcao_escolhida()
+    #     else:
+    #         self.__tela_sistema.mostrar_msg_telasistema(f"{opcao_escolhida} invalida, "
+    #                                                     f"digite 1, 2 ou 0 para sair. ")
+    #         self.__tela_sistema.mostrarMenu_inicial()
+    # elif opcao_escolhida == 2:
+    #     login, senha = self.__tela_sistema.logar(2)
+    #     if self.__controlador_personal_trainer.verificar_login_senha(login, senha):
+    #         funcao_escolhida = lista_opcoes[opcao_escolhida]
+    #         return funcao_escolhida()
+    # elif opcao_escolhida == 0:
+    #     funcao_escolhida = lista_opcoes[opcao_escolhida]
+    #     return funcao_escolhida()

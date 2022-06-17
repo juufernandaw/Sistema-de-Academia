@@ -3,6 +3,7 @@ from aluno import Aluno
 from datetime import date
 
 
+
 class TreinoDiario():
     def __init__(self, aluno: Aluno, data: date, treinos: Treino):
         self.__aluno = aluno

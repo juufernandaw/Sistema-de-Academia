@@ -2,6 +2,7 @@ from TrabalhoPOO.entidades.personaltrainer import PersonalTrainer
 from TrabalhoPOO.telas.telapersonaltrainer import TelaPersonalTrainer
 from TrabalhoPOO.telas.telasistema import TelaSistema
 from TrabalhoPOO.telas.telaaluno import TelaAluno
+from TrabalhoPOO.controladores.controladortreinodiario import TreinoDiario
 from TrabalhoPOO.controladores.controladorsistema import ControladorSistema
 
 
@@ -19,49 +20,80 @@ class ControladorPersonalTrainer():
             if self.__personal.senha == login and self.__personal.senha == senha:  # Set Para Mudar
                 return True
 
+    def abre_tela_inicial(self):  # abre a tela personal pos login da tela do sistema
+        self.__tela_personal.mexer_personal()
+        mexer_personal_opcoes = {1: self.alterar_personal,
+                                 2: self.tela_alterar__dados_alunos
+                                 }
+        while True:
+            opcao_escolhida = self.__tela_personal.mexer_personal()
+            if opcao_escolhida == 0:
+                return self.retornar(0)
+            else:
+                funcao_escolhida = mexer_personal_opcoes[opcao_escolhida]
+            return funcao_escolhida()
+
     def alterar_personal(self):  # aqui ele está alterando os dados do personal baseado no dicionario da tela
+        self.__tela_personal.tela_alterar_dados()
         if self.__personal is not None:
-            novos_dados = self.__tela_personal.tela_alterar_dados()
+            novos_dados = self.__tela_personal.tela_alterar_dados()  # vai ser um dicionario
             self.__personal.nome = novos_dados["nome"]
             self.__personal.cpf = novos_dados["habilitacao"]
             self.__personal.login = novos_dados["login"]
             self.__personal.senha = novos_dados["senha"]
             self.__personal.habilitacao = novos_dados["habilitacao"]
-        else:
-            self.__tela_personal.mostrar_msg("Dados não alterados")
 
-    def tela_alterar_dados_alunos(self):
-        if self.__tela_personal.mexer_personal() == 2:  # na tela personal tem a opcao do personal escolher
-            self.__controlador_sistema.controladoraluno.mexer_aluno()  # mostrar as opcoes q está na tela aluno q o
-            # prof acessa.
-            while True:  # aqui ele vai fazer o laço e verificar a opcao do mexer alu.
-                if self.__tela_aluno.mexer_aluno() == 1: # COntrolador sistema {Dicionario com lista de opcao}
-                    self.__controlador_sistema.controladoraluno.incluir_aluno()
-                elif self.__tela_aluno.mexer_aluno() == 2:
-                    self.__controlador_sistema.controladoraluno.alterar_aluno()
-                elif self.__tela_aluno.mexer_aluno() == 3:
-                    self.__controlador_sistema.controladoraluno.excluir_aluno()
-                elif self.__tela_aluno.mexer_aluno() == 4:
-                    self.__controlador_sistema.controladoraluno.listar_alunos()
-                elif self.__tela_aluno.mexer_aluno() == 5:  # Duvida aqui o consultar! COMO fazer? se precisa do cpf
-                    self.__controlador_sistema.controladoraluno.consultar_aluno()  # Talvez na tela aluno pedir o cpf
-                    # junto e ??
-                elif self.__tela_aluno.mexer_aluno() == 6:
-                    self.__controlador_sistema.controladoraluno.retornar()
-                else:
-                    self.__tela_personal.mostrar_msg("opcao de escolha invalida")
-                    self.tela_alterar_dados_alunos()  # Pode fazer isso? Para voltar ao método
+        return self.voltar_ao_menu_personal()
+
+    def tela_alterar__dados_alunos(self):  # abre_tela_inicial manda para ca
+        self.__tela_aluno.mexer_aluno()  # na tela personal tem a opcao do personal escolher
+        mexer_personal_opcoes = {1: self.__controlador_sistema.controladoraluno.incluir_aluno,
+                                 2: self.__controlador_sistema.controladoraluno.alterar_aluno,
+                                 3: self.__controlador_sistema.controladoraluno.excluir_aluno,
+                                 4: self.__controlador_sistema.controladoraluno.listar_alunos,
+                                 5: self.__controlador_sistema.controladoraluno.consultar_aluno,
+                                 6: self.voltar_ao_menu_personal,
+                                 7: self.consultar_desempenho}
+        while True:
+            opcao_modificar_aluno = self.__tela_aluno.mexer_aluno()
+            funcao_escolhida = mexer_personal_opcoes[opcao_modificar_aluno]
+            return funcao_escolhida()
+
+    def consultar_desempenho(self):
+        pass
 
     def alterar_treino_aluno(self):
-
         pass
 
     @property
     def consultar_personal(self):
         return self.__personal
 
-    def abre_tela_inicial(self):  # abre a tela personal pos login da tela do sistema
-        self.__tela_sistema.mostrar_tela_personal()
+    def voltar_ao_menu_personal(self):
+        return self.__tela_personal.mexer_personal()
 
-    def retornar(self):
-        pass
+    def retornar(self, opcao_escolhida):
+        return self.__tela_sistema.logar(opcao_escolhida)
+
+
+# if self.__tela_personal.mexer_personal() == 2:
+#   self.__controlador_sistema.controladoraluno.mexer_aluno()
+#     while True:  # aqui ele vai fazer o laço e verificar a opcao do mexer alu.
+#         if self.__tela_aluno.mexer_aluno() == 1:  # COntrolador sistema {Dicionario com lista de opcao}
+#             self.__controlador_sistema.controladoraluno.incluir_aluno()
+#         elif self.__tela_aluno.mexer_aluno() == 2:
+#             self.__controlador_sistema.controladoraluno.alterar_aluno()
+#         elif self.__tela_aluno.mexer_aluno() == 3:
+#             self.__controlador_sistema.controladoraluno.excluir_aluno()
+#         elif self.__tela_aluno.mexer_aluno() == 4:
+#             self.__controlador_sistema.controladoraluno.listar_alunos()
+#         elif self.__tela_aluno.mexer_aluno() == 5:  # Duvida aqui o consultar! COMO fazer? se precisa do cpf
+#             self.__controlador_sistema.controladoraluno.consultar_aluno()  # Talvez na tela aluno pedir o cpf
+#             # junto e ??
+#         elif self.__tela_aluno.mexer_aluno() == 6:
+#             self.__controlador_sistema.controladoraluno.retornar()
+#         else:
+#             self.__tela_personal.mostrar_msg("opcao de escolha invalida")
+#             self.tela_alterar_dados_alunos()  # Pode fazer isso? Para voltar ao método
+
+
