@@ -4,7 +4,7 @@ class TelaTreinoDiario():
         pass
 
     def mostrar_tela_desempenho(self):
-        print("Ola Aluno, você quer ver seu desempenho da jornada?")
+        print("Ola Aluno e/ou Professor, você quer consultar o desempenho?")
         print("1 - SIM!")
         print("2 - NÃO")
         print("0 - Voltar")

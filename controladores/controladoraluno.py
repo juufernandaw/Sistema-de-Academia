@@ -20,7 +20,7 @@ class ControladorAluno():
         if isinstance(login, str) and isinstance(senha, str):
             for aluno in self.__alunos:
                 if (aluno.login == login) and (aluno.senha == senha):
-                    return True, aluno # aluno q achou retornar
+                    return True, aluno  # aluno q achou retornar
             else:
                 return False
 

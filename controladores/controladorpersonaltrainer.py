@@ -53,14 +53,17 @@ class ControladorPersonalTrainer():
                                  4: self.__controlador_sistema.controladoraluno.listar_alunos,
                                  5: self.__controlador_sistema.controladoraluno.consultar_aluno,
                                  6: self.voltar_ao_menu_personal,
-                                 7: self.consultar_desempenho}
+                                 7: self.consultar_tela_desempenho}
         while True:
             opcao_modificar_aluno = self.__tela_aluno.mexer_aluno()
             funcao_escolhida = mexer_personal_opcoes[opcao_modificar_aluno]
             return funcao_escolhida()
 
+    def consultar_tela_desempenho(self):  # NAO TEM A OPCAO NA LISTA DE MEXER ALUNO!
+        return self.__controlador_sistema.controlador_treino_diario.mostrar_tela_treino_diario()
+
     def consultar_desempenho(self):
-        pass
+        escolha = self.consultar_tela_desempenho()
 
     def alterar_treino_aluno(self):
         pass

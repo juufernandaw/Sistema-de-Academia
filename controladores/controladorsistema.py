@@ -16,7 +16,7 @@ class ControladorSistema:
         self.__usuario_logado = None
 
     @property
-    def usuario_logado(self): # conseguimos saber quem logou
+    def usuario_logado(self):  # conseguimos saber quem logou
         return self.__usuario_logado
 
     @property
