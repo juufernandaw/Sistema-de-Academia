@@ -46,9 +46,9 @@ class ControladorAluno():
             return None
 
     def alterar_aluno(self):
-        cpf = self.__tela_aluno.seleciona_aluno() 
-        aluno = self.consultar_aluno(cpf) 
+        aluno = self.selecionar_aluno() 
         if (aluno is not None):
+            alteracao = self.__tela_aluno.opcao_alterar()
             novos_dados_aluno = self.__tela_aluno.pega_dados_aluno()
             aluno.nome = novos_dados_aluno["nome"]
             aluno.login = novos_dados_aluno["login"]
@@ -62,8 +62,7 @@ class ControladorAluno():
         #incluir treinos
 
     def excluir_aluno(self):
-        cpf_aluno = self.__tela_aluno.seleciona_aluno() #encurtar esses 2 métodos em 1
-        aluno = self.consultar_aluno(cpf_aluno) 
+        aluno = self.selecionar_aluno() 
         if (aluno is not None):
             self.__alunos.remove(aluno)
         else:
