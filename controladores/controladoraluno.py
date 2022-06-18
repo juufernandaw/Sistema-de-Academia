@@ -2,6 +2,7 @@
 # from entidades.aluno import Aluno
 # from controladores.controladorpersonaltrainer import PersonalTrainer
 # from controladores.controladorsistema import ControladorSistema
+
 from TrabalhoPOO.telas.telaaluno import TelaAluno
 from TrabalhoPOO.entidades.aluno import Aluno
 from TrabalhoPOO.controladores.controladorpersonaltrainer import PersonalTrainer
@@ -85,6 +86,7 @@ class ControladorAluno():
         #ajustar visualização das listas
 
     def abre_tela_funcoes_aluno(self):
+        print("Entrei")
         lista_opcoes = {1: self.incluir_aluno, 2: self.alterar_aluno,
                         3: self.excluir_aluno, 4: self.listar_alunos, 5: self.consultar_aluno, 6: self.retornar}
         while True:
