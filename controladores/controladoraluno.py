@@ -93,5 +93,6 @@ class ControladorAluno():
             funcao_escolhida = lista_opcoes[opcao]
             return funcao_escolhida
 
+
     def retornar(self):
         pass
