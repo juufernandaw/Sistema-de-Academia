@@ -59,34 +59,47 @@ class ControladorAluno():
 
     def alterar_aluno_nome(self, aluno: Aluno):
         aluno.nome = self.__tela_aluno.pegar_nome()
+        self.__tela_aluno.mostrar_msg("Aluno alterado com sucesso!")
+        return self.abre_tela_funcoes_aluno()
 
     def alterar_aluno_cpf(self, aluno: Aluno):
         aluno.cpf = self.__tela_aluno.pegar_cpf()
+        self.__tela_aluno.mostrar_msg("Aluno alterado com sucesso!")
+        return self.abre_tela_funcoes_aluno()
 
     def alterar_aluno_login(self, aluno: Aluno):
         aluno.login = self.__tela_aluno.pegar_login()
+        self.__tela_aluno.mostrar_msg("Aluno alterado com sucesso!")
+        return self.abre_tela_funcoes_aluno()
 
     def alterar_aluno_senha(self, aluno: Aluno):
         aluno.senha = self.__tela_aluno.pegar_senha()
+        self.__tela_aluno.mostrar_msg("Aluno alterado com sucesso!")
+        return self.abre_tela_funcoes_aluno()
 
     def excluir_aluno(self):
         aluno = self.selecionar_aluno() 
         if (aluno is not None):
             self.__alunos.remove(aluno)
+            self.__tela_aluno.mostrar_msg("Aluno removido com sucesso!")
         else:
             self.__tela_aluno.mostrar_msg("ATENCAO: aluno não existente")
+        return self.abre_tela_funcoes_aluno()
 
     def consultar_aluno(self, cpf: str):
         for aluno in self.__alunos:
             if aluno.cpf == cpf:
                 return aluno
-        return None
+        else:
+            return None
+        #return self.abre_tela_funcoes_aluno()
         #ajustar visualização das listas
 
     def listar_alunos(self):
         for aluno in self.__alunos:
             self.__tela_aluno.mostrar_aluno({"nome": aluno.nome, "login": aluno.login, "senha": aluno.senha, "cpf": aluno.cpf, "treinos": aluno.treinos})
         #ajustar visualização das listas
+        return self.abre_tela_funcoes_aluno()
 
     def abre_tela_funcoes_aluno(self):
         print("Entrei")
