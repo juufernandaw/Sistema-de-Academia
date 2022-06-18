@@ -1,10 +1,10 @@
-# from telas.telaaluno import TelaAluno
-# from entidades.aluno import Aluno
-# from controladores.controladorpersonaltrainer import PersonalTrainer
-# from controladores.controladorsistema import ControladorSistema
+from telas.telaaluno import TelaAluno
+from entidades.aluno import Aluno
+from controladores.controladorpersonaltrainer import PersonalTrainer
+from controladores.controladorsistema import ControladorSistema
 
-from TrabalhoPOO.telas.telaaluno import TelaAluno
-from TrabalhoPOO.entidades.aluno import Aluno
+#from TrabalhoPOO.telas.telaaluno import TelaAluno
+#from TrabalhoPOO.entidades.aluno import Aluno
 # from TrabalhoPOO.controladores.controladorpersonaltrainer import PersonalTrainer
 
 
@@ -30,7 +30,7 @@ class ControladorAluno():
         self.__alunos.append(aluno)
 
     def selecionar_aluno(self):
-        cpf_aluno = self.__tela_aluno.selecionar_aluno_cpf()
+        cpf_aluno = self.__tela_aluno.pegar_cpf()
         for aluno in self.__alunos:
             if aluno.cpf == cpf_aluno:
                 return aluno
@@ -48,18 +48,23 @@ class ControladorAluno():
     def alterar_aluno(self):
         aluno = self.selecionar_aluno() 
         if (aluno is not None):
-            alteracao = self.__tela_aluno.opcao_alterar()
-            novos_dados_aluno = self.__tela_aluno.pega_dados_aluno()
-            aluno.nome = novos_dados_aluno["nome"]
-            aluno.login = novos_dados_aluno["login"]
-            aluno.senha = novos_dados_aluno["senha"]
-            aluno.cpf = novos_dados_aluno["cpf"]
-            #!!!perguntar
-            #desvincular_treino_aluno
-            #vincular_treino_aluno
+            lista_opcoes = {1: self.alterar_aluno_nome(aluno), 2: self.alterar_aluno_cpf(aluno), 3: self.alterar_aluno_login(aluno), 4: self.alterar_aluno_senha(aluno)}
+            opcao_alteracao = self.__tela_aluno.opcao_alterar()  #retorna a opcao escolhida
+            alteracao_aluno = lista_opcoes[opcao_alteracao] #executa a alteração
         else:
             self.__tela_aluno.mostrar_msg("ATENCAO: aluno não existente")
-        #incluir treinos
+
+    def alterar_aluno_nome(self, aluno: Aluno):
+        aluno.nome = self.__tela_aluno.pegar_nome()
+
+    def alterar_aluno_cpf(self, aluno: Aluno):
+        aluno.cpf = self.__tela_aluno.pegar_cpf()
+
+    def alterar_aluno_login(self, aluno: Aluno):
+        aluno.login = self.__tela_aluno.pegar_login()
+
+    def alterar_aluno_senha(self, aluno: Aluno):
+        aluno.senha = self.__tela_aluno.pegar_senha()
 
     def excluir_aluno(self):
         aluno = self.selecionar_aluno() 
@@ -73,12 +78,12 @@ class ControladorAluno():
             if aluno.cpf == cpf:
                 return aluno
         return None
-        #incluir treinos
+        #ajustar visualização das listas
 
     def listar_alunos(self):
         for aluno in self.__alunos:
-            self.__tela_aluno.mostrar_aluno({"nome": aluno.nome, "login": aluno.login, "senha": aluno.senha, "cpf": aluno.cpf})
-        #incluir treinos
+            self.__tela_aluno.mostrar_aluno({"nome": aluno.nome, "login": aluno.login, "senha": aluno.senha, "cpf": aluno.cpf, "treinos": aluno.treinos})
+        #ajustar visualização das listas
 
     def abre_tela_funcoes_aluno(self):
         lista_opcoes = {1: self.incluir_aluno, 2: self.alterar_aluno,

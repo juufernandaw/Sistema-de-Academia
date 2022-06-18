@@ -8,12 +8,9 @@ class TelaAluno():
         print("Login:", dados_aluno["login"])
         print("Senha:", dados_aluno["senha"])
         print("CPF:", dados_aluno["cpf"])
+        print("Treinos:", dados_aluno["treinos"])
 
-    def selecionar_aluno_cpf(self): #seleciona aluno por cpf
-        cpf = input("Digite o cpf do aluno:")
-        return cpf
-
-    def pega_dados_aluno(self): #usuario informa os dados pro usuario
+    def pega_dados_aluno(self): #validar se precisa
         nome = input("Digite o nome do aluno:")
         login = input("Digite o login do aluno:")
         senha = input("Digite a senha do aluno:")
@@ -35,17 +32,34 @@ class TelaAluno():
         return opcao
 
     def opcao_alterar(self):
-        print("----- ALTERAR -----")
+        print("----- ALTERAR ALUNO -----")
         print("O que você deseja alterar no aluno?")
         print("1 - Alterar nome")
         print("2 - Alterar cpf")
         print("3 - Alterar login")
         print("4 - Alterar senha")
-        print("5 - Alterar treino")
-        print("6 - Sair")
+        print("5 - Sair")
 
         opcao = int(input())
         return opcao
+
+    def pegar_nome(self):
+        nome = input("Digite o nome do aluno:")
+        return nome
+
+    def pegar_cpf(self):
+        cpf = input("Digite o cpf do aluno:")
+        return cpf
+
+    def pegar_login(self):
+        login = input("Digite o login do aluno:")
+        return login
+
+    def pegar_senha(self):
+        senha = input("Digite a senha do aluno:")
+        return senha
+
+
 
         
 
