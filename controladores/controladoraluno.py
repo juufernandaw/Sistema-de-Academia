@@ -49,12 +49,13 @@ class ControladorAluno():
             return None
 
     def alterar_aluno(self):
+        opcao_alteracao = self.__tela_aluno.opcao_alterar()
         aluno = self.selecionar_aluno()
         lista_opcoes = {1: self.alterar_aluno_nome(aluno), 2: self.alterar_aluno_cpf(aluno),
                         3: self.alterar_aluno_login(aluno), 4: self.alterar_aluno_senha(aluno)}
         while True: 
             if aluno is not None:
-                opcao_alteracao = self.__tela_aluno.opcao_alterar()#retorna a opcao escolhida
+                #retorna a opcao escolhida
                 alteracao_aluno = lista_opcoes[opcao_alteracao] #executa a alteração
                 return alteracao_aluno
 
