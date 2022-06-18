@@ -24,7 +24,7 @@ class ControladorPersonalTrainer():
 
     def abre_tela_inicial(self):  # abre a tela personal pos login da tela do sistema
         mexer_personal_opcoes = {1: self.alterar_personal,
-                                 2: self.tela_alterar__dados_alunos
+                                 2: self.tela_alterar_dados_alunos
                                  }
         while True:
             opcao_escolhida = self.__tela_personal.mexer_personal()
@@ -45,9 +45,9 @@ class ControladorPersonalTrainer():
 
         return self.voltar_ao_menu_personal()
 
-    def tela_alterar__dados_alunos(self):  # abre_tela_inicial manda para ca
+    def tela_alterar_dados_alunos(self):  # abre_tela_inicial manda para ca
         # self.__tela_aluno.mexer_aluno()  # na tela personal tem a opcao do personal escolher
-        return self.__controlador_sistema.controlador_aluno.abre_tela_funcoes_aluno
+        return self.__controlador_sistema.controlador_aluno.abre_tela_funcoes_aluno()
         # print("ii", self)
         # while True:
         #     opcao_modificar_aluno = self.__controlador_sistema.controlador_aluno.abre_tela_funcoes_aluno
