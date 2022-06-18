@@ -9,7 +9,7 @@ class TelaSistema:
             print("2 - Professor")
             print("0 - Sair")
             opcao = int(input())
-        except Exception:
+        except ValueError:
             if opcao != 1 and opcao != 2:
                 print("Você só pode apertar 1 ou 2, caro padawan")
         return opcao
