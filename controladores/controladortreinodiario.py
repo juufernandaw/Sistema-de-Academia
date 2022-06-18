@@ -1,9 +1,9 @@
 from TrabalhoPOO.entidades.treinodiario import TreinoDiario
 from TrabalhoPOO.telas.telatreinodiario import TelaTreinoDiario
-from TrabalhoPOO.controladores.controladorsistema import ControladorSistema
-from TrabalhoPOO.entidades.treino import Treino
-from TrabalhoPOO.controladores.controladoraluno import ControladorAluno
-from TrabalhoPOO.entidades.aluno import Aluno
+# from TrabalhoPOO.controladores.controladorsistema import ControladorSistema
+# from TrabalhoPOO.entidades.treino import Treino
+# from TrabalhoPOO.controladores.controladoraluno import ControladorAluno
+# from TrabalhoPOO.entidades.aluno import Aluno
 
 
 class ControladorTreinoDiario():

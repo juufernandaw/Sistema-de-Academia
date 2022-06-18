@@ -2,8 +2,8 @@ from TrabalhoPOO.entidades.personaltrainer import PersonalTrainer
 from TrabalhoPOO.telas.telapersonaltrainer import TelaPersonalTrainer
 from TrabalhoPOO.telas.telasistema import TelaSistema
 from TrabalhoPOO.telas.telaaluno import TelaAluno
-from TrabalhoPOO.controladores.controladortreinodiario import TreinoDiario
-from TrabalhoPOO.controladores.controladorsistema import ControladorSistema
+# from TrabalhoPOO.controladores.controladortreinodiario import TreinoDiario
+# from TrabalhoPOO.controladores.controladorsistema import ControladorSistema
 
 
 class ControladorPersonalTrainer():
