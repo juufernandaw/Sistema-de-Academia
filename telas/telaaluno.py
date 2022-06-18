@@ -10,7 +10,7 @@ class TelaAluno():
         print("CPF:", dados_aluno["cpf"])
         print("Treinos:", dados_aluno["treinos"])
 
-    def pega_dados_aluno(self): #validar se precisa
+    def pega_dados_aluno(self): 
         nome = input("Digite o nome do aluno:")
         login = input("Digite o login do aluno:")
         senha = input("Digite a senha do aluno:")
