@@ -54,8 +54,7 @@ class ControladorAluno():
             lista_opcoes = {1: self.alterar_aluno_nome(aluno), 2: self.alterar_aluno_cpf(aluno), 3: self.alterar_aluno_login(aluno), 4: self.alterar_aluno_senha(aluno)}
             opcao_alteracao = self.__tela_aluno.opcao_alterar()  #retorna a opcao escolhida
             alteracao_aluno = lista_opcoes[opcao_alteracao] #executa a alteração
-        else:
-            self.__tela_aluno.mostrar_msg("ATENCAO: aluno não existente")
+        
 
     def alterar_aluno_nome(self, aluno: Aluno):
         aluno.nome = self.__tela_aluno.pegar_nome()
@@ -96,6 +95,7 @@ class ControladorAluno():
         #ajustar visualização das listas
 
     def listar_alunos(self):
+        print(self.__alunos)
         for aluno in self.__alunos:
             self.__tela_aluno.mostrar_aluno({"nome": aluno.nome, "login": aluno.login, "senha": aluno.senha, "cpf": aluno.cpf, "treinos": aluno.treinos})
         #ajustar visualização das listas
