@@ -59,8 +59,6 @@ class ControladorAluno():
                 alteracao_aluno = lista_opcoes[opcao_alteracao] #executa a alteração
                 return alteracao_aluno(aluno)
 
-        
-
     def alterar_aluno_nome(self, aluno: Aluno):
         aluno.nome = self.__tela_aluno.pegar_nome()
         self.__tela_aluno.mostrar_msg("Aluno alterado com sucesso!")
