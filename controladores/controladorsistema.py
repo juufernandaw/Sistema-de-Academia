@@ -35,7 +35,7 @@ class ControladorSistema:
     def controlador_personal_trainer(self):
         return self.__controlador_personal_trainer
 
-    def iniciar_tela_sistema(self):
+    def iniciar_tela_sistema(self):  # OK
         login_com_sucesso = None
         lista_opcoes = {1: self.__tela_sistema.mostrar_tela_aluno,
                         2: self.__controlador_personal_trainer.abre_tela_inicial,
@@ -50,10 +50,7 @@ class ControladorSistema:
                 login_com_sucesso, self.__usuario_logado = self.__controlador_aluno.verificar_login_senha(login, senha)
             elif opcao_escolhida == 2:
                 login_com_sucesso = self.__controlador_personal_trainer.verificar_login_senha(login, senha)
-                print("ele veioaqui")
-                print(f"{login_com_sucesso}")
             if login_com_sucesso is not None:
-                print("if correto")
                 funcao_escolhida = lista_opcoes[opcao_escolhida]
                 return funcao_escolhida()
             else:
@@ -61,9 +58,8 @@ class ControladorSistema:
                 self.__tela_sistema.mostrar_msg_telasistema(f"{opcao_escolhida} invalida, "
                                                             f"digite 1, 2 ou 0 para sair. ")
                 self.__tela_sistema.mostrarMenu_inicial()
-            print("ele asdasd")
 
-    def encerrar_sistema(self):
+    def encerrar_sistema(self):  # OK
         exit(0)
 
     # if opcao_escolhida == 1:

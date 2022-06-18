@@ -17,13 +17,14 @@ class TelaSistema:
     def logar(self, opcao_escolhida):
         login = None
         senha = None
-        print("Bem vindo ao login")
         if opcao_escolhida == 1:
+            print("Bem vindo ao login")
             print('Aluno, digite seu login')
             login = input()
             print('Aluno, digite sua senha')
             senha = input()
         elif opcao_escolhida == 2:
+            print("Bem vindo ao login")
             print('Professor, digite seu login')
             login = input()
             print('Professor, digite sua senha')

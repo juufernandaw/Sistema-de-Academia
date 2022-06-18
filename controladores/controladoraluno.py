@@ -2,7 +2,6 @@
 # from entidades.aluno import Aluno
 # from controladores.controladorpersonaltrainer import PersonalTrainer
 # from controladores.controladorsistema import ControladorSistema
-
 from TrabalhoPOO.telas.telaaluno import TelaAluno
 from TrabalhoPOO.entidades.aluno import Aluno
 from TrabalhoPOO.controladores.controladorpersonaltrainer import PersonalTrainer

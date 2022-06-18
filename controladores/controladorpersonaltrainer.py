@@ -16,12 +16,10 @@ class ControladorPersonalTrainer():
         self.__manter_tela = bool
         self.__controlador_sistema = controlador_sistema
         self.__personal = PersonalTrainer("12345678905", "Judi", "Adm", "Adm", "01")  # criou o personal
-        self.__lista_personal = [self.__personal]
 
     def verificar_login_senha(self, login, senha):  # VERIFICAR o login e senha.
         if isinstance(login, str) and isinstance(senha, str):
-           for ptrainer in self.__lista_personal:
-            if ptrainer.login == login and ptrainer.senha == senha:  # get
+            if self.__personal.login == login and self.__personal.senha == senha:  # get
                 return True
 
     def abre_tela_inicial(self):  # abre a tela personal pos login da tela do sistema
@@ -37,8 +35,7 @@ class ControladorPersonalTrainer():
             return funcao_escolhida()
 
     def alterar_personal(self):  # aqui ele está alterando os dados do personal baseado no dicionario da tela
-        self.__tela_personal.tela_alterar_dados()
-        if self.__personal is not None:
+        if self.__personal is not None:  # OK
             novos_dados = self.__tela_personal.tela_alterar_dados()  # vai ser um dicionario
             self.__personal.nome = novos_dados["nome"]
             self.__personal.cpf = novos_dados["habilitacao"]
@@ -50,11 +47,11 @@ class ControladorPersonalTrainer():
 
     def tela_alterar__dados_alunos(self):  # abre_tela_inicial manda para ca
         # self.__tela_aluno.mexer_aluno()  # na tela personal tem a opcao do personal escolher
-        mexer_personal_opcoes = {1: self.__controlador_sistema.controladoraluno.incluir_aluno,
-                                 2: self.__controlador_sistema.controladoraluno.alterar_aluno,
-                                 3: self.__controlador_sistema.controladoraluno.excluir_aluno,
-                                 4: self.__controlador_sistema.controladoraluno.listar_alunos,
-                                 5: self.__controlador_sistema.controladoraluno.consultar_aluno,
+        mexer_personal_opcoes = {1: self.__controlador_sistema.__controlador_aluno.incluir_aluno,
+                                 2: self.__controlador_sistema.__controlador_aluno.alterar_aluno,
+                                 3: self.__controlador_sistema.__controlador_aluno.excluir_aluno,
+                                 4: self.__controlador_sistema.__controlador_aluno.listar_alunos,
+                                 5: self.__controlador_sistema.__controlador_aluno.consultar_aluno,
                                  6: self.voltar_ao_menu_personal,
                                  7: self.consultar_tela_desempenho}
         while True:
