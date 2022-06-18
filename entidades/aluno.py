@@ -3,6 +3,7 @@
 from TrabalhoPOO.entidades.usuario import Usuario
 from TrabalhoPOO.entidades.treino import Treino
 
+
 class Aluno(Usuario):
 
     def __init__(self, nome: str, login: str, senha: str, cpf: str):

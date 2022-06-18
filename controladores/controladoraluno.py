@@ -1,11 +1,11 @@
-from telas.telaaluno import TelaAluno
-from entidades.aluno import Aluno
-from controladores.controladorpersonaltrainer import PersonalTrainer
-from controladores.controladorsistema import ControladorSistema
+# from telas.telaaluno import TelaAluno
+# from entidades.aluno import Aluno
+# from controladores.controladorpersonaltrainer import PersonalTrainer
+# from controladores.controladorsistema import ControladorSistema
 
-#from TrabalhoPOO.telas.telaaluno import TelaAluno
-#from TrabalhoPOO.entidades.aluno import Aluno
-#from TrabalhoPOO.controladores.controladorpersonaltrainer import PersonalTrainer
+from TrabalhoPOO.telas.telaaluno import TelaAluno
+from TrabalhoPOO.entidades.aluno import Aluno
+from TrabalhoPOO.controladores.controladorpersonaltrainer import PersonalTrainer
 
 
 class ControladorAluno():
@@ -92,7 +92,6 @@ class ControladorAluno():
             opcao = self.__tela_aluno.mexer_aluno()
             funcao_escolhida = lista_opcoes[opcao]
             return funcao_escolhida
-
 
     def retornar(self):
         pass

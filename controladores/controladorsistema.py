@@ -36,24 +36,32 @@ class ControladorSistema:
         return self.__controlador_personal_trainer
 
     def iniciar_tela_sistema(self):
-        lista_opcoes = {1: self.__controlador_aluno.abre_tela_funcoes_aluno,
+        login_com_sucesso = None
+        lista_opcoes = {1: self.__tela_sistema.mostrar_tela_aluno,
                         2: self.__controlador_personal_trainer.abre_tela_inicial,
                         0: self.encerrar_sistema}
         login = None
         senha = None
         while True:
             opcao_escolhida = self.__tela_sistema.mostrarMenu_inicial()
-            self.__tela_sistema.logar(opcao_escolhida)  # se for vdd ele vai entrar no menu de cada: aluno ou personal
+            # self.__tela_sistema.logar(opcao_escolhida)  # se for vdd ele vai entrar no menu de cada: aluno ou personal
             login, senha = self.__tela_sistema.logar(opcao_escolhida)
-            login_com_sucesso, self.__usuario_logado = self.__controlador_aluno.verificar_login_senha(login, senha)
-            # Quem logou ? Aluno ou personal: novo método. Ai consegue saber: usuario logado
-            if login_com_sucesso:
+            if opcao_escolhida == 1:
+                login_com_sucesso, self.__usuario_logado = self.__controlador_aluno.verificar_login_senha(login, senha)
+            elif opcao_escolhida == 2:
+                login_com_sucesso = self.__controlador_personal_trainer.verificar_login_senha(login, senha)
+                print("ele veioaqui")
+                print(f"{login_com_sucesso}")
+            if login_com_sucesso is not None:
+                print("if correto")
                 funcao_escolhida = lista_opcoes[opcao_escolhida]
                 return funcao_escolhida()
             else:
+                print("Else não deveria aqui")
                 self.__tela_sistema.mostrar_msg_telasistema(f"{opcao_escolhida} invalida, "
                                                             f"digite 1, 2 ou 0 para sair. ")
                 self.__tela_sistema.mostrarMenu_inicial()
+            print("ele asdasd")
 
     def encerrar_sistema(self):
         exit(0)

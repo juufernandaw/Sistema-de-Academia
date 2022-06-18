@@ -2,6 +2,8 @@ from TrabalhoPOO.entidades.personaltrainer import PersonalTrainer
 from TrabalhoPOO.telas.telapersonaltrainer import TelaPersonalTrainer
 from TrabalhoPOO.telas.telasistema import TelaSistema
 from TrabalhoPOO.telas.telaaluno import TelaAluno
+
+
 # from TrabalhoPOO.controladores.controladortreinodiario import TreinoDiario
 # from TrabalhoPOO.controladores.controladorsistema import ControladorSistema
 
@@ -14,14 +16,15 @@ class ControladorPersonalTrainer():
         self.__manter_tela = bool
         self.__controlador_sistema = controlador_sistema
         self.__personal = PersonalTrainer("12345678905", "Judi", "Adm", "Adm", "01")  # criou o personal
+        self.__lista_personal = [self.__personal]
 
     def verificar_login_senha(self, login, senha):  # VERIFICAR o login e senha.
         if isinstance(login, str) and isinstance(senha, str):
-            if self.__personal.senha == login and self.__personal.senha == senha:  # Set Para Mudar
+           for ptrainer in self.__lista_personal:
+            if ptrainer.login == login and ptrainer.senha == senha:  # get
                 return True
 
     def abre_tela_inicial(self):  # abre a tela personal pos login da tela do sistema
-        self.__tela_personal.mexer_personal()
         mexer_personal_opcoes = {1: self.alterar_personal,
                                  2: self.tela_alterar__dados_alunos
                                  }
@@ -46,7 +49,7 @@ class ControladorPersonalTrainer():
         return self.voltar_ao_menu_personal()
 
     def tela_alterar__dados_alunos(self):  # abre_tela_inicial manda para ca
-        #self.__tela_aluno.mexer_aluno()  # na tela personal tem a opcao do personal escolher
+        # self.__tela_aluno.mexer_aluno()  # na tela personal tem a opcao do personal escolher
         mexer_personal_opcoes = {1: self.__controlador_sistema.controladoraluno.incluir_aluno,
                                  2: self.__controlador_sistema.controladoraluno.alterar_aluno,
                                  3: self.__controlador_sistema.controladoraluno.excluir_aluno,
@@ -65,9 +68,6 @@ class ControladorPersonalTrainer():
     def consultar_desempenho(self):
         escolha = self.consultar_tela_desempenho()
 
-    def alterar_treino_aluno(self):
-        pass
-
     @property
     def consultar_personal(self):
         return self.__personal
@@ -77,7 +77,6 @@ class ControladorPersonalTrainer():
 
     def retornar(self, opcao_escolhida):
         return self.__tela_sistema.logar(opcao_escolhida)
-
 
 # if self.__tela_personal.mexer_personal() == 2:
 #   self.__controlador_sistema.controladoraluno.mexer_aluno()
@@ -98,5 +97,3 @@ class ControladorPersonalTrainer():
 #         else:
 #             self.__tela_personal.mostrar_msg("opcao de escolha invalida")
 #             self.tela_alterar_dados_alunos()  # Pode fazer isso? Para voltar ao método
-
-

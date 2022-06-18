@@ -40,5 +40,3 @@ class Usuario(ABC):
     @cpf.setter
     def cpf(self, cpf: str):
         self.__cpf = cpf
-
-
