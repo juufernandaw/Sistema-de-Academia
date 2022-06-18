@@ -105,7 +105,7 @@ class ControladorAluno():
     def abre_tela_funcoes_aluno(self):
         print("Entrei")
         lista_opcoes = {1: self.incluir_aluno, 2: self.alterar_aluno,
-                        3: self.excluir_aluno, 4: self.listar_alunos, 5: self.consultar_aluno(), 6: self.retornar}
+                        3: self.excluir_aluno, 4: self.listar_alunos, 5: self.consultar_aluno, 6: self.retornar}
         while True:
             opcao = self.__tela_aluno.mexer_aluno()
             funcao_escolhida = lista_opcoes[opcao]
