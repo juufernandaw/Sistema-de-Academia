@@ -1,5 +1,5 @@
-from treino import Treino
-from aluno import Aluno
+from TrabalhoPOO.entidades.treino import Treino
+from TrabalhoPOO.entidades.aluno import Aluno
 from datetime import date
 
 
