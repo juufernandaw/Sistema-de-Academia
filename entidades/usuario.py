@@ -4,7 +4,10 @@ from abc import ABC, abstractmethod
 class Usuario(ABC):
     @abstractmethod
     def __init__(self, nome: str, login: str, senha: str, cpf: str):
-        pass
+        self.__nome = nome
+        self.__cpf = cpf
+        self.__login = login
+        self.__senha = senha
 
     @property
     def nome(self):
