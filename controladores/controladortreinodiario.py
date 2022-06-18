@@ -23,6 +23,7 @@ class ControladorTreinoDiario():
     def mostrar_tela_treino_diario(self):
         treino_diario_opcoes = {1: self.desempenho_aluno,
                                 2: self.voltar_menu_inicial,
+                                3: self.colocar_treino_na_lista_treino_diario
                                 }
         while True:
             opcao_treino_diario = self.__tela_treinoDiario.mostrar_tela_desempenho()
@@ -43,14 +44,23 @@ class ControladorTreinoDiario():
         treino_diario = TreinoDiario(aluno, contador_presenca, aluno.treinos())
         if treino_diario:
             self.__tela_treinoDiario.checkin(contador_presenca)
-            return self.voltar_menu_inicial()
+            return self.mostrar_tela_treino_diario()
 
-    def colocar_treino_diario_lista(self):  # TREINO DIARIO É UMA LISTA DE TREINO!
-        aluno = self.__controlador_sistema.usuario_logado  # aqui sabe qual aluno foi logado
-        treino_aluno = aluno.treinos()  # perguntar ao usuario qual desses voce quer fazer.
-        # retornar o treino q ele escolheu
+    def colocar_treino_na_lista_treino_diario(self):
+        aluno = self.__controlador_sistema.usuario_logado
+        treino_aluno = aluno.treinos()
         for treino in self.__treinos_diarios:
             self.__treinos_diarios.append(treino_aluno)
+        return self.mostrar_tela_treino_diario()
+
+    def escolher_treino_aluno(self):  # TREINO DIARIO É UMA LISTA DE TREINO!
+        aluno = self.__controlador_sistema.usuario_logado  # aqui sabe qual aluno foi logado
+        treino_aluno = aluno.treinos()  # perguntar ao usuario qual desses voce quer fazer.
+        contador_presenca = self.checkin()  # retornar o treino q ele escolheu
+        treino_diario_aluno = TreinoDiario(aluno, contador_presenca, aluno.treinos())
+        self.__tela_treinoDiario.mensagem("Escolha o seu treino de hoje: ")
+        for treino in self.__treinos_diarios:
+            print(treino)
 
     def escolher_treino(self):
         pass

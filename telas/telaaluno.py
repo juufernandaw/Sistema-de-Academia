@@ -19,7 +19,7 @@ class TelaAluno():
 
     def mexer_aluno(self):
         print("----- INÍCIO -----")
-        print("----- ABA ALUNO -----")
+        print("----- ABA ALUNO -----") # Aba personal ?
         print("O que você deseja fazer hoje? Digite o número correspondente:")
         print("1 - Cadastrar aluno")
         print("2 - Alterar aluno")
@@ -27,6 +27,7 @@ class TelaAluno():
         print("4 - Listar alunos")
         print("5 - Consultar aluno")
         print("6 - Sair")
+        print("7 - Consultar Desempenho")
 
         opcao = int(input())
         return opcao
@@ -58,9 +59,3 @@ class TelaAluno():
     def pegar_senha(self):
         senha = input("Digite a senha do aluno:")
         return senha
-
-
-
-        
-
-

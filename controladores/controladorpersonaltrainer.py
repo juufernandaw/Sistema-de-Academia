@@ -54,6 +54,9 @@ class ControladorPersonalTrainer():
         #     funcao_escolhida = mexer_personal_opcoes[opcao_modificar_aluno]
         #     return funcao_escolhida()
 
+    def colocar_treino_na_lista_treino_diario(self):
+        self.__controlador_sistema.controlador_treino_diario.colocar_treino_na_lista_treino_diario()
+
     def consultar_tela_desempenho(self):  # NAO TEM A OPCAO NA LISTA DE MEXER ALUNO!
         return self.__controlador_sistema.controlador_treino_diario.mostrar_tela_treino_diario()
 
