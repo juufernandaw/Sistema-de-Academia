@@ -94,7 +94,7 @@ class ControladorAluno():
         cpf = self.__tela_aluno.pegar_cpf()
         for aluno in self.__alunos:
             if aluno.cpf == cpf:
-                return aluno
+                return self.__tela_aluno.mostrar_aluno({"nome": aluno.nome, "login": aluno.login, "senha": aluno.senha, "cpf": aluno.cpf, "treinos": aluno.treinos})
         else:
             return None
         #return self.abre_tela_funcoes_aluno()
