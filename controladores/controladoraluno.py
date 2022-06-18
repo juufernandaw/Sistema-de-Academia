@@ -29,7 +29,8 @@ class ControladorAluno():
         aluno = Aluno(dados_aluno["nome"], dados_aluno["login"], dados_aluno["senha"], dados_aluno["cpf"])
         self.__alunos.append(aluno)
         if (aluno is not None):
-            return self.__tela_aluno.mostrar_msg("Aluno cadastrado com sucesso!")
+            self.__tela_aluno.mostrar_msg("Aluno cadastrado com sucesso!")
+            return self.abre_tela_funcoes_aluno()
 
     def selecionar_aluno(self):
         cpf_aluno = self.__tela_aluno.pegar_cpf()
