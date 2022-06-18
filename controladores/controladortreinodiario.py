@@ -1,5 +1,8 @@
 from TrabalhoPOO.entidades.treinodiario import TreinoDiario
 from TrabalhoPOO.telas.telatreinodiario import TelaTreinoDiario
+from TrabalhoPOO.entidades.treino import Treino
+
+
 # from TrabalhoPOO.controladores.controladorsistema import ControladorSistema
 # from TrabalhoPOO.entidades.treino import Treino
 # from TrabalhoPOO.controladores.controladoraluno import ControladorAluno
@@ -18,29 +21,43 @@ class ControladorTreinoDiario():
         return self.__treinos_diarios
 
     def mostrar_tela_treino_diario(self):
-        return self.__tela_treinoDiario.mostrar_tela_desempenho()
+        treino_diario_opcoes = {1: self.desempenho_aluno,
+                                2: self.voltar_menu_inicial,
+                                }
+        while True:
+            opcao_treino_diario = self.__tela_treinoDiario.mostrar_tela_desempenho()
+            funcao_escolhida = treino_diario_opcoes[opcao_treino_diario]
+            return funcao_escolhida()
+
+    def voltar_menu_inicial(self):
+        aluno = self.__controlador_sistema.usuario_logado
+        if aluno:
+            return self.__controlador_sistema.controladoraluno.abre_tela_funcoes_aluno()
+        else:
+            return self.__controlador_sistema.controladorpersonaltrainer.voltar_ao_menu_personal()
 
     def desempenho_aluno(self):
-        if self.__tela_treinoDiario.mostrar_tela_desempenho() == 1:
-            self.__tela_treinoDiario.mostrar_desempenho()
-            aluno = self.__controlador_sistema.usuario_logado  # aqui sabe qual aluno foi logado
-            treino_aluno = aluno.treinos()  # perguntar ao usuario qual desses voce quer fazer.
-                                            # retornar o treino q ele escolheu
-            contador_presenca = self.checkin()
-            treino_diario = TreinoDiario(aluno, contador_presenca, treino_aluno)
-            self.colocar_treino_diario_lista(treino_diario)
-            self.__tela_treinoDiario.checkin()
-            self.checkin()
+        aluno = self.__controlador_sistema.usuario_logado
+        self.__tela_treinoDiario.mensagem("Essa é seu desempenho: ")
+        contador_presenca = self.checkin()
+        treino_diario = TreinoDiario(aluno, contador_presenca, aluno.treinos())
+        if treino_diario:
+            self.__tela_treinoDiario.checkin(contador_presenca)
+            return self.voltar_menu_inicial()
 
-    def colocar_treino_diario_lista(self, treino_diario: TreinoDiario):
-        treino_diario_aluno = treino_diario
-        if isinstance(treino_diario_aluno, TreinoDiario):
-            for treinoDiario in self.__treinos_diarios:
-                self.__treinos_diarios.append(treino_diario_aluno)
+    def colocar_treino_diario_lista(self):  # TREINO DIARIO É UMA LISTA DE TREINO!
+        aluno = self.__controlador_sistema.usuario_logado  # aqui sabe qual aluno foi logado
+        treino_aluno = aluno.treinos()  # perguntar ao usuario qual desses voce quer fazer.
+        # retornar o treino q ele escolheu
+        for treino in self.__treinos_diarios:
+            self.__treinos_diarios.append(treino_aluno)
 
+    def escolher_treino(self):
+        pass
 
-    def checkin(self): #  no aluno tem um método para perguntar se quer checkin la vai chamar pra ca
+    def checkin(self):  # no aluno tem um método para perguntar se quer checkin la vai chamar pra ca
         # refazer método
+
         checkin = False  # metodo errado refazer esse aluno
         conta_presenca = 0
         if self.__controlador_sistema.controladorsistema.abre_logins() == \

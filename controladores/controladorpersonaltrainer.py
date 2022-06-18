@@ -46,7 +46,7 @@ class ControladorPersonalTrainer():
         return self.voltar_ao_menu_personal()
 
     def tela_alterar__dados_alunos(self):  # abre_tela_inicial manda para ca
-        self.__tela_aluno.mexer_aluno()  # na tela personal tem a opcao do personal escolher
+        #self.__tela_aluno.mexer_aluno()  # na tela personal tem a opcao do personal escolher
         mexer_personal_opcoes = {1: self.__controlador_sistema.controladoraluno.incluir_aluno,
                                  2: self.__controlador_sistema.controladoraluno.alterar_aluno,
                                  3: self.__controlador_sistema.controladoraluno.excluir_aluno,

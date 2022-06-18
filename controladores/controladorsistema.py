@@ -36,7 +36,6 @@ class ControladorSistema:
         return self.__controlador_personal_trainer
 
     def iniciar_tela_sistema(self):
-        self.__tela_sistema.mostrarMenu_inicial()
         lista_opcoes = {1: self.__controlador_aluno.abre_tela_funcoes_aluno,
                         2: self.__controlador_personal_trainer.abre_tela_inicial,
                         0: self.encerrar_sistema}
