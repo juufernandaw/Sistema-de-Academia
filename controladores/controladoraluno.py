@@ -93,7 +93,7 @@ class ControladorAluno():
         for aluno in self.__alunos:
             if aluno.cpf == cpf:
                 return self.__tela_aluno.mostrar_aluno({"nome": aluno.nome, "login": aluno.login, "senha": aluno.senha, "cpf": aluno.cpf, "treinos": aluno.treinos})
-        self.abre_tela_funcoes_aluno()
+        return self.abre_tela_funcoes_aluno()
         #ajustar visualização das listas
 
     def listar_alunos(self):
