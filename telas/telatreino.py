@@ -31,7 +31,7 @@ class TelaTreino():
             tempo_descanso = input("Tempo de descanso:")
             num=0
             for tipo_exercicio in lista_tipos:
-                print("Número:", num, ". Categoria do exercício:",tipo_exercicio[0])
+                print("Número:", num, ". Categoria do exercício:",tipo_exercicio.categoria_exercicio)
                 num+=1
             tipo_exercicio = input("Informe o número correspondente ao exercício desejado") #chamar a lista de tipos_chamados
         else:

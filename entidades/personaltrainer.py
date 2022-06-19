@@ -1,5 +1,5 @@
-from TrabalhoPOO.entidades.usuario import Usuario
-#from usuario import Usuario
+#from TrabalhoPOO.entidades.usuario import Usuario
+from usuario import Usuario
 
 
 class PersonalTrainer(Usuario):

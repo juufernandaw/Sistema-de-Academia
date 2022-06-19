@@ -1,12 +1,17 @@
-from TrabalhoPOO.entidades.treinodiario import TreinoDiario
-from TrabalhoPOO.telas.telatreinodiario import TelaTreinoDiario
-from TrabalhoPOO.entidades.treino import Treino
-
-
+#from TrabalhoPOO.entidades.treinodiario import TreinoDiario
+#from TrabalhoPOO.telas.telatreinodiario import TelaTreinoDiario
+#from TrabalhoPOO.entidades.treino import Treino
 # from TrabalhoPOO.controladores.controladorsistema import ControladorSistema
 # from TrabalhoPOO.entidades.treino import Treino
 # from TrabalhoPOO.controladores.controladoraluno import ControladorAluno
 # from TrabalhoPOO.entidades.aluno import Aluno
+
+from entidades.treinodiario import TreinoDiario
+from telas.telatreinodiario import TelaTreinoDiario
+from entidades.treino import Treino
+from controladores.controladorsistema import ControladorSistema
+from controladores.controladoraluno import ControladorAluno
+from entidades.aluno import Aluno
 
 
 class ControladorTreinoDiario():
