@@ -30,8 +30,7 @@ class ControladorTreino():
 
     def criar_exercicio(self, treino: Treino):
         novo_exercicio, dados_exercicio = self.__tela_treino.montar_exercicio(self.__tipos_exercicio)
-        #!verificar se os dados_exercicio não são vazios
-        while novo_exercicio==1: #pra criar novo exercicio
+        while novo_exercicio ==1: #pra criar novo exercicio
             treino.incluir_exercicio(dados_exercicio["nome"], dados_exercicio["serie"], dados_exercicio["repeticao"],\
             dados_exercicio["tempo_descanso"], self.__tipos_exercicio[dados_exercicio["tipo_exercicio"]])
             novo_exercicio, dados_exercicio = self.__tela_treino.montar_exercicio(self.__tipos_exercicio)
