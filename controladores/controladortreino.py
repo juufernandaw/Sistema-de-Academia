@@ -55,6 +55,12 @@ class ControladorTreino():
         else:
             self.__tela_treino.mostrar_msg("ATENCAO: treino não existente")
 
+    def listar_treinos(self):
+        for treino in self.__treinos:
+            treino_momento = treino
+        self.__tela_treino.mostrar_tela_treino(treino_momento)
+        return self.abre_tela_funcoes_treino()
+
     def pegar_treino_por_nome(self):
         nome_treino = self.__tela_treino.selecionar_treino_por_nome()
         for treino in self.__treinos:
