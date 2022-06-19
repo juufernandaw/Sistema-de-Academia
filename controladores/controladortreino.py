@@ -59,7 +59,6 @@ class ControladorTreino():
         return self.abre_tela_funcoes_treino()
 
     def listar_treinos(self):
-        treino_momento = None
         for treino in self.__treinos:
             treino_momento = treino
             self.__tela_treino.mostrar_tela_treino(treino_momento)

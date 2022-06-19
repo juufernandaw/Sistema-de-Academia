@@ -6,8 +6,8 @@ class TelaTreino():
         print(msg)
 
     def mostrar_tela_treino(self, treino): #mostra tela com os dados do treino
-        print("Nome do treino",treino["nome"])
-        for exercicio in treino["exercicios"]:
+        print("Nome do treino",treino.nome)
+        for exercicio in treino.exercicios:
             print("Nome do exercício",exercicio.nome)
             print("Série do exercício",exercicio.serie)
             print("Repetição do exercício",exercicio.repeticao)
