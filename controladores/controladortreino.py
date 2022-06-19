@@ -94,14 +94,13 @@ class ControladorTreino():
 
     def abre_tela_funcoes_treino(self):
         lista_opcoes = {1: self.incluir_treino, 2: self.alterar_treino,
-                        3: self.excluir_treino, 5: self.consultar_treino, 
+                        3: self.excluir_treino, 4: self.treinos, 5: self.consultar_treino,
                         6: self.retornar}
         while True:
             opcao = self.__tela_treino.mexer_treino()
             funcao_escolhida = lista_opcoes[opcao]
             if opcao == 4:
-                self.treinos()
-                return self.abre_tela_funcoes_treino
+                return self.abre_tela_funcoes_treino()
             else:
                 return funcao_escolhida()
 
