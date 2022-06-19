@@ -1,14 +1,14 @@
-#from TrabalhoPOO.controladores.controladoraluno import ControladorAluno
-#from TrabalhoPOO.controladores.controladortreino import ControladorTreino
-#from TrabalhoPOO.controladores.controladortreinodiario import ControladorTreinoDiario
-#from TrabalhoPOO.controladores.controladorpersonaltrainer import ControladorPersonalTrainer
-#from TrabalhoPOO.telas.telasistema import TelaSistema
+from TrabalhoPOO.controladores.controladoraluno import ControladorAluno
+from TrabalhoPOO.controladores.controladortreino import ControladorTreino
+from TrabalhoPOO.controladores.controladortreinodiario import ControladorTreinoDiario
+from TrabalhoPOO.controladores.controladorpersonaltrainer import ControladorPersonalTrainer
+from TrabalhoPOO.telas.telasistema import TelaSistema
 
-from controladores.controladoraluno import ControladorAluno
-from controladores.controladortreino import ControladorTreino
-from controladores.controladortreinodiario import ControladorTreinoDiario
-from controladores.controladorpersonaltrainer import ControladorPersonalTrainer
-from telas.telasistema import TelaSistema
+# from controladores.controladoraluno import ControladorAluno
+# from controladores.controladortreino import ControladorTreino
+# from controladores.controladortreinodiario import ControladorTreinoDiario
+# from controladores.controladorpersonaltrainer import ControladorPersonalTrainer
+# from telas.telasistema import TelaSistema
 
 
 class ControladorSistema:
