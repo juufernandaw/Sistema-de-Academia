@@ -43,8 +43,6 @@ class ControladorTreino():
             treino.incluir_exercicio(dados_exercicio["nome"], dados_exercicio["serie"], dados_exercicio["repeticao"],\
             dados_exercicio["tempo_descanso"], self.__tipos_exercicio[dados_exercicio["tipo_exercicio"]])
             novo_exercicio, dados_exercicio = self.__tela_treino.montar_exercicio(self.__tipos_exercicio)
-        #if novo_exercicio==2: # se não deseja criar novo exercício
-            #self.abre_tela_funcoes_treino()
 
     def excluir_treino(self):
         treino = self.pegar_treino_por_nome() #busca infos do treino requisitado
@@ -81,6 +79,7 @@ class ControladorTreino():
             elif opcao==2:
                 treino.excluir_exercicios() #exclui os exercicios do treino
                 self.criar_exercicio(treino) #inclui os novos exercicios do treino
+                return self.abre_tela_funcoes_treino()
         else:
             self.__tela_treino.mostrar_msg("ATENCAO: treino não existente")
         
