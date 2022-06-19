@@ -81,7 +81,7 @@ class ControladorAluno():
 
     def excluir_aluno(self):
         aluno = self.selecionar_aluno()
-        if (aluno is not None):
+        if aluno is not None:
             self.__alunos.remove(aluno)
             self.__tela_aluno.mostrar_msg("Aluno removido com sucesso!")
         else:
