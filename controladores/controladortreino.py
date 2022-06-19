@@ -34,7 +34,7 @@ class ControladorTreino():
             aluno = self.__controlador_sistema.controlador_aluno.selecionar_aluno() #seleciona o aluno pra vincular #seleciona a instancia do aluno
             aluno.adicionar_treino_aluno(treino) #chama o método pela instancia do aluno
             novo_treino, nome_treino = self.__tela_treino.montar_treino() #pedir se quer incluir novo treino e o nome do treino
-        if novo_treino==2:
+        if novo_treino==2: # se não deseja criar novo treino
             self.abre_tela_funcoes_treino()
 
     def criar_exercicio(self, treino: Treino):
@@ -43,17 +43,20 @@ class ControladorTreino():
             treino.incluir_exercicio(dados_exercicio["nome"], dados_exercicio["serie"], dados_exercicio["repeticao"],\
             dados_exercicio["tempo_descanso"], self.__tipos_exercicio[dados_exercicio["tipo_exercicio"]])
             novo_exercicio, dados_exercicio = self.__tela_treino.montar_exercicio(self.__tipos_exercicio)
-        if novo_exercicio==2:
+        if novo_exercicio==2: # se não deseja criar novo exercício
             self.abre_tela_funcoes_treino()
 
     def excluir_treino(self):
         treino = self.pegar_treino_por_nome() #busca infos do treino requisitado
         if (treino is not None):
-            self.__treinos.remove(treino)
-            aluno = self.__controlador_sistema.controlador_aluno.buscar_aluno_por_treino(treino)
-            aluno.remover_treino_aluno(treino) #!!!checar se está chamando o aluno mesmo
+            self.__treinos.remove(treino) #remove o treino da lista de treinos do sistema
+            aluno = self.__controlador_sistema.controlador_aluno.buscar_aluno_por_treino(treino) #verifica se há algum aluno vinculado ao treino
+            if aluno is not None:
+                aluno.remover_treino_aluno(treino) #remove o treino da lista de treinos do aluno
+            self.__tela_treino.mostrar_msg("Treino excluído com sucesso!")
         else:
             self.__tela_treino.mostrar_msg("ATENCAO: treino não existente")
+        return self.abre_tela_funcoes_treino()
 
     def listar_treinos(self):
         for treino in self.__treinos:
