@@ -26,10 +26,12 @@ class TelaPersonalTrainer():
                 return 1
             elif opcao == 2:
                 return 2
+            elif opcao == 3:
+                return 3
             elif opcao == 0:
                 return 0
             else:
-                print("Tratar para acertar o valor certo: 1, 2 ou 0")
+                print("Tratar para acertar o valor certo: 1, 2, 3 ou 0")
                 self.mexer_personal()
 
     def mostrar_msg(self, msg):
