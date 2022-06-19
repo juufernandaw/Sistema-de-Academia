@@ -60,8 +60,7 @@ class ControladorTreino():
 
     def listar_treinos(self):
         for treino in self.__treinos:
-            treino_momento = treino
-            self.__tela_treino.mostrar_tela_treino(treino_momento)
+            print(treino)
         return self.abre_tela_funcoes_treino()
 
     def pegar_treino_por_nome(self):
