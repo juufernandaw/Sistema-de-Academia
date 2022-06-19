@@ -43,6 +43,8 @@ class ControladorTreino():
             treino.incluir_exercicio(dados_exercicio["nome"], dados_exercicio["serie"], dados_exercicio["repeticao"],\
             dados_exercicio["tempo_descanso"], self.__tipos_exercicio[dados_exercicio["tipo_exercicio"]])
             novo_exercicio, dados_exercicio = self.__tela_treino.montar_exercicio(self.__tipos_exercicio)
+        if novo_exercicio==2:
+            self.abre_tela_funcoes_treino()
 
     def excluir_treino(self):
         treino = self.pegar_treino_por_nome() #busca infos do treino requisitado
