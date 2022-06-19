@@ -2,10 +2,8 @@
 # from entidades.aluno import Aluno
 # from controladores.controladorpersonaltrainer import PersonalTrainer
 # from controladores.controladorsistema import ControladorSistema
-
 from TrabalhoPOO.telas.telaaluno import TelaAluno
 from TrabalhoPOO.entidades.aluno import Aluno
-from TrabalhoPOO.controladores.controladorpersonaltrainer import PersonalTrainer
 
 
 class ControladorAluno():
@@ -130,7 +128,7 @@ class ControladorAluno():
         lista_opcoes = {1: self.incluir_aluno, 2: self.alterar_aluno,
                         3: self.excluir_aluno, 4: self.listar_alunos, 5: self.consultar_aluno,
                         6: self.__controlador_sistema.controlador_treino_diario.mostrar_tela_treino_diario, 
-                        7: self.retornar
+                        7: self.voltar_menu_personal
                         }
         while True:
             opcao = self.__tela_aluno.mexer_aluno()
@@ -139,3 +137,6 @@ class ControladorAluno():
 
     def retornar(self):
         return self.__controlador_sistema.iniciar_tela_sistema()
+
+    def voltar_menu_personal(self):
+        return self.__controlador_sistema.controlador_personal_trainer.abre_tela_inicial()

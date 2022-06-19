@@ -31,7 +31,7 @@ class TelaAluno():
 
     def mexer_aluno(self):
         print("----- INÍCIO -----")
-        print("----- ABA ALUNO -----") # Aba personal ?
+        print("----- ABA ALUNO -----")  # Aba personal
         print("O que você deseja fazer hoje? Digite o número correspondente:")
         print("1 - Cadastrar aluno")
         print("2 - Alterar aluno")
