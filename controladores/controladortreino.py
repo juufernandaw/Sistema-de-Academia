@@ -33,7 +33,9 @@ class ControladorTreino():
             self.__treinos.append(treino) #adiciona o treino a lista de todos os treinos do sistema
             aluno = self.__controlador_sistema.controlador_aluno.selecionar_aluno() #seleciona o aluno pra vincular #seleciona a instancia do aluno
             aluno.adicionar_treino_aluno(treino) #chama o método pela instancia do aluno
-            novo_treino, nome_treino = self.__tela_treino.montar_treino() #pedir se quer incluir novo treino e o nome do treino 
+            novo_treino, nome_treino = self.__tela_treino.montar_treino() #pedir se quer incluir novo treino e o nome do treino
+        if novo_treino==2:
+            self.abre_tela_funcoes_treino()
 
     def criar_exercicio(self, treino: Treino):
         novo_exercicio, dados_exercicio = self.__tela_treino.montar_exercicio(self.__tipos_exercicio)
