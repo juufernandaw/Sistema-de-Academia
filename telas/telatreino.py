@@ -12,7 +12,7 @@ class TelaTreino():
             print("Série do exercício",exercicio.serie)
             print("Repetição do exercício",exercicio.repeticao)
             print("Tempo de descanso do exercício",exercicio.tempo_descanso)
-            print("Tipo do exercício",exercicio.tipo_exercicio)
+            print("Tipo do exercício",exercicio.tipo_exercicio.categoria_exercicio)
 
     def montar_treino(self): #mostra tela perguntando se quer cadastrar novo treino
         opcao = int(input("Deseja cadastrar um novo treino? 1- Sim 2- Não"))
