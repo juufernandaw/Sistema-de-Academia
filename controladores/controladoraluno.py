@@ -24,7 +24,7 @@ class ControladorAluno():
             else:
                 return False
 
-    def incluir_aluno(self): 
+    def incluir_aluno(self):
         dados_aluno = self.__tela_aluno.pega_dados_aluno()
         aluno = Aluno(dados_aluno["nome"], dados_aluno["login"], dados_aluno["senha"], dados_aluno["cpf"])
         self.__alunos.append(aluno)
@@ -53,10 +53,10 @@ class ControladorAluno():
         aluno = self.selecionar_aluno()
         lista_opcoes = {1: self.alterar_aluno_nome, 2: self.alterar_aluno_cpf,
                         3: self.alterar_aluno_login, 4: self.alterar_aluno_senha}
-        while True: 
+        while True:
             if aluno is not None:
-                #retorna a opcao escolhida
-                alteracao_aluno = lista_opcoes[opcao_alteracao] #executa a alteração
+                # retorna a opcao escolhida
+                alteracao_aluno = lista_opcoes[opcao_alteracao]  # executa a alteração
                 return alteracao_aluno(aluno)
 
     def alterar_aluno_nome(self, aluno: Aluno):
@@ -80,7 +80,7 @@ class ControladorAluno():
         return self.abre_tela_funcoes_aluno()
 
     def excluir_aluno(self):
-        aluno = self.selecionar_aluno() 
+        aluno = self.selecionar_aluno()
         if (aluno is not None):
             self.__alunos.remove(aluno)
             self.__tela_aluno.mostrar_msg("Aluno removido com sucesso!")
@@ -92,21 +92,26 @@ class ControladorAluno():
         cpf = self.__tela_aluno.pegar_cpf()
         for aluno in self.__alunos:
             if aluno.cpf == cpf:
-                self.__tela_aluno.mostrar_aluno({"nome": aluno.nome, "login": aluno.login, "senha": aluno.senha, "cpf": aluno.cpf, "treinos": aluno.treinos})
+                self.__tela_aluno.mostrar_aluno(
+                    {"nome": aluno.nome, "login": aluno.login, "senha": aluno.senha, "cpf": aluno.cpf,
+                     "treinos": aluno.treinos})
         return self.abre_tela_funcoes_aluno()
-        #ajustar visualização das listas
+        # ajustar visualização das listas
 
     def listar_alunos(self):
         print(self.__alunos)
         for aluno in self.__alunos:
-            self.__tela_aluno.mostrar_aluno({"nome": aluno.nome, "login": aluno.login, "senha": aluno.senha, "cpf": aluno.cpf, "treinos": aluno.treinos})
-        #ajustar visualização das listas
+            self.__tela_aluno.mostrar_aluno(
+                {"nome": aluno.nome, "login": aluno.login, "senha": aluno.senha, "cpf": aluno.cpf,
+                 "treinos": aluno.treinos})
+        # ajustar visualização das listas
         return self.abre_tela_funcoes_aluno()
 
     def abre_tela_funcoes_aluno(self):
         lista_opcoes = {1: self.incluir_aluno, 2: self.alterar_aluno,
                         3: self.excluir_aluno, 4: self.listar_alunos, 5: self.consultar_aluno, 6: self.retornar,
-                        7: self.__controlador_sistema.controlador_treino_diario.mostrar_tela_treino_diario}
+                        7: self.__controlador_sistema.controlador_treino_diario.mostrar_tela_treino_diario
+                        }
         while True:
             opcao = self.__tela_aluno.mexer_aluno()
             funcao_escolhida = lista_opcoes[opcao]
