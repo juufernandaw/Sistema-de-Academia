@@ -19,6 +19,7 @@ class TelaPersonalTrainer():
             print("O que você deseja fazer hoje? Digite o número correspondente:")
             print("1 - Modificar minhas informações")
             print("2 - Modificar alunos")
+            print("3 - Modificar treinos")
             print("0 - Sair")
             opcao = int(input())
             if opcao == 1:

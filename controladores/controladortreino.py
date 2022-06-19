@@ -1,6 +1,9 @@
-from entidades.treino import Treino
-from telas.telatreino import TelaTreino
-from entidades.tipoexercicio import TipoExercicio
+# from entidades.treino import Treino
+# from telas.telatreino import TelaTreino
+# from entidades.tipoexercicio import TipoExercicio
+from TrabalhoPOO.entidades.treino import Treino
+from TrabalhoPOO.telas.telatreino import TelaTreino
+from TrabalhoPOO.entidades.tipoexercicio import TipoExercicio
 
 
 class ControladorTreino():
