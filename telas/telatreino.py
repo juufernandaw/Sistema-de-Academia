@@ -33,10 +33,12 @@ class TelaTreino():
             for tipo_exercicio in lista_tipos:
                 print("Número:", num, ". Categoria do exercício:",tipo_exercicio.categoria_exercicio)
                 num+=1
-            tipo_exercicio = int(input("Informe o número correspondente ao exercício desejado")) #chamar a lista de tipos_chamados
+            tipo_exercicio = int(input("Informe o número correspondente ao exercício desejado"))  # chamar a lista de tipos_chamados
+            return opcao, {"nome": nome, "serie": serie, "repeticao": repeticao, "tempo_descanso": tempo_descanso,
+                           "tipo_exercicio": tipo_exercicio}
         else:
-            nome, serie, repeticao, tempo_descanso, tipo_exercicio = None
-        return opcao,{"nome":nome, "serie":serie, "repeticao":repeticao, "tempo_descanso":tempo_descanso, "tipo_exercicio":tipo_exercicio}
+            return opcao, None
+
 
     def selecionar_treino_por_nome(self):
         nome_treino = input("Nome do treino:")
