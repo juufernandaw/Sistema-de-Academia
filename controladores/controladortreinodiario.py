@@ -67,7 +67,6 @@ class ControladorTreinoDiario():
 
     def checkin(self):  # no aluno tem um método para perguntar se quer checkin la vai chamar pra ca
         # refazer método
-
         checkin = False  # metodo errado refazer esse aluno
         conta_presenca = 0
         if self.__controlador_sistema.controladorsistema.abre_logins() == \
