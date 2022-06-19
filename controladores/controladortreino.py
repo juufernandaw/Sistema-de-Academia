@@ -61,7 +61,7 @@ class ControladorTreino():
     def listar_treinos(self):
         print("ENTREIII")
         for treino in self.__treinos:
-            print("OPAA",treino)
+            print(treino)
         return self.abre_tela_funcoes_treino()
 
     def pegar_treino_por_nome(self):
