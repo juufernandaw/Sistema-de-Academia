@@ -43,7 +43,7 @@ class ControladorSistema:
 
     def iniciar_tela_sistema(self):  # OK
         login_com_sucesso = None
-        lista_opcoes = {1: self.__tela_sistema.mostrar_tela_aluno,
+        lista_opcoes = {1: self.__controlador_aluno..mostrar_tela_aluno,
                         2: self.__controlador_personal_trainer.abre_tela_inicial,
                         0: self.encerrar_sistema}
         login = None
@@ -60,7 +60,6 @@ class ControladorSistema:
                 funcao_escolhida = lista_opcoes[opcao_escolhida]
                 return funcao_escolhida()
             else:
-                print("Else não deveria aqui")
                 self.__tela_sistema.mostrar_msg_telasistema(f"{opcao_escolhida} invalida, "
                                                             f"digite 1, 2 ou 0 para sair. ")
                 self.__tela_sistema.mostrarMenu_inicial()

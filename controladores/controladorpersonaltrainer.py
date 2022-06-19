@@ -2,6 +2,8 @@ from TrabalhoPOO.entidades.personaltrainer import PersonalTrainer
 from TrabalhoPOO.telas.telapersonaltrainer import TelaPersonalTrainer
 from TrabalhoPOO.telas.telasistema import TelaSistema
 from TrabalhoPOO.telas.telaaluno import TelaAluno
+
+
 # from TrabalhoPOO.controladores.controladortreinodiario import TreinoDiario
 # from TrabalhoPOO.controladores.controladorsistema import ControladorSistema
 
@@ -9,8 +11,8 @@ from TrabalhoPOO.telas.telaaluno import TelaAluno
 # from telas.telapersonaltrainer import TelaPersonalTrainer
 # from telas.telasistema import TelaSistema
 # from telas.telaaluno import TelaAluno
-#from controladores.controladortreinodiario import TreinoDiario
-#from controladores.controladorsistema import ControladorSistema
+# from controladores.controladortreinodiario import TreinoDiario
+# from controladores.controladorsistema import ControladorSistema
 
 
 class ControladorPersonalTrainer():
@@ -31,11 +33,11 @@ class ControladorPersonalTrainer():
             if self.__personal.login == login and self.__personal.senha == senha:  # get
                 return True
 
-    def abre_tela_inicial(self):  # abre a tela personal pos login da tela do sistema
+    def abre_tela_inicial(self):  # abre a tela personal pos login da tela do sistema AS ABAS
         mexer_personal_opcoes = {1: self.abre_tela_funcoes_personal,
                                  2: self.__controlador_sistema.controlador_aluno.abre_tela_funcoes_aluno,
                                  3: self.__controlador_sistema.controlador_treino.abre_tela_funcoes_treino,
-                                 0: self.__tela_personal.mexer_personal
+                                 0: self.retornar
                                  }
         while True:
             opcao_escolhida = self.__tela_personal.mexer_personal()
@@ -64,20 +66,6 @@ class ControladorPersonalTrainer():
                 funcao_escolhida = mexer_personal_opcoes[opcao_escolhida]
                 return funcao_escolhida()
 
-    # def abre_tela_inicial(self):  # abre a tela personal pos login da tela do sistema
-    #     mexer_personal_opcoes = {1: self.alterar_personal,
-    #                              2: self.tela_alterar_dados_alunos,
-    #                              3: self.__controlador_sistema.controladortreino.abre_tela_funcoes_treino
-    #                              0: self.retornar
-    #                              }
-    #     while True:
-    #         opcao_escolhida = self.__tela_personal.mexer_personal()
-    #         if opcao_escolhida == 0:
-    #             return self.retornar(0)
-    #         else:
-    #             funcao_escolhida = mexer_personal_opcoes[opcao_escolhida]
-    #         return funcao_escolhida()
-
     def alterar_personal(self):  # aqui ele está alterando os dados do personal baseado no dicionario da tela
         if self.__personal is not None:  # OK
             novos_dados = self.__tela_personal.tela_alterar_dados()  # vai ser um dicionario
@@ -89,15 +77,6 @@ class ControladorPersonalTrainer():
 
         return self.abre_tela_funcoes_personal()
 
-    # def tela_alterar_dados_alunos(self):  # abre_tela_inicial manda para ca
-    #     # na tela personal tem a opcao do personal escolher
-    #     return self.__controlador_sistema.controlador_aluno.abre_tela_funcoes_aluno()
-    #     # print("ii", self)
-    #     # while True:
-    #     #     opcao_modificar_aluno = self.__controlador_sistema.controlador_aluno.abre_tela_funcoes_aluno
-    #     #     funcao_escolhida = mexer_personal_opcoes[opcao_modificar_aluno]
-    #     #     return funcao_escolhida()
-
     def colocar_treino_na_lista_treino_diario(self):
         self.__controlador_sistema.controlador_treino_diario.colocar_treino_na_lista_treino_diario()
 
@@ -107,5 +86,5 @@ class ControladorPersonalTrainer():
     def consultar_desempenho(self):
         escolha = self.consultar_tela_desempenho()
 
-    def retornar(self, opcao_escolhida):
-        return self.__tela_sistema.logar(opcao_escolhida)
+    def retornar(self):
+        return self.__controlador_sistema.iniciar_tela_sistema()
