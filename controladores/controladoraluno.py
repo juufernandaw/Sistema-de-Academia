@@ -140,3 +140,20 @@ class ControladorAluno():
 
     def voltar_menu_personal(self):
         return self.__controlador_sistema.controlador_personal_trainer.abre_tela_inicial()
+
+    def abre_tela_inicial(self):  #abre a tela aluno pós login da tela
+        usuario = self.__controlador_sistema.usuario_logado
+        mexer_aluno_opcoes = {1: self.consultar_treino_aluno(usuario.treinos),
+                                 2: self.controlador_sistema.controlador_treino_diario.abre_tela_funcoes_aluno,
+                                 3: self.controlador_sistema.controlador_treino.abre_tela_funcoes_treino,
+                                 0: self.retornar
+                                 }
+        while True:
+            opcao_escolhida = self.__tela_aluno.mexer_aluno()
+            funcao_escolhida = mexer_aluno_opcoes[opcao_escolhida]
+            return funcao_escolhida()
+
+    def consultar_treino_aluno(self, treinos):
+        for treino in treinos:
+            print("Treino:", treino)
+        return self.abre_tela_inicial()
