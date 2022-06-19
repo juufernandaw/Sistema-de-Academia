@@ -10,6 +10,18 @@ class TelaAluno():
         print("CPF:", dados_aluno["cpf"])
         print("Treinos:", dados_aluno["treinos"])
 
+    def mostrar_treino_aluno(self, treinos):
+        contador = 0
+        for treino in treinos:
+            print(contador, ") Treino:", treino)
+            contador+=1
+        escolha = int(input("Qual treino você escolhe alterar?"))
+        return escolha
+
+    def escolher_opcao_treino(self):
+        escolha = int(input("Você deseja 1) Excluir um treino de um aluno ou 2) Adicionar um treino ao aluno?"))
+        return escolha
+        
     def pega_dados_aluno(self): 
         nome = input("Digite o nome do aluno:")
         login = input("Digite o login do aluno:")
@@ -26,8 +38,8 @@ class TelaAluno():
         print("3 - Excluir aluno")
         print("4 - Listar alunos")
         print("5 - Consultar aluno")
-        print("6 - Sair")
-        print("7 - Consultar Desempenho")
+        print("6 - Consultar Desempenho do aluno")
+        print("7 - Sair")
 
         opcao = int(input())
         return opcao
@@ -39,7 +51,8 @@ class TelaAluno():
         print("2 - Alterar cpf")
         print("3 - Alterar login")
         print("4 - Alterar senha")
-        print("5 - Sair")
+        print("5 - Alterar treino")
+        print("6 - Sair")
 
         opcao = int(input())
         return opcao

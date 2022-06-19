@@ -45,3 +45,17 @@ class TelaTreino():
     def escolher_alteracao_treino(self):
         opcao = int(input("Escolha o que deseja fazer: 1) Alterar nome do treino 2) Excluir e incluir novos exercícios no treino"))
         return opcao
+
+    def mexer_treino(self):
+        print("----- INÍCIO -----")
+        print("----- ABA TREINO -----") 
+        print("O que você deseja fazer hoje? Digite o número correspondente:")
+        print("1 - Cadastrar treino")
+        print("2 - Alterar treino")
+        print("3 - Excluir treino")
+        print("4 - Listar treinos")
+        print("5 - Consultar treino")
+        print("6 - Sair")
+
+        opcao = int(input())
+        return opcao

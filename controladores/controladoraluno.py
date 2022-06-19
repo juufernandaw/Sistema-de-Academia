@@ -52,7 +52,7 @@ class ControladorAluno():
         opcao_alteracao = self.__tela_aluno.opcao_alterar()
         aluno = self.selecionar_aluno()
         lista_opcoes = {1: self.alterar_aluno_nome, 2: self.alterar_aluno_cpf,
-                        3: self.alterar_aluno_login, 4: self.alterar_aluno_senha}
+                        3: self.alterar_aluno_login, 4: self.alterar_aluno_senha, 5: self.alterar_aluno_treino}
         while True:
             if aluno is not None:
                 # retorna a opcao escolhida
@@ -78,6 +78,25 @@ class ControladorAluno():
         aluno.senha = self.__tela_aluno.pegar_senha()
         self.__tela_aluno.mostrar_msg("Aluno alterado com sucesso!")
         return self.abre_tela_funcoes_aluno()
+
+    def alterar_aluno_treino(self, aluno: Aluno):
+        opcao = self.__tela_aluno.escolher_opcao_treino() #excluir algum treino ou adicionar um treino ao aluno
+        lista_opcoes = {1: self.desvincular_aluno_treino, 2: self.vincular_aluno_treino}
+        treino = self.__tela_aluno.mostrar_treino_aluno(aluno.treinos) #retorna o numero do treino
+        treino_escolhido = aluno.treinos[treino] #retorna a instancia do treino da lista de treinos
+        while True:
+            funcao_escolhida = lista_opcoes[opcao]
+            return funcao_escolhida()
+
+    def vincular_aluno_treino(self, aluno: Aluno, treino):
+        aluno.adicionar_treino_aluno(treino)
+        self.__tela_aluno.mostrar_msg("Treino vinculado ao aluno!")
+        return self.alterar_aluno()
+
+    def desvincular_aluno_treino(self, aluno: Aluno, treino):
+        aluno.remover_treino_aluno(treino)
+        self.__tela_aluno.mostrar_msg("Treino desvinculado do aluno!")
+        return self.alterar_aluno()
 
     def excluir_aluno(self):
         aluno = self.selecionar_aluno()
@@ -109,8 +128,9 @@ class ControladorAluno():
 
     def abre_tela_funcoes_aluno(self):
         lista_opcoes = {1: self.incluir_aluno, 2: self.alterar_aluno,
-                        3: self.excluir_aluno, 4: self.listar_alunos, 5: self.consultar_aluno, 6: self.retornar,
-                        7: self.__controlador_sistema.controlador_treino_diario.mostrar_tela_treino_diario
+                        3: self.excluir_aluno, 4: self.listar_alunos, 5: self.consultar_aluno,
+                        6: self.__controlador_sistema.controlador_treino_diario.mostrar_tela_treino_diario, 
+                        7: self.retornar
                         }
         while True:
             opcao = self.__tela_aluno.mexer_aluno()
