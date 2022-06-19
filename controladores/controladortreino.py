@@ -62,7 +62,7 @@ class ControladorTreino():
         treino_momento = None
         for treino in self.__treinos:
             treino_momento = treino
-        self.__tela_treino.mostrar_tela_treino(treino_momento)
+            self.__tela_treino.mostrar_tela_treino(treino_momento)
         return self.abre_tela_funcoes_treino()
 
     def pegar_treino_por_nome(self):
@@ -87,6 +87,8 @@ class ControladorTreino():
         
     def alterar_nome_treino(self, treino: Treino):
         treino.nome = self.__tela_treino.selecionar_treino_por_nome()
+        self.__tela_treino.mostrar_msg("Nome do treino alterado com sucesso!")
+        return self.abre_tela_funcoes_treino()
 
     def consultar_treino(self):
         treino = self.pegar_treino_por_nome()
