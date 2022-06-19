@@ -144,8 +144,8 @@ class ControladorAluno():
     def abre_tela_inicial(self):  #abre a tela aluno pós login da tela
         usuario = self.__controlador_sistema.usuario_logado
         mexer_aluno_opcoes = {1: self.consultar_treino_aluno(usuario.treinos),
-                                 2: self.controlador_sistema.controlador_treino_diario.abre_tela_funcoes_aluno,
-                                 3: self.controlador_sistema.controlador_treino.abre_tela_funcoes_treino,
+                                 2: self.controlador_sistema.controlador_treino_diario.checkin,
+                                 3: self.controlador_sistema.controlador_treino_diario.desempenho_aluno,
                                  0: self.retornar
                                  }
         while True:
