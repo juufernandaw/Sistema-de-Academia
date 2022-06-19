@@ -18,12 +18,13 @@ class TelaTreinoDiario():
         escolha = int(input())
         return escolha
 
-    # def colocar_treino_na_lista_treino_diario(self):
-    #     treino_1 = input("Digite o nome do treino:")
-    #     treino_2 = input("Digite o nome do treino:")
-    #     treino_3 = input("Digite o nome do treino:")
-    #     treino_4 = input("Digite o nome do treino:")
-    #     return {"treino_1": treino_1, "treino_2": treino_2, "treino_3": treino_3, "treino_4": treino_4}
+    def montar_treino_diario(self, lista_treinos):
+        contador = 0
+        for treino in lista_treinos:
+            print(contador, " - Nome do treino:", treino.nome)
+            contador += 1
+        resposta = int(input("Qual treino você fará hoje?"))
+        return resposta
 
     def mensagem(self, msg):
         return msg

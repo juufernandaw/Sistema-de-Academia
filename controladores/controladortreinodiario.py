@@ -1,6 +1,6 @@
 from TrabalhoPOO.entidades.treinodiario import TreinoDiario
 from TrabalhoPOO.telas.telatreinodiario import TelaTreinoDiario
-# from TrabalhoPOO.entidades.treino import Treino
+from TrabalhoPOO.entidades.treino import Treino
 # from TrabalhoPOO.controladores.controladorsistema import ControladorSistema
 # from TrabalhoPOO.entidades.treino import Treino
 # from TrabalhoPOO.controladores.controladoraluno import ControladorAluno
@@ -25,8 +25,8 @@ class ControladorTreinoDiario():
     def treino_diarios(self):  # lista de treino diario
         return self.__treinos_diarios
 
-    def mostrar_tela_treino_diario(self):
-        treino_diario_opcoes = {1: self.desempenho_aluno,
+    def mostrar_tela_treino_diario(self): #  ABA Treino Diario
+        treino_diario_opcoes = {1: self.confirmar_checkin,
                                 2: self.voltar_menu_inicial,
                                 3: self.colocar_treino_na_lista_treino_diario
                                 }
@@ -51,29 +51,22 @@ class ControladorTreinoDiario():
             self.__tela_treinoDiario.checkin(contador_presenca)
             return self.mostrar_tela_treino_diario()
 
-    def colocar_treino_na_lista_treino_diario(self):
+    def adicionar_treino_a_treinodiario(self, escolha_treino: Treino):
+        # adiciona o treino escolhido na lista de treinoDiario
+        if isinstance(escolha_treino, Treino):
+            self.__treinos_diarios.append(escolha_treino)
+            self.__tela_treinoDiario.mensagem("Treino iniciado")
+            return self.mostrar_tela_treino_diario()
+
+    def confirmar_checkin(self):  # TREINO DIARIO É UMA LISTA DE TREINO!
         aluno = self.__controlador_sistema.usuario_logado
-        treino_aluno = aluno.treinos()
-        for treino in self.__treinos_diarios:
-            self.__treinos_diarios.append(treino_aluno)
-        return self.mostrar_tela_treino_diario()
+        escolha_treino = self.__tela_treinoDiario.montar_treino_diario(aluno.treinos) # retornar o treino q ele escolheu
+        self.adicionar_treino_a_treinodiario(aluno.treinos[escolha_treino])  # colocar o valor da lista para o metodo
+        treino_diario = TreinoDiario(aluno, contador_presenca, escolha_treino)
 
-    def escolher_treino_aluno(self):  # TREINO DIARIO É UMA LISTA DE TREINO!
-        self.__tela_treinoDiario.mensagem("Qual treino você quer ? ")
-        aluno = self.__controlador_sistema.usuario_logado  # aqui sabe qual aluno foi logado
-        treino_aluno = aluno.treinos()  # perguntar ao usuario qual desses voce quer fazer.
-        contador_presenca = self.checkin()  # retornar o treino q ele escolheu
-        treino_diario_aluno = TreinoDiario(aluno, contador_presenca, aluno.treinos())
-        self.__tela_treinoDiario.mensagem("Escolha o seu treino de hoje: ")
-        for treino in self.__treinos_diarios:
-            print(treino)
 
-    def escolher_treino(self):
-        pass
-
-    def checkin(self):  # no aluno tem um método para perguntar se quer checkin la vai chamar pra ca
-        # refazer método
-        checkin = False  # metodo errado refazer esse aluno
+    def checkin(self):
+        checkin = False
         conta_presenca = 0
         if self.__controlador_sistema.controladorsistema.abre_logins() == \
                 self.__controlador_sistema.controladoraluno.abre_tela_funcoes_aluno():
@@ -81,17 +74,3 @@ class ControladorTreinoDiario():
             if checkin:
                 conta_presenca += 1
         return conta_presenca
-
-    # #def método(self): -> em controlador_teladiario
-    # aluno = self.__controlador_sistema.usuario_logado
-    # escolha_treino = self.__tela_treinoDiario.montar_treino_diario(aluno.treinos)
-    # self.adicionar_treino_a_treinodiario(escolha_treino)
-    #
-    # #def montar_treino_diario: ->em tela_Diario
-    #     for treino in lista_treinos:
-    #         print("Nome do treino:", treino.nome)
-    #     resposta = input("Qual treino você fará hoje?")
-    #     return resposta
-
-
-    

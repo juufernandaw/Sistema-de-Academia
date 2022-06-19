@@ -43,7 +43,7 @@ class ControladorSistema:
 
     def iniciar_tela_sistema(self):  # OK
         login_com_sucesso = None
-        lista_opcoes = {1: self.__controlador_aluno..mostrar_tela_aluno,
+        lista_opcoes = {1: self.__controlador_aluno.abre_tela_inicial,
                         2: self.__controlador_personal_trainer.abre_tela_inicial,
                         0: self.encerrar_sistema}
         login = None

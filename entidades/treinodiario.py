@@ -7,7 +7,7 @@ from datetime import date
 
 
 class TreinoDiario():
-    def __init__(self, aluno: Aluno, data: int, treinos: Treino):
+    def __init__(self, aluno: Aluno, data: date, treinos: Treino):
         self.__aluno = aluno
         self.__data = data
         self.__treinos = []
@@ -26,7 +26,7 @@ class TreinoDiario():
         return self.__data
 
     @data.setter
-    def data(self, data: int):
+    def data(self, data: date):
         if isinstance(data, int):
             self.__data = data
 
