@@ -42,7 +42,7 @@ class ControladorSistema:
         return self.__controlador_personal_trainer
 
     def iniciar_tela_sistema(self):  # OK
-        global opcao_escolhida, login, senha
+        global opcao_escolhida
         try:
             login_com_sucesso = None
             lista_opcoes = {1: self.__controlador_aluno.abre_tela_inicial,
