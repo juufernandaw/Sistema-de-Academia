@@ -47,7 +47,7 @@ class ControladorTreinoDiario():
             print("Valor digitado incorreto, tente novamente.")
             self.mostrar_tela_treino_diario()
         except TypeError:
-            print("Somente os número na tela.")
+            print("Somente os números na tela.")
             self.mostrar_tela_treino_diario()
 
     def voltar_menu_inicial(self):
@@ -56,9 +56,17 @@ class ControladorTreinoDiario():
     def contabilizar_calorias(self):
         soma_calorias = 0
         for treino_diario in self.__lista_treinos_diarios:  # lista de treinos que tem os treinos
+            print("Entrei 1: ", treino_diario)
             for treino in treino_diario.treinos:
+                print("Entrei 2: ", treino)
+                print("Entrei 3: ", treino_diario.treinos)
                 for exercicio in treino.exercicios:
+                    print("Entrei 4: ", exercicio)
+                    print("Entrei 5: ", treino.exercicios)
+                    print("Entrei 6: ", exercicio.tipo_exercicio)
+                    print("Entrei 7: ", soma_calorias)
                     soma_calorias += exercicio.tipo_exercicio.qtd_kcal_gasta()
+                    print("Entrei 8: ", soma_calorias)
         return soma_calorias
 
     def desempenho_aluno(self):
