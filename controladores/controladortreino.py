@@ -1,13 +1,13 @@
-# from entidades.treino import Treino
-# from telas.telatreino import TelaTreino
-# from entidades.tipoexercicio import TipoExercicio
-from TrabalhoPOO.Exception.listavaziaexception import ListaVaziaException
-from TrabalhoPOO.entidades.treino import Treino
-from TrabalhoPOO.telas.telatreino import TelaTreino
-from TrabalhoPOO.entidades.tipoexercicio import TipoExercicio
-
-from TrabalhoPOO.excecoes.treinojaexistenteexception import TreinoJaExistente
-from TrabalhoPOO.excecoes.valorvazio import ValorVazio
+from entidades.treino import Treino
+from telas.telatreino import TelaTreino
+from entidades.tipoexercicio import TipoExercicio
+# from TrabalhoPOO.Exception.listavaziaexception import ListaVaziaException
+# from TrabalhoPOO.entidades.treino import Treino
+# from TrabalhoPOO.telas.telatreino import TelaTreino
+# from TrabalhoPOO.entidades.tipoexercicio import TipoExercicio
+#
+# from TrabalhoPOO.excecoes.treinojaexistenteexception import TreinoJaExistente
+# from TrabalhoPOO.excecoes.valorvazio import ValorVazio
 
 
 class ControladorTreino:
