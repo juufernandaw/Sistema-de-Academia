@@ -1,10 +1,10 @@
-from datetime import date
-from TrabalhoPOO.entidades.treino import Treino
-from TrabalhoPOO.entidades.treinodiario import TreinoDiario
-from TrabalhoPOO.telas.telatreinodiario import TelaTreinoDiario
-# from entidades.treinodiario import TreinoDiario
-# from telas.telatreinodiario import TelaTreinoDiario
-# from entidades.treino import Treino
+# from datetime import date
+# from TrabalhoPOO.entidades.treino import Treino
+# from TrabalhoPOO.entidades.treinodiario import TreinoDiario
+# from TrabalhoPOO.telas.telatreinodiario import TelaTreinoDiario
+from entidades.treinodiario import TreinoDiario
+from telas.telatreinodiario import TelaTreinoDiario
+from entidades.treino import Treino
 
 
 class ControladorTreinoDiario():
