@@ -1,4 +1,3 @@
-#from TrabalhoPOO.entidades.aluno import Aluno
 from entidades.aluno import Aluno
 from datetime import date
 

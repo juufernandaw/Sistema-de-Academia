@@ -1,13 +1,7 @@
 from entidades.treino import Treino
+from excecoes.listavaziaexception import ListaVaziaException
 from telas.telatreino import TelaTreino
 from entidades.tipoexercicio import TipoExercicio
-# from TrabalhoPOO.Exception.listavaziaexception import ListaVaziaException
-# from TrabalhoPOO.entidades.treino import Treino
-# from TrabalhoPOO.telas.telatreino import TelaTreino
-# from TrabalhoPOO.entidades.tipoexercicio import TipoExercicio
-#
-from excecoes.treinojaexistenteexception import TreinoJaExistente
-from excecoes.valorvazio import ValorVazio
 
 
 class ControladorTreino:
@@ -15,7 +9,6 @@ class ControladorTreino:
     def __init__(self, controlador_sistema):
         self.__controlador_sistema = controlador_sistema
         self.__treinos = []
-        self.__manter_tela = True
         self.__tela_treino = TelaTreino()
         self.__tipos_exercicio = [TipoExercicio("Muscular - Superior", 200), TipoExercicio("Muscular - Inferior", 150),
                                   TipoExercicio("Cardiovascular", 300)]
@@ -33,21 +26,22 @@ class ControladorTreino:
             while (novo_treino == 1) and (nome_treino is not None):  # pra criar novo treino
                 for treino in self.__treinos:
                     if treino.nome == nome_treino:
-                        self.__tela_treino.mostrar_msg("ATENCAO: treino já existe no sistema. Favor cadastrar outro.")
+                        self.__tela_treino.mostrar_msg("ATENÇÃO: Treino já existe no sistema. Favor cadastrar outro.")
                         return self.incluir_treino()
                 else:
                     treino = Treino(nome_treino)  # instancia o treino
                     self.criar_exercicio(treino)  # chama o método para incluir exercicios no treino
                     self.__treinos.append(treino)  # adiciona o treino a lista de todos os treinos do sistema
                     aluno = self.__controlador_sistema.controlador_aluno.selecionar_aluno()  # seleciona o aluno pra vincular #seleciona a instancia do aluno
-                    if aluno is None:
-                        raise ValorVazio
+                    while (aluno is None):
+                        self.__tela_treino.mostrar_msg("ATENÇÃO: Aluno inexistente! Favor digite um aluno válido")
+                        aluno = self.__controlador_sistema.controlador_aluno.selecionar_aluno()
                     aluno.adicionar_treino_aluno(treino)  # chama o método pela instancia do aluno
                     novo_treino, nome_treino = self.__tela_treino.montar_treino()  # pedir se quer incluir novo treino e o nome do treino
             if novo_treino == 2:  # se não deseja criar novo treino
                 return self.abre_tela_funcoes_treino()
             elif novo_treino == 1 and nome_treino is None:
-                self.__tela_treino.mostrar_msg("ATENCAO: treino não existente")
+                self.__tela_treino.mostrar_msg("ATENÇÃO: Treino não existente. Digite um treino válido.")
                 return self.incluir_treino()
 
     def criar_exercicio(self, treino: Treino):
@@ -68,7 +62,7 @@ class ControladorTreino:
                 aluno.remover_treino_aluno(treino)  # remove o treino da lista de treinos do aluno
             self.__tela_treino.mostrar_msg("Treino excluído com sucesso!")
         else:
-            self.__tela_treino.mostrar_msg("ATENCAO: treino não existente")
+            self.__tela_treino.mostrar_msg("ATENÇÃO: Treino não existente. Digite um treino válido.")
         return self.abre_tela_funcoes_treino()
 
     def listar_treinos(self):
@@ -101,10 +95,11 @@ class ControladorTreino:
                     self.criar_exercicio(treino)  # inclui os novos exercicios do treino
                     return self.abre_tela_funcoes_treino()
         except ValueError:
-            print("Selecione os valores que estão na tela.")
-        except ListaVaziaException as e:
-            print(e)
-            self.__tela_treino.mostrar_msg("ATENCAO: treino não existente")
+            self.__tela_treino.mostrar_msg("ATENÇÃO: Valor inválido. Selecione um dos valores que estão na tela.")
+            return self.alterar_treino()
+        except ListaVaziaException:
+            self.__tela_treino.mostrar_msg("ATENÇÃO: Treino não existente. Informe um treino válido.")
+            return self.alterar_treino()
 
     def alterar_nome_treino(self, treino: Treino):
         treino.nome = self.__tela_treino.selecionar_treino_por_nome()
@@ -116,9 +111,10 @@ class ControladorTreino:
         if treino is not None:
             treino = {"nome": treino.nome, "exercicios": treino.exercicios}
             self.__tela_treino.mostrar_tela_treino(treino)
+            return self.abre_tela_funcoes_treino()
         else:
-            self.__tela_treino.mostrar_msg("ATENCAO: treino não existente")
-        return self.abre_tela_funcoes_treino()
+            self.__tela_treino.mostrar_msg("ATENÇÃO: Treino não existente. Favor digitar um treino válido")
+            return self.consultar_treino()
 
     def abre_tela_funcoes_treino(self):
         try:
@@ -132,8 +128,5 @@ class ControladorTreino:
                 funcao_escolhida = lista_opcoes[opcao]
                 return funcao_escolhida()
         except ValueError:
-            print("Escolha um valor entre os mostrados acima.")
+            self.__tela_treino.mostrar_msg("ATENÇÃO: Valor inválido. Favor digitar um dos valores da tela")
             self.abre_tela_funcoes_treino()
-
-    def retornar(self):
-        return

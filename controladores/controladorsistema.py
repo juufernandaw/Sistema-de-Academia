@@ -1,10 +1,3 @@
-# from TrabalhoPOO.controladores.controladoraluno import ControladorAluno
-# from TrabalhoPOO.controladores.controladortreino import ControladorTreino
-# from TrabalhoPOO.controladores.controladortreinodiario import ControladorTreinoDiario
-# from TrabalhoPOO.controladores.controladorpersonaltrainer import ControladorPersonalTrainer
-# from TrabalhoPOO.telas.telasistema import TelaSistema
-
-
 from controladores.controladoraluno import ControladorAluno
 from controladores.controladortreino import ControladorTreino
 from controladores.controladortreinodiario import ControladorTreinoDiario
@@ -52,7 +45,7 @@ class ControladorSistema:
             login = None
             senha = None
             while True:
-                opcao_escolhida = self.__tela_sistema.mostrarMenu_inicial()
+                opcao_escolhida = self.__tela_sistema.mostrar_menu_inicial()
                 if opcao_escolhida != 1 and opcao_escolhida != 2 and opcao_escolhida != 0:
                     raise ValueError
                 login, senha = self.__tela_sistema.logar(opcao_escolhida)  # ele vai entrar no login: aluno ou personal

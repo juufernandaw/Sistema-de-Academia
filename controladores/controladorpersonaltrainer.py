@@ -1,19 +1,15 @@
-# from TrabalhoPOO.entidades.personaltrainer import PersonalTrainer
-# from TrabalhoPOO.telas.telapersonaltrainer import TelaPersonalTrainer
-# from TrabalhoPOO.telas.telasistema import TelaSistema
-# from TrabalhoPOO.telas.telaaluno import TelaAluno
 from entidades.personaltrainer import PersonalTrainer
 from telas.telapersonaltrainer import TelaPersonalTrainer
-from telas.telasistema import TelaSistema
-from telas.telaaluno import TelaAluno
+#from telas.telasistema import TelaSistema
+#from telas.telaaluno import TelaAluno
 
 
 class ControladorPersonalTrainer():
+
     def __init__(self, controlador_sistema):
         self.__tela_personal = TelaPersonalTrainer()
-        self.__tela_aluno = TelaAluno()
-        self.__tela_sistema = TelaSistema()
-        self.__manter_tela = bool
+        #self.__tela_aluno = TelaAluno()
+        #self.__tela_sistema = TelaSistema()
         self.__controlador_sistema = controlador_sistema
         self.__personal = PersonalTrainer("12345678905", "Judi", "a", "a", "01")  # criou o personal
 

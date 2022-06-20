@@ -1,19 +1,16 @@
 from datetime import date
 from excecoes.listavaziaexception import ListaVaziaException
-# from TrabalhoPOO.entidades.treino import Treino
-# from TrabalhoPOO.entidades.treinodiario import TreinoDiario
-# from TrabalhoPOO.telas.telatreinodiario import TelaTreinoDiario
 from entidades.treinodiario import TreinoDiario
 from telas.telatreinodiario import TelaTreinoDiario
 from entidades.treino import Treino
 
 
 class ControladorTreinoDiario():
+
     def __init__(self, controlador_sistema):
         self.__lista_treinos = []
         self.__lista_treinos_diarios = []
         self.__tela_treinoDiario = TelaTreinoDiario()
-        self.__manter_tela = bool
         self.__controlador_sistema = controlador_sistema
 
     @property
@@ -28,7 +25,7 @@ class ControladorTreinoDiario():
         try:
             treino_diario_opcoes = {1: self.confirmar_checkin,
                                     2: self.desempenho_aluno,
-                                    3: self.__controlador_sistema.controlador_aluno.abre_tela_inicial
+                                    3: self.encerrar_sistema
                                     }
             while True:
                 opcao_treino_diario = self.__tela_treinoDiario.mostrar_tela_desempenho()
@@ -37,7 +34,7 @@ class ControladorTreinoDiario():
                 funcao_escolhida = treino_diario_opcoes[opcao_treino_diario]
                 return funcao_escolhida()
         except ValueError:
-            print("Valor digitado incorreto, tente novamente.")
+            self.__tela_treinoDiario.mensagem("ATENÇÃO: Treino não existente. Favor digitar um treino válido")
             self.mostrar_tela_treino_diario()
 
     def voltar_menu_inicial(self):
@@ -80,7 +77,7 @@ class ControladorTreinoDiario():
             aluno = self.__controlador_sistema.usuario_logado
             dia_atual = date.today()
             escolha_treino = self.__tela_treinoDiario.montar_treino_diario(aluno.treinos)  # retorna treino q ele escolheu
-            if aluno.treinos is None:
+            if escolha_treino is None:
                 raise ListaVaziaException
             self.adicionar_treino_a_treinos(aluno.treinos[escolha_treino])  # colocar o valor da lista para o metodo
             opcao = self.__tela_treinoDiario.montar_treino_diario_2()
@@ -90,13 +87,14 @@ class ControladorTreinoDiario():
                 opcao = self.__tela_treinoDiario.montar_treino_diario_2()
             treino_diario = TreinoDiario(aluno, dia_atual, self.__lista_treinos)
             self.adicionar_treino_diario_a_treinodiarios(treino_diario)
-        except ListaVaziaException as e:
-            print(e)
-            print("A lista está vazia, volte e preencha a lista!")
-            self.confirmar_checkin()
+        except ListaVaziaException:
+            return self.__tela_treinoDiario.mostrar_tela_desempenho()
 
     def contabilizar_dias_treino(self):
         dias_de_treino = 0
         for treinodiario in self.__lista_treinos_diarios:
             dias_de_treino += 1
         return dias_de_treino
+
+    def encerrar_sistema(self):
+        exit(0)

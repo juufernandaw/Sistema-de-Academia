@@ -1,6 +1,3 @@
-# from TrabalhoPOO.entidades.exercicio import Exercicio
-
-
 from entidades.exercicio import Exercicio
 
 

@@ -1,5 +1,4 @@
 from entidades.tipoexercicio import TipoExercicio
-# from TrabalhoPOO.entidades.tipoexercicio import TipoExercicio
 
 
 class Exercicio():

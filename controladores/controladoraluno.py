@@ -1,11 +1,6 @@
-from excecoes.CpfExistente import CpfExistente
-from excecoes.loginexistente import LoginExistente
 from telas.telaaluno import TelaAluno
 from entidades.aluno import Aluno
-from telas.telatreino import TelaTreino
-# from TrabalhoPOO.telas.telaaluno import TelaAluno
-# from TrabalhoPOO.telas.telatreino import TelaTreino
-# from TrabalhoPOO.entidades.aluno import Aluno
+#from telas.telatreino import TelaTreino
 
 
 class ControladorAluno():
@@ -13,9 +8,8 @@ class ControladorAluno():
     def __init__(self, controlador_sistema):
         self.__controlador_sistema = controlador_sistema
         self.__alunos = []
-        self.__manter_tela = True
         self.__tela_aluno = TelaAluno()
-        self.__tela_treino = TelaTreino()
+        #self.__tela_treino = TelaTreino()
 
     def verificar_login_senha(self, login, senha):  # VERIFICAR o login e senha.
         if isinstance(login, str) and isinstance(senha, str):
@@ -26,7 +20,7 @@ class ControladorAluno():
                     if not aluno.login and not aluno.senha:
                         raise TypeError
             except TypeError:
-                print("Login e senha invalidos")
+                print("Login e senha inválidos")
             else:
                 return False
 
@@ -210,5 +204,5 @@ class ControladorAluno():
     def consultar_treino_aluno(self, treinos):
         for treino in treinos:
             treino = {"nome": treino.nome, "exercicios": treino.exercicios}
-            self.__tela_treino.mostrar_tela_treino(treino)
+            self.__controlador_sistema.controlador_treino.tela_treino.mostrar_tela_treino(treino)
         return self.abre_tela_inicial()

@@ -1,5 +1,6 @@
 class TelaSistema:
-    def mostrarMenu_inicial(self):
+
+    def mostrar_menu_inicial(self):
         global opcao
         try:
             print("Olá, bem vindo! Aqui começa sua jornada"
@@ -10,8 +11,8 @@ class TelaSistema:
             print("0 - Sair")
             opcao = int(input())
         except ValueError:
-            print("Só vale numero")
-            self.mostrarMenu_inicial()
+            print("Só é possível digitar número.")
+            self.mostrar_menu_inicial()
         return opcao
 
     def logar(self, opcao_escolhida):
@@ -31,5 +32,5 @@ class TelaSistema:
             senha = input()
         return login, senha
 
-    def mostrar_msg_telasistema(self, msg):
+    def mostrar_msg(self, msg):
         return msg

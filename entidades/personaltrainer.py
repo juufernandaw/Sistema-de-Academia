@@ -1,5 +1,3 @@
-#from TrabalhoPOO.entidades.usuario import Usuario
-
 from entidades.usuario import Usuario
 
 
@@ -13,5 +11,5 @@ class PersonalTrainer(Usuario):
         return self.__habilitacao
 
     @habilitacao.setter
-    def habilitacao(self, habilitacao):
+    def habilitacao(self, habilitacao: str):
         self.__habilitacao = habilitacao

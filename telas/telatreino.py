@@ -1,4 +1,3 @@
-
 class TelaTreino():
 
     def mostrar_msg(self, msg: str):
@@ -57,7 +56,7 @@ class TelaTreino():
         print("3 - Excluir treino")
         print("4 - Listar treinos")
         print("5 - Consultar treino")
-        print("6 - Sair")
+        print("6 - Retornar à tela inicial")
 
         opcao = int(input())
         return opcao

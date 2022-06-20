@@ -1,7 +1,5 @@
 from entidades.usuario import Usuario
 from entidades.treino import Treino
-# from TrabalhoPOO.entidades.usuario import Usuario
-# from TrabalhoPOO.entidades.treino import Treino
 
 
 class Aluno(Usuario):
