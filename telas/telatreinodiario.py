@@ -30,7 +30,7 @@ class TelaTreinoDiario():
 
     def montar_treino_diario_2(self):
         print(f"Você gostaria de fazer outro treino ?")
-        opcao = input("1 - Sim ou 2 - Não")
+        opcao = int(input("1 - Sim ou 2 - Não"))
         return opcao
 
     def mostrar_dias_treino(self, dias):

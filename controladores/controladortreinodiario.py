@@ -34,7 +34,7 @@ class ControladorTreinoDiario():
     def mostrar_tela_treino_diario(self):  # ABA Treino Diario
         treino_diario_opcoes = {1: self.confirmar_checkin,
                                 2: self.desempenho_aluno,
-                                3: self.__controlador_sistema.controladoraluno.abre_tela_inicial
+                                3: self.__controlador_sistema.controlador_aluno.abre_tela_inicial
                                 }
         while True:
             opcao_treino_diario = self.__tela_treinoDiario.mostrar_tela_desempenho()
@@ -46,7 +46,7 @@ class ControladorTreinoDiario():
 
     def contabilizar_calorias(self):
         soma_calorias = 0
-        for treino in self.__lista_treinos_diarios:
+        for treino in self.__lista_treinos: # lista de treinos que tem os treinos
             for exercicio in treino.exercicios:
                 soma_calorias += exercicio.tipo_exercicio.qtd_kcal_gasta()
         return soma_calorias

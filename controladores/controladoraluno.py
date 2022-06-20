@@ -3,6 +3,7 @@
 # from controladores.controladorpersonaltrainer import PersonalTrainer
 # from controladores.controladorsistema import ControladorSistema
 from TrabalhoPOO.telas.telaaluno import TelaAluno
+from TrabalhoPOO.telas.telatreino import TelaTreino
 from TrabalhoPOO.entidades.aluno import Aluno
 
 
@@ -13,6 +14,7 @@ class ControladorAluno():
         self.__alunos = []
         self.__manter_tela = True
         self.__tela_aluno = TelaAluno()
+        self.__tela_treino = TelaTreino()
 
     def verificar_login_senha(self, login, senha):  # VERIFICAR o login e senha.
         if isinstance(login, str) and isinstance(senha, str):
@@ -143,17 +145,21 @@ class ControladorAluno():
 
     def abre_tela_inicial(self):  # abre a tela aluno pós login da tela
         usuario = self.__controlador_sistema.usuario_logado
-        mexer_aluno_opcoes = {1: self.consultar_treino_aluno(usuario.treinos),
-                              2: self.__controlador_sistema.controlador_treino_diario.mostrar_dias_treino,
+        mexer_aluno_opcoes = {1: self.consultar_treino_aluno,
+                              2: self.__controlador_sistema.controlador_treino_diario.mostrar_tela_treino_diario,
                               3: self.__controlador_sistema.controlador_treino_diario.desempenho_aluno,
                               0: self.retornar
                               }
         while True:
-            opcao_escolhida = self.__tela_aluno.mexer_aluno()
-            funcao_escolhida = mexer_aluno_opcoes[opcao_escolhida]
-            return funcao_escolhida()
+            opcao_escolhida = self.__tela_aluno.mostrar_tela_aluno()
+            if opcao_escolhida == 1:
+                return self.consultar_treino_aluno(usuario.treinos)
+            else:
+                funcao_escolhida = mexer_aluno_opcoes[opcao_escolhida]
+                return funcao_escolhida()
 
     def consultar_treino_aluno(self, treinos):
         for treino in treinos:
-            print("Treino:", treino)
+            treino = {"nome": treino.nome, "exercicios": treino.exercicios}
+            self.__tela_treino.mostrar_tela_treino(treino)
         return self.abre_tela_inicial()

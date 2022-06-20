@@ -7,7 +7,7 @@ class TelaAluno():
         print("1 - Consultar meu treino")
         print("2 - Efetuar check-in")
         print("3 - Consultar meu desempenho")
-        print("4 - Sair")
+        print("0 - Sair")
 
         opcao = int(input())
         return opcao
