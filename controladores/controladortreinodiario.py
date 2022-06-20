@@ -93,6 +93,7 @@ class ControladorTreinoDiario():
             self.adicionar_treino_diario_a_treinodiarios(treino_diario)
         except ListaVaziaException as e:
             print(e)
+            print("A lista está vazia, volte e preencha a lista!")
             self.confirmar_checkin()
 
     def contabilizar_dias_treino(self):
