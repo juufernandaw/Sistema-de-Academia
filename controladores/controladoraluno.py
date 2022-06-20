@@ -1,5 +1,6 @@
 from telas.telaaluno import TelaAluno
 from entidades.aluno import Aluno
+from telas.telatreino import TelaTreino
 # from TrabalhoPOO.telas.telaaluno import TelaAluno
 # from TrabalhoPOO.telas.telatreino import TelaTreino
 # from TrabalhoPOO.entidades.aluno import Aluno
