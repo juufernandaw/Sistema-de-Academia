@@ -1,15 +1,14 @@
-from TrabalhoPOO.controladores.controladoraluno import ControladorAluno
-from TrabalhoPOO.controladores.controladortreino import ControladorTreino
-from TrabalhoPOO.controladores.controladortreinodiario import ControladorTreinoDiario
-from TrabalhoPOO.controladores.controladorpersonaltrainer import ControladorPersonalTrainer
-from TrabalhoPOO.telas.telasistema import TelaSistema
+# from TrabalhoPOO.controladores.controladoraluno import ControladorAluno
+# from TrabalhoPOO.controladores.controladortreino import ControladorTreino
+# from TrabalhoPOO.controladores.controladortreinodiario import ControladorTreinoDiario
+# from TrabalhoPOO.controladores.controladorpersonaltrainer import ControladorPersonalTrainer
+# from TrabalhoPOO.telas.telasistema import TelaSistema
 
-
-# from controladores.controladoraluno import ControladorAluno
-# from controladores.controladortreino import ControladorTreino
-# from controladores.controladortreinodiario import ControladorTreinoDiario
-# from controladores.controladorpersonaltrainer import ControladorPersonalTrainer
-# from telas.telasistema import TelaSistema
+from controladores.controladoraluno import ControladorAluno
+from controladores.controladortreino import ControladorTreino
+from controladores.controladortreinodiario import ControladorTreinoDiario
+from controladores.controladorpersonaltrainer import ControladorPersonalTrainer
+from telas.telasistema import TelaSistema
 
 
 class ControladorSistema:
@@ -54,8 +53,8 @@ class ControladorSistema:
             while True:
                 opcao_escolhida = self.__tela_sistema.mostrarMenu_inicial()
                 if opcao_escolhida != 1 and opcao_escolhida != 2 and opcao_escolhida != 0:
-                    raise ValueError
-                login, senha = self.__tela_sistema.logar(opcao_escolhida)  # recebe o login e senha
+                    raise KeyError
+                login, senha = self.__tela_sistema.logar(opcao_escolhida) #ele vai entrar no menu de cada: aluno ou personal
                 if opcao_escolhida == 1:
                     login_com_sucesso, self.__usuario_logado = self.__controlador_aluno.verificar_login_senha(login,
                                                                                                               senha)
@@ -66,7 +65,7 @@ class ControladorSistema:
                 if login_com_sucesso is not None:
                     funcao_escolhida = lista_opcoes[opcao_escolhida]
                     return funcao_escolhida()
-        except ValueError:
+        except KeyError:
             print(f"Erro! Valor incorreto: o Número {opcao_escolhida} é invalido"
                   f" digite 1, 2 ou 0. ")
             self.iniciar_tela_sistema()

@@ -1,11 +1,9 @@
-# from telas.telaaluno import TelaAluno
-# from entidades.aluno import Aluno
-# from controladores.controladorpersonaltrainer import PersonalTrainer
-# from controladores.controladorsistema import ControladorSistema
-from TrabalhoPOO.Exception.loginSenhaException import LoginSenhaException
-from TrabalhoPOO.telas.telaaluno import TelaAluno
-from TrabalhoPOO.telas.telatreino import TelaTreino
-from TrabalhoPOO.entidades.aluno import Aluno
+from telas.telaaluno import TelaAluno
+from entidades.aluno import Aluno
+from telas.telatreino import TelaTreino
+# from TrabalhoPOO.telas.telaaluno import TelaAluno
+# from TrabalhoPOO.telas.telatreino import TelaTreino
+# from TrabalhoPOO.entidades.aluno import Aluno
 
 
 class ControladorAluno():
@@ -19,14 +17,9 @@ class ControladorAluno():
 
     def verificar_login_senha(self, login, senha):  # VERIFICAR o login e senha.
         if isinstance(login, str) and isinstance(senha, str):
-            try:
-                for aluno in self.__alunos:
-                    if (aluno.login == login) and (aluno.senha == senha):
-                        return True, aluno  # aluno q achou retornar
-                    if aluno.login != login and aluno.senha != senha:
-                        raise ValueError
-            except ValueError:
-                self.__controlador_sistema.iniciar_tela_sistema()
+            for aluno in self.__alunos:
+                if (aluno.login == login) and (aluno.senha == senha):
+                    return True, aluno  # aluno q achou retornar
             else:
                 return False
 
@@ -124,6 +117,7 @@ class ControladorAluno():
         # ajustar visualização das listas
 
     def listar_alunos(self):
+        print(self.__alunos)
         for aluno in self.__alunos:
             self.__tela_aluno.mostrar_aluno(
                 {"nome": aluno.nome, "login": aluno.login, "senha": aluno.senha, "cpf": aluno.cpf,
@@ -156,7 +150,7 @@ class ControladorAluno():
                               0: self.retornar
                               }
         while True:
-            opcao_escolhida = self.__tela_aluno.mostrar_tela_aluno()
+            opcao_escolhida = self.controlador_sistema.controlador_treino_diario.mostrar_tela_desempenho()
             if opcao_escolhida == 1:
                 return self.consultar_treino_aluno(usuario.treinos)
             else:

@@ -1,5 +1,5 @@
-from TrabalhoPOO.entidades.exercicio import Exercicio
-#from entidades.exercicio import Exercicio
+#from TrabalhoPOO.entidades.exercicio import Exercicio
+from entidades.exercicio import Exercicio
 
 
 class Treino():

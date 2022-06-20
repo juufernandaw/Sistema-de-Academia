@@ -1,18 +1,15 @@
-from TrabalhoPOO.entidades.treinodiario import TreinoDiario
-from TrabalhoPOO.telas.telatreinodiario import TelaTreinoDiario
-from TrabalhoPOO.entidades.treino import Treino
+#from TrabalhoPOO.entidades.treinodiario import TreinoDiario
+#from TrabalhoPOO.telas.telatreinodiario import TelaTreinoDiario
+#from TrabalhoPOO.entidades.treino import Treino
 from datetime import date
 # from TrabalhoPOO.controladores.controladorsistema import ControladorSistema
 # from TrabalhoPOO.entidades.treino import Treino
 # from TrabalhoPOO.controladores.controladoraluno import ControladorAluno
 # from TrabalhoPOO.entidades.aluno import Aluno
 
-# from entidades.treinodiario import TreinoDiario
-# from telas.telatreinodiario import TelaTreinoDiario
-# from entidades.treino import Treino
-# from controladores.controladorsistema import ControladorSistema
-# from controladores.controladoraluno import ControladorAluno
-# from entidades.aluno import Aluno
+from entidades.treinodiario import TreinoDiario
+from telas.telatreinodiario import TelaTreinoDiario
+from entidades.treino import Treino
 
 
 class ControladorTreinoDiario():
@@ -52,14 +49,21 @@ class ControladorTreinoDiario():
 
     def contabilizar_calorias(self):
         soma_calorias = 0
-        for treino_diario in self.__lista_treinos_diarios:  # lista de treinos que tem os treinos
-            print("Entrei 1: ", treino_diario)
-            for treino in treino_diario.treinos:
-                print("Entrei 2: ", treino)
-                print("Entrei 3: ", treino_diario.treinos)
-                for exercicio in treino.exercicios:
-                    print("Entrei 4: ", exercicio)
-                    print("Entrei 5: ", treino.exercicios)
+        for a in self.__lista_treinos_diarios:  # lista de treinos que tem os treinos
+            print("Lista treinos diarios: ", self.__lista_treinos_diarios)
+            print("A: ", a)
+            print("AA: ", a.treinos)
+            print("AAA: ", a.treinos.treino)
+            print("AAAA: ", a.treinos.treinos)
+            print("AAAAA: ", a.treinos.nome)
+            print("AAAAAA: ", a.treinos.exercicios)
+            print("AAAAAAA: ", a.treinos.exercicio)
+            for i in a:
+                print("Entrei 2: ", i)
+                #print("Entrei 3: ", treino_diario.treinos)
+                for j in i:
+                    print("Entrei 4: ", j)
+                    print("Entrei 5: ", j.exercicios)
                     print("Entrei 6: ", exercicio.tipo_exercicio)
                     print("Entrei 7: ", soma_calorias)
                     soma_calorias += exercicio.tipo_exercicio.qtd_kcal_gasta()
