@@ -76,7 +76,7 @@ class ControladorSistema:
                                                         f" digite 1, 2 ou 0. ")
             self.iniciar_tela_sistema()
         except TypeError:
-            print("Usuário inexistente")
+            print("Usuário inexistente. Favor digitar login e senha corretos!")
             self.iniciar_tela_sistema()
 
     def encerrar_sistema(self):  # OK
