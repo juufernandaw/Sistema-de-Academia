@@ -6,6 +6,9 @@ from TrabalhoPOO.entidades.treino import Treino
 from TrabalhoPOO.telas.telatreino import TelaTreino
 from TrabalhoPOO.entidades.tipoexercicio import TipoExercicio
 
+from excecoes.treinojaexistenteexception import TreinoJaExistente
+from excecoes.valorvazio import ValorVazio
+
 
 class ControladorTreino:
 
@@ -27,25 +30,28 @@ class ControladorTreino:
 
     def incluir_treino(self):
         try:
-        novo_treino, nome_treino = self.__tela_treino.montar_treino()  # pedir se quer incluir novo treino e o nome do treino
-        if novo_treino == 1 and nome_treino is None:
-            raise ValorVazio
-        while (novo_treino == 1) and (nome_treino is not None):  # pra criar novo treino
-            for treino in self.__treinos:
-                if treino.nome == nome_treino:
-                    raise TreinoJaExistente(msg)
-            treino = Treino(nome_treino)  # instancia o treino
-            self.criar_exercicio(treino)  # chama o método para incluir exercicios no treino
-            # !verificar se já existe o treino
-            self.__treinos.append(treino)  # adiciona o treino a lista de todos os treinos do sistema
-            aluno = self.__controlador_sistema.controlador_aluno.selecionar_aluno()  # seleciona o aluno pra vincular #seleciona a instancia do aluno
-            aluno.adicionar_treino_aluno(treino)  # chama o método pela instancia do aluno
             novo_treino, nome_treino = self.__tela_treino.montar_treino()  # pedir se quer incluir novo treino e o nome do treino
-        if novo_treino == 2:  # se não deseja criar novo treino
-            return self.abre_tela_funcoes_treino()
-        except ValorVazio:
-            #printar
-        except TreinoJaExistente:
+            if novo_treino == 1 and nome_treino is None:
+                raise ValorVazio
+            while (novo_treino == 1) and (nome_treino is not None):  # pra criar novo treino
+                for treino in self.__treinos:
+                    if treino.nome == nome_treino:
+                        raise TreinoJaExistente(msg)
+                treino = Treino(nome_treino)  # instancia o treino
+                self.criar_exercicio(treino)  # chama o método para incluir exercicios no treino
+                # !verificar se já existe o treino
+                self.__treinos.append(treino)  # adiciona o treino a lista de todos os treinos do sistema
+                aluno = self.__controlador_sistema.controlador_aluno.selecionar_aluno()  # seleciona o aluno pra vincular #seleciona a instancia do aluno
+                aluno.adicionar_treino_aluno(treino)  # chama o método pela instancia do aluno
+                novo_treino, nome_treino = self.__tela_treino.montar_treino()  # pedir se quer incluir novo treino e o nome do treino
+            if novo_treino == 2:  # se não deseja criar novo treino
+                return self.abre_tela_funcoes_treino()
+        except ValorVazio as e:
+            print(e)
+            return self.incluir_treino()
+        except TreinoJaExistente as e:
+            print(e)
+            return self.incluir_treino()
 
 
     def criar_exercicio(self, treino: Treino):
