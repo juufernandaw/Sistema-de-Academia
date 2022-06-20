@@ -1,9 +1,9 @@
-from entidades.treino import Treino
-from telas.telatreino import TelaTreino
-from entidades.tipoexercicio import TipoExercicio
-# from TrabalhoPOO.entidades.treino import Treino
-# from TrabalhoPOO.telas.telatreino import TelaTreino
-# from TrabalhoPOO.entidades.tipoexercicio import TipoExercicio
+# from entidades.treino import Treino
+# from telas.telatreino import TelaTreino
+# from entidades.tipoexercicio import TipoExercicio
+from TrabalhoPOO.entidades.treino import Treino
+from TrabalhoPOO.telas.telatreino import TelaTreino
+from TrabalhoPOO.entidades.tipoexercicio import TipoExercicio
 
 
 class ControladorTreino():
@@ -98,13 +98,19 @@ class ControladorTreino():
         return self.abre_tela_funcoes_treino()
 
     def abre_tela_funcoes_treino(self):
-        lista_opcoes = {1: self.incluir_treino, 2: self.alterar_treino,
-                        3: self.excluir_treino, 4: self.listar_treinos, 5: self.consultar_treino,
-                        6: self.__controlador_sistema.controlador_personal_trainer.abre_tela_inicial}
-        while True:
-            opcao = self.__tela_treino.mexer_treino()
-            funcao_escolhida = lista_opcoes[opcao]
-            return funcao_escolhida()
+        try:
+            lista_opcoes = {1: self.incluir_treino, 2: self.alterar_treino,
+                            3: self.excluir_treino, 4: self.listar_treinos, 5: self.consultar_treino,
+                            6: self.__controlador_sistema.controlador_personal_trainer.abre_tela_inicial}
+            while True:
+                opcao = self.__tela_treino.mexer_treino()
+                if opcao != 1 and opcao != 2 and opcao != 3 and opcao != 4 and opcao != 5 and opcao != 6:
+                    raise ValueError
+                funcao_escolhida = lista_opcoes[opcao]
+                return funcao_escolhida()
+        except ValueError:
+            print("Escolha um valor entre os mostrados acima.")
+            self.abre_tela_funcoes_treino()
 
     def retornar(self):
         return 
