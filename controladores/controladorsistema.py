@@ -63,17 +63,20 @@ class ControladorSistema:
                         raise TypeError
                 elif opcao_escolhida == 2:
                     login_com_sucesso = self.__controlador_personal_trainer.verificar_login_senha(login, senha)
+                    if not login_com_sucesso:
+                        raise TypeError
                 elif opcao_escolhida == 0:
                     self.encerrar_sistema()
                 if login_com_sucesso is not None:
                     funcao_escolhida = lista_opcoes[opcao_escolhida]
                     return funcao_escolhida()
-        except ValueError:
+        except ValueError as e:
+            print(e)
             print(f"Erro! Valor incorreto: o Número {opcao_escolhida} é invalido"
-                  f" digite 1, 2 ou 0. ")
+                                                        f" digite 1, 2 ou 0. ")
             self.iniciar_tela_sistema()
         except TypeError:
-            print("Aluno inexistente")
+            print("Usuário inexistente")
             self.iniciar_tela_sistema()
 
     def encerrar_sistema(self):  # OK
