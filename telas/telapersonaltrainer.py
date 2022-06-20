@@ -15,7 +15,7 @@ class TelaPersonalTrainer():
         print("O que você deseja fazer hoje ?")
         print("1 - Consultar seus dados")
         print("2 - Alterar seus dados")
-        print("0 - Voltar")
+        print("0 - Retornar à tela inicial")
         opcao = int(input())
         return opcao
 

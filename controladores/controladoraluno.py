@@ -1,3 +1,5 @@
+from excecoes.CpfExistente import CpfExistente
+from excecoes.loginexistente import LoginExistente
 from telas.telaaluno import TelaAluno
 from entidades.aluno import Aluno
 from telas.telatreino import TelaTreino
@@ -30,11 +32,19 @@ class ControladorAluno():
 
     def incluir_aluno(self):
         dados_aluno = self.__tela_aluno.pega_dados_aluno()
-        aluno = Aluno(dados_aluno["nome"], dados_aluno["login"], dados_aluno["senha"], dados_aluno["cpf"])
-        self.__alunos.append(aluno)
-        if aluno is not None:
-            self.__tela_aluno.mostrar_msg("Aluno cadastrado com sucesso!")
-            return self.abre_tela_funcoes_aluno()
+        for aluno in self.__alunos:
+            if dados_aluno["login"] == aluno.login:
+                self.__tela_aluno.mostrar_msg("Este login já consta no sistema!")
+                return self.incluir_aluno()
+            elif dados_aluno["cpf"] == aluno.cpf:
+                self.__tela_aluno.mostrar_msg("Este cpf já consta no sistema!")
+                return self.incluir_aluno()
+        else:
+            aluno = Aluno(dados_aluno["nome"], dados_aluno["login"], dados_aluno["senha"], dados_aluno["cpf"])
+            self.__alunos.append(aluno)
+            if aluno is not None:
+                self.__tela_aluno.mostrar_msg("Aluno cadastrado com sucesso!")
+                return self.abre_tela_funcoes_aluno()
 
     def selecionar_aluno(self):
         cpf_aluno = self.__tela_aluno.pegar_cpf()
@@ -42,7 +52,7 @@ class ControladorAluno():
             if aluno.cpf == cpf_aluno:
                 return aluno
         else:
-            self.__tela_aluno.mostrar_msg("ATENCAO: aluno não existente")
+            return None
 
     def buscar_aluno_por_treino(self, treino):
         for aluno in self.__alunos:
@@ -57,11 +67,18 @@ class ControladorAluno():
         aluno = self.selecionar_aluno()
         lista_opcoes = {1: self.alterar_aluno_nome, 2: self.alterar_aluno_cpf,
                         3: self.alterar_aluno_login, 4: self.alterar_aluno_senha, 5: self.alterar_aluno_treino}
-        while True:
-            if aluno is not None:
-                # retorna a opcao escolhida
-                alteracao_aluno = lista_opcoes[opcao_alteracao]  # executa a alteração
-                return alteracao_aluno(aluno)
+        try:
+            while True:
+                if aluno is not None:
+                    # retorna a opcao escolhida
+                    alteracao_aluno = lista_opcoes[opcao_alteracao]  # executa a alteração
+                    return alteracao_aluno(aluno)
+                else:
+                    raise Exception
+        except Exception:
+            self.__tela_aluno.mostrar_msg("ATENCAO: aluno não existente. Favor escolher um aluno existente.")
+            return self.alterar_aluno()
+
 
     def alterar_aluno_nome(self, aluno: Aluno):
         aluno.nome = self.__tela_aluno.pegar_nome()
@@ -95,7 +112,7 @@ class ControladorAluno():
                 funcao_escolhida = lista_opcoes[opcao]
                 return funcao_escolhida()
         except ValueError:
-            print("Digite o valores que estão na tela")
+            self.__tela_aluno.mostrar_msg("Digite os valores dados na tela, por favor.")
             self.alterar_aluno_treino(aluno)
 
     def vincular_aluno_treino(self, aluno: Aluno, treino):
@@ -142,7 +159,7 @@ class ControladorAluno():
             self.__tela_aluno.mostrar_aluno(
                 {"nome": aluno.nome, "login": aluno.login, "senha": aluno.senha, "cpf": aluno.cpf,
                  "treinos": aluno.treinos})
-        else:
+        if self.__alunos == []:
             self.__tela_aluno.mostrar_msg("Não há nenhum aluno cadastrado")
         return self.abre_tela_funcoes_aluno()
 

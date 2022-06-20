@@ -1,6 +1,5 @@
 from datetime import date
-
-# from TrabalhoPOO.Exception.listavaziaexception import ListaVaziaException
+from excecoes.listavaziaexception import ListaVaziaException
 # from TrabalhoPOO.entidades.treino import Treino
 # from TrabalhoPOO.entidades.treinodiario import TreinoDiario
 # from TrabalhoPOO.telas.telatreinodiario import TelaTreinoDiario

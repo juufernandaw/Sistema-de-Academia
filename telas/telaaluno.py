@@ -1,17 +1,5 @@
 class TelaAluno():
 
-    # def mostrar_tela_aluno(self):  # método tela inicial aluno
-    #     print("----- INÍCIO -----")
-    #     print("Seja bem-vindo, aluno!")
-    #     print("O que você deseja fazer hoje? Digite o número correspondente:")
-    #     print("1 - Consultar meu treino")
-    #     print("2 - Efetuar check-in")
-    #     print("3 - Consultar meu desempenho")
-    #     print("0 - Sair")
-    #
-    #     opcao = int(input())
-    #     return opcao
-
     def mostrar_msg(self, msg):
         print(msg)
 
@@ -51,7 +39,7 @@ class TelaAluno():
         print("4 - Listar alunos")
         print("5 - Consultar aluno")
         print("6 - Consultar Desempenho do aluno")
-        print("7 - Sair")
+        print("7 - Retornar à tela inicial")
 
         opcao = int(input())
         return opcao
