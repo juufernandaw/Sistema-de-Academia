@@ -32,14 +32,23 @@ class ControladorTreinoDiario():
         return self.__lista_treinos_diarios
 
     def mostrar_tela_treino_diario(self):  # ABA Treino Diario
-        treino_diario_opcoes = {1: self.confirmar_checkin,
-                                2: self.desempenho_aluno,
-                                3: self.__controlador_sistema.controlador_aluno.abre_tela_inicial
-                                }
-        while True:
-            opcao_treino_diario = self.__tela_treinoDiario.mostrar_tela_desempenho()
-            funcao_escolhida = treino_diario_opcoes[opcao_treino_diario]
-            return funcao_escolhida()
+        try:
+            treino_diario_opcoes = {1: self.confirmar_checkin,
+                                    2: self.desempenho_aluno,
+                                    3: self.__controlador_sistema.controlador_aluno.abre_tela_inicial
+                                    }
+            while True:
+                opcao_treino_diario = self.__tela_treinoDiario.mostrar_tela_desempenho()
+                if opcao_treino_diario != 1 and opcao_treino_diario != 2 and opcao_treino_diario != 3:
+                    raise KeyError
+                funcao_escolhida = treino_diario_opcoes[opcao_treino_diario]
+                return funcao_escolhida()
+        except KeyError:
+            print("Valor digitado incorreto, tente novamente.")
+            self.mostrar_tela_treino_diario()
+        except TypeError:
+            print("Somente os número na tela.")
+            self.mostrar_tela_treino_diario()
 
     def voltar_menu_inicial(self):
         return self.__controlador_sistema.controladoraluno.abre_tela_inicial()

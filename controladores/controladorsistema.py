@@ -58,7 +58,6 @@ class ControladorSistema:
                 if opcao_escolhida == 1:
                     login_com_sucesso, self.__usuario_logado = self.__controlador_aluno.verificar_login_senha(login,
                                                                                                               senha)
-                    raise TypeError
                 elif opcao_escolhida == 2:
                     login_com_sucesso = self.__controlador_personal_trainer.verificar_login_senha(login, senha)
                 elif opcao_escolhida == 0:
@@ -69,9 +68,6 @@ class ControladorSistema:
         except KeyError:
             print(f"Erro! Valor incorreto: o Número {opcao_escolhida} é invalido"
                   f" digite 1, 2 ou 0. ")
-            self.iniciar_tela_sistema()
-        except TypeError:
-            print(f"Login digitado: {login} incorreto ou Senha digitada: {senha} incorreta")
             self.iniciar_tela_sistema()
 
     def encerrar_sistema(self):  # OK
