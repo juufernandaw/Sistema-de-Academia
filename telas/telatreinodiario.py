@@ -17,18 +17,13 @@ class TelaTreinoDiario():
         return escolha
 
     def montar_treino_diario(self, lista_treinos):
-        try:
             contador = 0
-            if lista_treinos == []:
-                raise Exception
             for treino in lista_treinos:
                 print(contador, " - Nome do treino:", treino.nome)
                 contador += 1
             resposta = int(input("Qual treino você fará hoje?"))
             return resposta
-        except Exception:
-            print("Não há treinos cadastrados para você.")
-            return None
+
 
     def montar_treino_diario_2(self):
         print(f"Você gostaria de fazer outro treino?")

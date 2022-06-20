@@ -73,12 +73,9 @@ class ControladorTreinoDiario():
             return self.mostrar_tela_treino_diario()
 
     def confirmar_checkin(self):  # TREINO DIARIO É UMA LISTA DE TREINO!
-        try:
             aluno = self.__controlador_sistema.usuario_logado
             dia_atual = date.today()
             escolha_treino = self.__tela_treinoDiario.montar_treino_diario(aluno.treinos)  # retorna treino q ele escolheu
-            if escolha_treino is None:
-                raise ListaVaziaException
             self.adicionar_treino_a_treinos(aluno.treinos[escolha_treino])  # colocar o valor da lista para o metodo
             opcao = self.__tela_treinoDiario.montar_treino_diario_2()
             while opcao != 2:
@@ -87,8 +84,6 @@ class ControladorTreinoDiario():
                 opcao = self.__tela_treinoDiario.montar_treino_diario_2()
             treino_diario = TreinoDiario(aluno, dia_atual, self.__lista_treinos)
             self.adicionar_treino_diario_a_treinodiarios(treino_diario)
-        except ListaVaziaException:
-            return self.__tela_treinoDiario.mostrar_tela_desempenho()
 
     def contabilizar_dias_treino(self):
         dias_de_treino = 0
