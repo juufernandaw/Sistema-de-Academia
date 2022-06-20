@@ -1,6 +1,7 @@
 # from entidades.treino import Treino
 # from telas.telatreino import TelaTreino
 # from entidades.tipoexercicio import TipoExercicio
+from TrabalhoPOO.Exception.listavaziaexception import ListaVaziaException
 from TrabalhoPOO.entidades.treino import Treino
 from TrabalhoPOO.telas.telatreino import TelaTreino
 from TrabalhoPOO.entidades.tipoexercicio import TipoExercicio
@@ -73,16 +74,24 @@ class ControladorTreino:
             return None
 
     def alterar_treino(self):
-        treino = self.pegar_treino_por_nome()
-        if treino is not None:
-            opcao = self.__tela_treino.escolher_alteracao_treino()
-            if opcao == 1:
-                self.alterar_nome_treino(treino)
-            elif opcao == 2:
-                treino.excluir_exercicios()  # exclui os exercicios do treino
-                self.criar_exercicio(treino)  # inclui os novos exercicios do treino
-                return self.abre_tela_funcoes_treino()
-        else:
+        try:
+            treino = self.pegar_treino_por_nome()
+            if treino is None:
+                raise ListaVaziaException
+            if treino is not None:
+                opcao = self.__tela_treino.escolher_alteracao_treino()
+                if opcao != 1 and opcao != 2:
+                    raise ValueError
+                if opcao == 1:
+                    self.alterar_nome_treino(treino)
+                elif opcao == 2:
+                    treino.excluir_exercicios()  # exclui os exercicios do treino
+                    self.criar_exercicio(treino)  # inclui os novos exercicios do treino
+                    return self.abre_tela_funcoes_treino()
+        except ValueError:
+            print("Selecione os valores que estão na tela.")
+        except ListaVaziaException as e:
+            print(e)
             self.__tela_treino.mostrar_msg("ATENCAO: treino não existente")
 
     def alterar_nome_treino(self, treino: Treino):

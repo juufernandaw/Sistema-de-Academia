@@ -31,7 +31,7 @@ class TelaAluno():
         return escolha
 
     def escolher_opcao_treino(self):
-        escolha = int(input("Você deseja 1) Excluir um treino de um aluno ou 2) Adicionar um treino ao aluno?"))
+        escolha = int(input("Você deseja 1) Excluir um treino de um aluno ou 2) Adicionar um treino ao aluno? "))
         return escolha
         
     def pega_dados_aluno(self): 
