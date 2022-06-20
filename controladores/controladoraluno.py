@@ -2,6 +2,7 @@
 # from entidades.aluno import Aluno
 # from controladores.controladorpersonaltrainer import PersonalTrainer
 # from controladores.controladorsistema import ControladorSistema
+from TrabalhoPOO.Exception.loginSenhaException import LoginSenhaException
 from TrabalhoPOO.telas.telaaluno import TelaAluno
 from TrabalhoPOO.telas.telatreino import TelaTreino
 from TrabalhoPOO.entidades.aluno import Aluno
@@ -18,9 +19,14 @@ class ControladorAluno():
 
     def verificar_login_senha(self, login, senha):  # VERIFICAR o login e senha.
         if isinstance(login, str) and isinstance(senha, str):
-            for aluno in self.__alunos:
-                if (aluno.login == login) and (aluno.senha == senha):
-                    return True, aluno  # aluno q achou retornar
+            try:
+                for aluno in self.__alunos:
+                    if (aluno.login == login) and (aluno.senha == senha):
+                        return True, aluno  # aluno q achou retornar
+                    if aluno.login != login and aluno.senha != senha:
+                        raise ValueError
+            except ValueError:
+                self.__controlador_sistema.iniciar_tela_sistema()
             else:
                 return False
 
@@ -118,7 +124,6 @@ class ControladorAluno():
         # ajustar visualização das listas
 
     def listar_alunos(self):
-        print(self.__alunos)
         for aluno in self.__alunos:
             self.__tela_aluno.mostrar_aluno(
                 {"nome": aluno.nome, "login": aluno.login, "senha": aluno.senha, "cpf": aluno.cpf,

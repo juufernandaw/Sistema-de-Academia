@@ -40,14 +40,11 @@ class ControladorTreinoDiario():
             while True:
                 opcao_treino_diario = self.__tela_treinoDiario.mostrar_tela_desempenho()
                 if opcao_treino_diario != 1 and opcao_treino_diario != 2 and opcao_treino_diario != 3:
-                    raise KeyError
+                    raise ValueError
                 funcao_escolhida = treino_diario_opcoes[opcao_treino_diario]
                 return funcao_escolhida()
-        except KeyError:
+        except ValueError:
             print("Valor digitado incorreto, tente novamente.")
-            self.mostrar_tela_treino_diario()
-        except TypeError:
-            print("Somente os números na tela.")
             self.mostrar_tela_treino_diario()
 
     def voltar_menu_inicial(self):
