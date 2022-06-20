@@ -4,9 +4,12 @@ class TelaTreinoDiario():
         pass
 
     def mostrar_tela_desempenho(self):
-        print("Ola Aluno e/ou Professor, você quer consultar o desempenho?")
-        print("1 - SIM!")
-        print("0 - Voltar")
+        print("----- ABA ALUNO -----")
+        print("----- ABA DESEMPENHO -----")
+        print("Ola Aluno, você quer consultar o desempenho?")
+        print("1 - Confirmar Check-in!")
+        print("2 - Consultar seu desempenho!")
+        print("3 - voltar")
         escolha = int(input())
         return escolha
 
@@ -14,7 +17,6 @@ class TelaTreinoDiario():
         print("Ola Professor, você que você deseja?")
         print("1 - consultar o desempenho")
         print("2 - Voltar ao menu inicial")
-        print("3 - Colocar os treinos para o aluno vê") # faz sentido ? ou só em treino
         escolha = int(input())
         return escolha
 
@@ -26,8 +28,16 @@ class TelaTreinoDiario():
         resposta = int(input("Qual treino você fará hoje?"))
         return resposta
 
-    def mensagem(self, msg):
-        return msg
+    def montar_treino_diario_2(self):
+        print(f"Você gostaria de fazer outro treino ?")
+        opcao = input("1 - Sim ou 2 - Não")
+        return opcao
 
-    def checkin(self, dias):
-        print(f"Você fez {dias} de exercício, parabéns! Continue fime.")
+    def mostrar_dias_treino(self, dias):
+        print(f"Parabéns você foi {dias} treinar")
+
+    def contar_calorias(self, calorias):
+        print(f"Parabéns você perdeu {calorias} calorias")
+
+    def mensagem(self, msg):
+            return msg
