@@ -110,13 +110,13 @@ class ControladorAluno():
 
     def excluir_aluno(self):
         try:
-        aluno = self.selecionar_aluno()
-        if aluno is not None:
-            self.__alunos.remove(aluno)
-            self.__tela_aluno.mostrar_msg("Aluno removido com sucesso!")
-            return self.abre_tela_funcoes_aluno()
-        else:
-            raise Exception
+            aluno = self.selecionar_aluno()
+            if aluno is not None:
+                self.__alunos.remove(aluno)
+                self.__tela_aluno.mostrar_msg("Aluno removido com sucesso!")
+                return self.abre_tela_funcoes_aluno()
+            else:
+                raise Exception
         except Exception:
             self.__tela_aluno.mostrar_msg("ATENCAO: aluno não existente. Favor escolher um aluno existente.")
             return self.excluir_aluno()
