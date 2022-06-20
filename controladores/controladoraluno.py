@@ -1,9 +1,9 @@
-from telas.telaaluno import TelaAluno
-from entidades.aluno import Aluno
-from telas.telatreino import TelaTreino
-# from TrabalhoPOO.telas.telaaluno import TelaAluno
-# from TrabalhoPOO.telas.telatreino import TelaTreino
-# from TrabalhoPOO.entidades.aluno import Aluno
+# from telas.telaaluno import TelaAluno
+# from entidades.aluno import Aluno
+# from telas.telatreino import TelaTreino
+from TrabalhoPOO.telas.telaaluno import TelaAluno
+from TrabalhoPOO.telas.telatreino import TelaTreino
+from TrabalhoPOO.entidades.aluno import Aluno
 
 
 class ControladorAluno():
@@ -17,9 +17,14 @@ class ControladorAluno():
 
     def verificar_login_senha(self, login, senha):  # VERIFICAR o login e senha.
         if isinstance(login, str) and isinstance(senha, str):
-            for aluno in self.__alunos:
-                if (aluno.login == login) and (aluno.senha == senha):
-                    return True, aluno  # aluno q achou retornar
+            try:
+                for aluno in self.__alunos:
+                    if (aluno.login == login) and (aluno.senha == senha):
+                        return True, aluno  # aluno q achou retornar
+                    if not aluno.login and not aluno.senha:
+                        raise TypeError
+            except TypeError:
+                print("Login e senha invalidos")
             else:
                 return False
 
@@ -117,7 +122,6 @@ class ControladorAluno():
         # ajustar visualização das listas
 
     def listar_alunos(self):
-        print(self.__alunos)
         for aluno in self.__alunos:
             self.__tela_aluno.mostrar_aluno(
                 {"nome": aluno.nome, "login": aluno.login, "senha": aluno.senha, "cpf": aluno.cpf,
@@ -143,19 +147,25 @@ class ControladorAluno():
         return self.__controlador_sistema.controlador_personal_trainer.abre_tela_inicial()
 
     def abre_tela_inicial(self):  # abre a tela aluno pós login da tela
-        usuario = self.__controlador_sistema.usuario_logado
-        mexer_aluno_opcoes = {1: self.consultar_treino_aluno,
-                              2: self.__controlador_sistema.controlador_treino_diario.mostrar_tela_treino_diario,
-                              3: self.__controlador_sistema.controlador_treino_diario.desempenho_aluno,
-                              0: self.retornar
-                              }
-        while True:
-            opcao_escolhida = self.controlador_sistema.controlador_treino_diario.mostrar_tela_desempenho()
-            if opcao_escolhida == 1:
-                return self.consultar_treino_aluno(usuario.treinos)
-            else:
-                funcao_escolhida = mexer_aluno_opcoes[opcao_escolhida]
-                return funcao_escolhida()
+        try:
+            usuario = self.__controlador_sistema.usuario_logado
+            mexer_aluno_opcoes = {1: self.consultar_treino_aluno,
+                                  2: self.__controlador_sistema.controlador_treino_diario.mostrar_tela_treino_diario,
+                                  3: self.__controlador_sistema.controlador_treino_diario.desempenho_aluno,
+                                  0: self.retornar
+                                  }
+            while True:
+                opcao_escolhida = self.__controlador_sistema.controlador_treino_diario.mostrar_tela_treino_diario()
+                if opcao_escolhida != 1 and opcao_escolhida != 2 and opcao_escolhida != 3 and opcao_escolhida != 0:
+                    raise ValueError
+                if opcao_escolhida == 1:
+                    return self.consultar_treino_aluno(usuario.treinos)
+                else:
+                    funcao_escolhida = mexer_aluno_opcoes[opcao_escolhida]
+                    return funcao_escolhida()
+        except ValueError:
+            print("Digite os valores que são mostrados")
+            self.abre_tela_inicial()
 
     def consultar_treino_aluno(self, treinos):
         for treino in treinos:
