@@ -54,6 +54,8 @@ class ControladorPersonalTrainer():
                                      }
             while True:
                 opcao_escolhida = self.__tela_personal.tela_aba_personal()
+                if opcao_escolhida != 1 and opcao_escolhida != 2 and opcao_escolhida != 0:
+                    raise ValueError
                 if opcao_escolhida == 1:
                     self.__tela_personal.mostrar_personal_trainer({"nome": self.__personal.nome,
                                                                    "cpf": self.__personal.cpf,

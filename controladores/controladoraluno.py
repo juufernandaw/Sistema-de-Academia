@@ -84,13 +84,19 @@ class ControladorAluno():
         return self.abre_tela_funcoes_aluno()
 
     def alterar_aluno_treino(self, aluno: Aluno):
-        opcao = self.__tela_aluno.escolher_opcao_treino()  # excluir algum treino ou adicionar um treino ao aluno
-        lista_opcoes = {1: self.desvincular_aluno_treino, 2: self.vincular_aluno_treino}
-        treino = self.__tela_aluno.mostrar_treino_aluno(aluno.treinos)  # retorna o numero do treino
-        treino_escolhido = aluno.treinos[treino]  # retorna a instancia do treino da lista de treinos
-        while True:
-            funcao_escolhida = lista_opcoes[opcao]
-            return funcao_escolhida()
+        try:
+            opcao = self.__tela_aluno.escolher_opcao_treino()  # excluir algum treino ou adicionar um treino ao aluno
+            if opcao != 1 and opcao != 2:
+                raise ValueError
+            lista_opcoes = {1: self.desvincular_aluno_treino, 2: self.vincular_aluno_treino}
+            treino = self.__tela_aluno.mostrar_treino_aluno(aluno.treinos)  # retorna o numero do treino
+            treino_escolhido = aluno.treinos[treino]  # retorna a instancia do treino da lista de treinos
+            while True:
+                funcao_escolhida = lista_opcoes[opcao]
+                return funcao_escolhida()
+        except ValueError:
+            print("Digite o valores que estão na tela")
+            self.alterar_aluno_treino(aluno)
 
     def vincular_aluno_treino(self, aluno: Aluno, treino):
         aluno.adicionar_treino_aluno(treino)
@@ -130,15 +136,21 @@ class ControladorAluno():
         return self.abre_tela_funcoes_aluno()
 
     def abre_tela_funcoes_aluno(self):
-        lista_opcoes = {1: self.incluir_aluno, 2: self.alterar_aluno,
-                        3: self.excluir_aluno, 4: self.listar_alunos, 5: self.consultar_aluno,
-                        6: self.__controlador_sistema.controlador_treino_diario.mostrar_tela_treino_diario,
-                        7: self.voltar_menu_personal
-                        }
-        while True:
-            opcao = self.__tela_aluno.mexer_aluno()
-            funcao_escolhida = lista_opcoes[opcao]
-            return funcao_escolhida()
+        try:
+            lista_opcoes = {1: self.incluir_aluno, 2: self.alterar_aluno,
+                            3: self.excluir_aluno, 4: self.listar_alunos, 5: self.consultar_aluno,
+                            6: self.__controlador_sistema.controlador_treino_diario.mostrar_tela_treino_diario,
+                            7: self.voltar_menu_personal
+                            }
+            while True:
+                opcao = self.__tela_aluno.mexer_aluno()
+                if opcao != 1 and opcao != 2 and opcao != 3 and opcao != 4 and opcao != 5 and opcao != 6 and opcao != 7:
+                    raise ValueError
+                funcao_escolhida = lista_opcoes[opcao]
+                return funcao_escolhida()
+        except ValueError:
+            print("Digite uma das opções sugerias, por favor.")
+            self.abre_tela_funcoes_aluno()
 
     def retornar(self):
         return self.__controlador_sistema.iniciar_tela_sistema()
