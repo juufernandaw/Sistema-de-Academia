@@ -33,10 +33,10 @@ class TelaTreinoDiario():
         return opcao
 
     def mostrar_dias_treino(self, dias):
-        print(f"Parabéns você foi {dias} treinar")
+        print(f"Parabéns! Você foi {dias} dias treinar")
 
     def contar_calorias(self, calorias):
-        print(f"Parabéns você perdeu {calorias} calorias")
+        print(f"Parabéns! Você perdeu {calorias} calorias")
 
     def mensagem(self, msg):
-            return msg
+        print(msg)

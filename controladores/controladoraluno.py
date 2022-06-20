@@ -150,7 +150,7 @@ class ControladorAluno():
                               0: self.retornar
                               }
         while True:
-            opcao_escolhida = self.controlador_sistema.controlador_treino_diario.mostrar_tela_desempenho()
+            opcao_escolhida = self.__controlador_sistema.controlador_treino_diario.mostrar_tela_treino_diario()
             if opcao_escolhida == 1:
                 return self.consultar_treino_aluno(usuario.treinos)
             else:

@@ -9,7 +9,7 @@ class TreinoDiario():
     def __init__(self, aluno: Aluno, data: date, treinos: []):
         self.__aluno = aluno
         self.__data = data
-        self.__treinos = []
+        self.__treinos = treinos
 
     @property
     def aluno(self):
@@ -26,9 +26,14 @@ class TreinoDiario():
 
     @data.setter
     def data(self, data: date):
-        if isinstance(data, int):
+        if isinstance(data, date):
             self.__data = data
 
     @property
     def treinos(self):
         return self.__treinos
+
+    @treinos.setter
+    def treinos(self, lista_treinos):
+        if isinstance(lista_treinos, list):
+            self.__treinos = lista_treinos
