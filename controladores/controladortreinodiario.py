@@ -52,15 +52,15 @@ class ControladorTreinoDiario():
 
     def contabilizar_calorias(self):
         soma_calorias = 0
-        for treino_diario in self.__lista_treinos_diarios:  # lista de treinos que tem os treinos
-            i = treino_diario.treinos
-            print("I:", i)
-            for i in treino_diario:
-                print("Entrei 2: ", treino)
-                print("Entrei 3: ", treino_diario.treinos)
+        for a in self.__lista_treinos_diarios:  # lista de treinos que tem os treinos
+            print("Lista treinos diarios: ", self.__lista_treinos_diarios)
+            print("A: ", a)
+            for i in a:
+                print("Entrei 2: ", i)
+                #print("Entrei 3: ", treino_diario.treinos)
                 for j in i:
-                    print("Entrei 4: ", exercicio)
-                    print("Entrei 5: ", treino.exercicios)
+                    print("Entrei 4: ", j)
+                    print("Entrei 5: ", j.exercicios)
                     print("Entrei 6: ", exercicio.tipo_exercicio)
                     print("Entrei 7: ", soma_calorias)
                     soma_calorias += exercicio.tipo_exercicio.qtd_kcal_gasta()
