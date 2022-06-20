@@ -29,11 +29,11 @@ class ControladorTreino:
         try:
         novo_treino, nome_treino = self.__tela_treino.montar_treino()  # pedir se quer incluir novo treino e o nome do treino
         if novo_treino == 1 and nome_treino is None:
-            raise #valorvazio
+            raise ValorVazio
         while (novo_treino == 1) and (nome_treino is not None):  # pra criar novo treino
             for treino in self.__treinos:
                 if treino.nome == nome_treino:
-                    raise TreinoJaExistenteException(msg)
+                    raise TreinoJaExistente(msg)
             treino = Treino(nome_treino)  # instancia o treino
             self.criar_exercicio(treino)  # chama o método para incluir exercicios no treino
             # !verificar se já existe o treino
@@ -43,8 +43,10 @@ class ControladorTreino:
             novo_treino, nome_treino = self.__tela_treino.montar_treino()  # pedir se quer incluir novo treino e o nome do treino
         if novo_treino == 2:  # se não deseja criar novo treino
             return self.abre_tela_funcoes_treino()
-        if novo_treino == 1 and nome_treino is None:
-            raise NoneType
+        except ValorVazio:
+            #printar
+        except TreinoJaExistente:
+
 
     def criar_exercicio(self, treino: Treino):
         novo_exercicio, dados_exercicio = self.__tela_treino.montar_exercicio(self.__tipos_exercicio)
