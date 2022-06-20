@@ -15,7 +15,7 @@ class TelaAluno():
     def mostrar_msg(self, msg):
         print(msg)
 
-    def mostrar_aluno(self, dados_aluno): #mostra os dados do aluno
+    def mostrar_aluno(self, dados_aluno):  # mostra os dados do aluno
         print("Nome:", dados_aluno["nome"])
         print("Login:", dados_aluno["login"])
         print("Senha:", dados_aluno["senha"])
@@ -26,7 +26,7 @@ class TelaAluno():
         contador = 0
         for treino in treinos:
             print(contador, ") Treino:", treino)
-            contador+=1
+            contador += 1
         escolha = int(input("Qual treino você escolhe alterar?"))
         return escolha
 
@@ -39,7 +39,7 @@ class TelaAluno():
         login = input("Digite o login do aluno:")
         senha = input("Digite a senha do aluno:")
         cpf = input("Digite o cpf do aluno:")
-        return {"nome":nome, "login":login, "senha":senha, "cpf":cpf}
+        return {"nome": nome, "login": login, "senha": senha, "cpf": cpf}
 
     def mexer_aluno(self):
         print("----- INÍCIO -----")

@@ -3,7 +3,7 @@ class TelaPersonalTrainer():
     def __init__(self):
         pass
 
-    def mostrar_personal_trainer(self, dados_personal): #mostra os dados do personal
+    def mostrar_personal_trainer(self, dados_personal):  # mostra os dados do personal
         print("Nome:", dados_personal["nome"])
         print("Login:", dados_personal["login"])
         print("Senha:", dados_personal["senha"])

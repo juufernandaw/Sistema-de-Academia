@@ -45,7 +45,7 @@ class ControladorTreinoDiario():
     def contabilizar_calorias(self):
         usuario = self.__controlador_sistema.usuario_logado
         soma_calorias = 0
-        #lembrar de validar se é do aluno o treinodiario
+        # lembrar de validar se é do aluno o treinodiario
         for treino_diario in self.__lista_treinos_diarios:  # lista de treinos que tem os treinos
             if treino_diario.aluno == usuario:
                 for treino in treino_diario.treinos:
@@ -77,7 +77,7 @@ class ControladorTreinoDiario():
     def confirmar_checkin(self):  # TREINO DIARIO É UMA LISTA DE TREINO!
         aluno = self.__controlador_sistema.usuario_logado
         dia_atual = date.today()
-        escolha_treino = self.__tela_treinoDiario.montar_treino_diario(aluno.treinos) # retornar o treino q ele escolheu
+        escolha_treino = self.__tela_treinoDiario.montar_treino_diario(aluno.treinos)  # retorna treino q ele escolheu
         self.adicionar_treino_a_treinos(aluno.treinos[escolha_treino])  # colocar o valor da lista para o metodo
         opcao = self.__tela_treinoDiario.montar_treino_diario_2()
         while opcao != 2:

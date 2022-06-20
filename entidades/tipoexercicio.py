@@ -18,4 +18,3 @@ class TipoExercicio():
     @qtd_kcal_gasta.setter
     def qtd_kcal_gasta(self, qtd_kcal_gasta: str):
         self.__qtd_kcal_gasta = qtd_kcal_gasta
-

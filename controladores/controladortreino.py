@@ -6,15 +6,15 @@ from TrabalhoPOO.telas.telatreino import TelaTreino
 from TrabalhoPOO.entidades.tipoexercicio import TipoExercicio
 
 
-class ControladorTreino():
-    
+class ControladorTreino:
+
     def __init__(self, controlador_sistema):
         self.__controlador_sistema = controlador_sistema
         self.__treinos = []
         self.__manter_tela = True
         self.__tela_treino = TelaTreino()
-        self.__tipos_exercicio = [TipoExercicio("Muscular - Superior",200), TipoExercicio("Muscular - Inferior",150), \
-        TipoExercicio("Cardiovascular",300)]
+        self.__tipos_exercicio = [TipoExercicio("Muscular - Superior", 200), TipoExercicio("Muscular - Inferior", 150),
+                                  TipoExercicio("Cardiovascular", 300)]
 
     @property
     def tipos_exercicio(self):
@@ -25,32 +25,34 @@ class ControladorTreino():
         return self.__treinos
 
     def incluir_treino(self):
-        novo_treino, nome_treino = self.__tela_treino.montar_treino() #pedir se quer incluir novo treino e o nome do treino 
-        while (novo_treino==1) and (nome_treino is not None): #pra criar novo treino
-            treino = Treino(nome_treino) #instancia o treino
-            self.criar_exercicio(treino) #chama o método para incluir exercicios no treino
-            #!verificar se já existe o treino
-            self.__treinos.append(treino) #adiciona o treino a lista de todos os treinos do sistema
-            aluno = self.__controlador_sistema.controlador_aluno.selecionar_aluno() #seleciona o aluno pra vincular #seleciona a instancia do aluno
-            aluno.adicionar_treino_aluno(treino) #chama o método pela instancia do aluno
-            novo_treino, nome_treino = self.__tela_treino.montar_treino() #pedir se quer incluir novo treino e o nome do treino
-        if novo_treino==2: # se não deseja criar novo treino
+        novo_treino, nome_treino = self.__tela_treino.montar_treino()  # pedir se quer incluir novo treino e o nome do treino
+        while (novo_treino == 1) and (nome_treino is not None):  # pra criar novo treino
+            treino = Treino(nome_treino)  # instancia o treino
+            self.criar_exercicio(treino)  # chama o método para incluir exercicios no treino
+            # !verificar se já existe o treino
+            self.__treinos.append(treino)  # adiciona o treino a lista de todos os treinos do sistema
+            aluno = self.__controlador_sistema.controlador_aluno.selecionar_aluno()  # seleciona o aluno pra vincular #seleciona a instancia do aluno
+            aluno.adicionar_treino_aluno(treino)  # chama o método pela instancia do aluno
+            novo_treino, nome_treino = self.__tela_treino.montar_treino()  # pedir se quer incluir novo treino e o nome do treino
+        if novo_treino == 2:  # se não deseja criar novo treino
             return self.abre_tela_funcoes_treino()
 
     def criar_exercicio(self, treino: Treino):
         novo_exercicio, dados_exercicio = self.__tela_treino.montar_exercicio(self.__tipos_exercicio)
-        while (novo_exercicio==1) : #pra criar novo exercicio ->lembrar de verificar se não estão vazias as infos
-            treino.incluir_exercicio(dados_exercicio["nome"], dados_exercicio["serie"], dados_exercicio["repeticao"],\
-            dados_exercicio["tempo_descanso"], self.__tipos_exercicio[dados_exercicio["tipo_exercicio"]])
+        while novo_exercicio == 1:  # pra criar novo exercicio ->lembrar de verificar se não estão vazias as infos
+            treino.incluir_exercicio(dados_exercicio["nome"], dados_exercicio["serie"], dados_exercicio["repeticao"],
+                                     dados_exercicio["tempo_descanso"],
+                                     self.__tipos_exercicio[dados_exercicio["tipo_exercicio"]])
             novo_exercicio, dados_exercicio = self.__tela_treino.montar_exercicio(self.__tipos_exercicio)
 
     def excluir_treino(self):
-        treino = self.pegar_treino_por_nome() #busca infos do treino requisitado
-        if (treino is not None):
-            self.__treinos.remove(treino) #remove o treino da lista de treinos do sistema
-            aluno = self.__controlador_sistema.controlador_aluno.buscar_aluno_por_treino(treino) #verifica se há algum aluno vinculado ao treino
+        treino = self.pegar_treino_por_nome()  # busca infos do treino requisitado
+        if treino is not None:
+            self.__treinos.remove(treino)  # remove o treino da lista de treinos do sistema
+            aluno = self.__controlador_sistema.controlador_aluno.buscar_aluno_por_treino(
+                treino)  # verifica se há algum aluno vinculado ao treino
             if aluno is not None:
-                aluno.remover_treino_aluno(treino) #remove o treino da lista de treinos do aluno
+                aluno.remover_treino_aluno(treino)  # remove o treino da lista de treinos do aluno
             self.__tela_treino.mostrar_msg("Treino excluído com sucesso!")
         else:
             self.__tela_treino.mostrar_msg("ATENCAO: treino não existente")
@@ -72,17 +74,17 @@ class ControladorTreino():
 
     def alterar_treino(self):
         treino = self.pegar_treino_por_nome()
-        if (treino is not None):
+        if treino is not None:
             opcao = self.__tela_treino.escolher_alteracao_treino()
-            if opcao==1:
+            if opcao == 1:
                 self.alterar_nome_treino(treino)
-            elif opcao==2:
-                treino.excluir_exercicios() #exclui os exercicios do treino
-                self.criar_exercicio(treino) #inclui os novos exercicios do treino
+            elif opcao == 2:
+                treino.excluir_exercicios()  # exclui os exercicios do treino
+                self.criar_exercicio(treino)  # inclui os novos exercicios do treino
                 return self.abre_tela_funcoes_treino()
         else:
             self.__tela_treino.mostrar_msg("ATENCAO: treino não existente")
-        
+
     def alterar_nome_treino(self, treino: Treino):
         treino.nome = self.__tela_treino.selecionar_treino_por_nome()
         self.__tela_treino.mostrar_msg("Nome do treino alterado com sucesso!")
@@ -90,10 +92,10 @@ class ControladorTreino():
 
     def consultar_treino(self):
         treino = self.pegar_treino_por_nome()
-        if (treino is not None):
-            treino = {"nome":treino.nome, "exercicios":treino.exercicios}
+        if treino is not None:
+            treino = {"nome": treino.nome, "exercicios": treino.exercicios}
             self.__tela_treino.mostrar_tela_treino(treino)
-        else:    
+        else:
             self.__tela_treino.mostrar_msg("ATENCAO: treino não existente")
         return self.abre_tela_funcoes_treino()
 
@@ -113,4 +115,4 @@ class ControladorTreino():
             self.abre_tela_funcoes_treino()
 
     def retornar(self):
-        return 
+        return

@@ -3,7 +3,6 @@ from TrabalhoPOO.entidades.aluno import Aluno
 from datetime import date
 
 
-
 class TreinoDiario():
     def __init__(self, aluno: Aluno, data: date, treinos: []):
         self.__aluno = aluno
