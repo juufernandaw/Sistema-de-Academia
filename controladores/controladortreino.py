@@ -36,7 +36,7 @@ class ControladorTreino:
             while (novo_treino == 1) and (nome_treino is not None):  # pra criar novo treino
                 for treino in self.__treinos:
                     if treino.nome == nome_treino:
-                        raise TreinoJaExistente(msg)
+                        raise TreinoJaExistente
                 treino = Treino(nome_treino)  # instancia o treino
                 self.criar_exercicio(treino)  # chama o método para incluir exercicios no treino
                 # !verificar se já existe o treino
