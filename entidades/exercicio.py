@@ -1,4 +1,4 @@
-#from entidades.tipoexercicio import TipoExercicio
+#  from entidades.tipoexercicio import TipoExercicio
 from TrabalhoPOO.entidades.tipoexercicio import TipoExercicio
 
 
@@ -49,5 +49,3 @@ class Exercicio():
     @tipo_exercicio.setter
     def tipo_exercicio(self, tipo_exercicio: TipoExercicio):
         self.__tipo_exercicio = tipo_exercicio
-
-

@@ -10,8 +10,8 @@ class TelaSistema:
             print("0 - Sair")
             opcao = int(input())
         except ValueError:
-            if opcao != 1 and opcao != 2:
-                print("Você só pode apertar 1 ou 2, caro padawan")
+            print("Só vale numero")
+            self.mostrarMenu_inicial()
         return opcao
 
     def logar(self, opcao_escolhida):

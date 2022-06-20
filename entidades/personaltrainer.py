@@ -1,5 +1,5 @@
 from TrabalhoPOO.entidades.usuario import Usuario
-#from usuario import Usuario
+#  from usuario import Usuario
 
 
 class PersonalTrainer(Usuario):
@@ -14,18 +14,3 @@ class PersonalTrainer(Usuario):
     @habilitacao.setter
     def habilitacao(self, habilitacao):
         self.__habilitacao = habilitacao
-
-    # def nome(self):
-    #     pass
-    #
-    # def cpf(self):
-    #     pass
-    #
-    # def login(self):
-    #     pass
-    #
-    # def senha(self):
-    #     pass
-
-
-

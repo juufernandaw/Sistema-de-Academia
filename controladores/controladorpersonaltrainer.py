@@ -34,15 +34,24 @@ class ControladorPersonalTrainer():
                 return True
 
     def abre_tela_inicial(self):  # abre a tela personal pos login da tela do sistema AS ABAS
-        mexer_personal_opcoes = {1: self.abre_tela_funcoes_personal,
-                                 2: self.__controlador_sistema.controlador_aluno.abre_tela_funcoes_aluno,
-                                 3: self.__controlador_sistema.controlador_treino.abre_tela_funcoes_treino,
-                                 0: self.retornar
-                                 }
-        while True:
-            opcao_escolhida = self.__tela_personal.mexer_personal()
-            funcao_escolhida = mexer_personal_opcoes[opcao_escolhida]
-            return funcao_escolhida()
+        try:
+            mexer_personal_opcoes = {1: self.abre_tela_funcoes_personal,
+                                     2: self.__controlador_sistema.controlador_aluno.abre_tela_funcoes_aluno,
+                                     3: self.__controlador_sistema.controlador_treino.abre_tela_funcoes_treino,
+                                     0: self.retornar
+                                     }
+            while True:
+                opcao_escolhida = self.__tela_personal.mexer_personal()
+                if opcao_escolhida != 1 and opcao_escolhida != 2 and opcao_escolhida != 3 and opcao_escolhida != 0:
+                    raise KeyError
+                funcao_escolhida = mexer_personal_opcoes[opcao_escolhida]
+                return funcao_escolhida()
+        except KeyError:
+            print("Valor digitado incorreto, tente novamente.")
+            self.abre_tela_inicial()
+        except TypeError:
+            print("Somente os número na tela.")
+            self.abre_tela_inicial()
 
     def voltar(self):
         return self.abre_tela_inicial()
