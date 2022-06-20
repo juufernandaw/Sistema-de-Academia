@@ -55,6 +55,12 @@ class ControladorTreinoDiario():
         for a in self.__lista_treinos_diarios:  # lista de treinos que tem os treinos
             print("Lista treinos diarios: ", self.__lista_treinos_diarios)
             print("A: ", a)
+            print("AA: ", a.treinos)
+            print("AAA: ", a.treinos.treino)
+            print("AAAA: ", a.treinos.treinos)
+            print("AAAAA: ", a.treinos.nome)
+            print("AAAAAA: ", a.treinos.exercicios)
+            print("AAAAAAA: ", a.treinos.exercicio)
             for i in a:
                 print("Entrei 2: ", i)
                 #print("Entrei 3: ", treino_diario.treinos)

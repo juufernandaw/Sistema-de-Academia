@@ -5,11 +5,10 @@ class TelaTreinoDiario():
 
     def mostrar_tela_desempenho(self):
         print("----- ABA ALUNO -----")
-        print("----- ABA DESEMPENHO -----")
-        print("Ola Aluno, você quer consultar o desempenho?")
-        print("1 - Confirmar Check-in!")
-        print("2 - Consultar seu desempenho!")
-        print("3 - voltar")
+        print("Olá Aluno, o quê deseja fazer hoje?")
+        print("1 - Efetuar Check-in!")
+        print("2 - Consultar meu desempenho!")
+        print("3 - Voltar")
         escolha = int(input())
         return escolha
 
