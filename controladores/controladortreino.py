@@ -6,8 +6,8 @@ from TrabalhoPOO.entidades.treino import Treino
 from TrabalhoPOO.telas.telatreino import TelaTreino
 from TrabalhoPOO.entidades.tipoexercicio import TipoExercicio
 
-from excecoes.treinojaexistenteexception import TreinoJaExistente
-from excecoes.valorvazio import ValorVazio
+from TrabalhoPOO.excecoes.treinojaexistenteexception import TreinoJaExistente
+from TrabalhoPOO.excecoes.valorvazio import ValorVazio
 
 
 class ControladorTreino:
@@ -52,7 +52,6 @@ class ControladorTreino:
         except TreinoJaExistente as e:
             print(e)
             return self.incluir_treino()
-
 
     def criar_exercicio(self, treino: Treino):
         novo_exercicio, dados_exercicio = self.__tela_treino.montar_exercicio(self.__tipos_exercicio)

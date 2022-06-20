@@ -39,7 +39,8 @@ class ControladorPersonalTrainer():
                     raise ValueError
                 funcao_escolhida = mexer_personal_opcoes[opcao_escolhida]
                 return funcao_escolhida()
-        except ValueError:
+        except ValueError as e:
+            print(e)
             print("Valor digitado incorreto, tente novamente.")
             self.abre_tela_inicial()
 
@@ -66,7 +67,8 @@ class ControladorPersonalTrainer():
                 else:
                     funcao_escolhida = mexer_personal_opcoes[opcao_escolhida]
                     return funcao_escolhida()
-        except ValueError:
+        except ValueError as e:
+            print(e)
             print("Digite novamente, com as opções corretas na tela")
             self.abre_tela_funcoes_personal()
 
