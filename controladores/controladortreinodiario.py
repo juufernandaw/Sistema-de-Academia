@@ -51,6 +51,14 @@ class ControladorTreinoDiario():
                         soma_calorias += exercicio.tipo_exercicio.qtd_kcal_gasta
         return soma_calorias
 
+    def contabilizar_dias_treino(self):
+        usuario = self.__controlador_sistema.usuario_logado
+        dias_de_treino = 0
+        for treinodiario in self.__lista_treinos_diarios:
+            if treinodiario.aluno == usuario:
+                dias_de_treino += 1
+        return dias_de_treino
+
     def desempenho_aluno(self):
         dias_treino = self.contabilizar_dias_treino()
         calorias = self.contabilizar_calorias()
@@ -84,12 +92,6 @@ class ControladorTreinoDiario():
                 opcao = self.__tela_treinoDiario.montar_treino_diario_2()
             treino_diario = TreinoDiario(aluno, dia_atual, self.__lista_treinos)
             self.adicionar_treino_diario_a_treinodiarios(treino_diario)
-
-    def contabilizar_dias_treino(self):
-        dias_de_treino = 0
-        for treinodiario in self.__lista_treinos_diarios:
-            dias_de_treino += 1
-        return dias_de_treino
 
     def encerrar_sistema(self):
         exit(0)
