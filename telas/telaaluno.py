@@ -39,7 +39,7 @@ class TelaAluno():
         print("4 - Listar alunos")
         print("5 - Consultar aluno")
         print("6 - Consultar Desempenho do aluno")
-        print("7 - Retornar à tela inicial")
+        print("0 - Retornar à tela inicial")
 
         opcao = int(input())
         return opcao
@@ -52,7 +52,7 @@ class TelaAluno():
         print("3 - Alterar login")
         print("4 - Alterar senha")
         print("5 - Alterar treino")
-        print("6 - Sair")
+        print("0 - Retornar")
 
         opcao = int(input())
         return opcao

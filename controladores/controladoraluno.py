@@ -1,6 +1,5 @@
 from telas.telaaluno import TelaAluno
 from entidades.aluno import Aluno
-#from telas.telatreino import TelaTreino
 
 
 class ControladorAluno():
@@ -9,7 +8,6 @@ class ControladorAluno():
         self.__controlador_sistema = controlador_sistema
         self.__alunos = []
         self.__tela_aluno = TelaAluno()
-        #self.__tela_treino = TelaTreino()
 
     def verificar_login_senha(self, login, senha):  # VERIFICAR o login e senha.
         if isinstance(login, str) and isinstance(senha, str):
@@ -20,7 +18,7 @@ class ControladorAluno():
                     if not aluno.login and not aluno.senha:
                         raise TypeError
             except TypeError:
-                print("Login e senha inválidos")
+                self.__tela_aluno.mostrar_msg("Login e senha inválidos")
             else:
                 return False
 
@@ -60,7 +58,7 @@ class ControladorAluno():
         opcao_alteracao = self.__tela_aluno.opcao_alterar()
         aluno = self.selecionar_aluno()
         lista_opcoes = {1: self.alterar_aluno_nome, 2: self.alterar_aluno_cpf,
-                        3: self.alterar_aluno_login, 4: self.alterar_aluno_senha, 5: self.alterar_aluno_treino}
+                        3: self.alterar_aluno_login, 4: self.alterar_aluno_senha, 5: self.alterar_aluno_treino, 0: self.retornar}
         try:
             while True:
                 if aluno is not None:
@@ -104,7 +102,7 @@ class ControladorAluno():
             treino_escolhido = aluno.treinos[treino]  # retorna a instancia do treino da lista de treinos
             while True:
                 funcao_escolhida = lista_opcoes[opcao]
-                return funcao_escolhida()
+                return funcao_escolhida(aluno, treino_escolhido)
         except ValueError:
             self.__tela_aluno.mostrar_msg("Digite os valores dados na tela, por favor.")
             self.alterar_aluno_treino(aluno)
@@ -162,16 +160,16 @@ class ControladorAluno():
             lista_opcoes = {1: self.incluir_aluno, 2: self.alterar_aluno,
                             3: self.excluir_aluno, 4: self.listar_alunos, 5: self.consultar_aluno,
                             6: self.__controlador_sistema.controlador_treino_diario.mostrar_tela_treino_diario,
-                            7: self.voltar_menu_personal
+                            0: self.retornar
                             }
             while True:
                 opcao = self.__tela_aluno.mexer_aluno()
-                if opcao != 1 and opcao != 2 and opcao != 3 and opcao != 4 and opcao != 5 and opcao != 6 and opcao != 7:
+                if opcao != 1 and opcao != 2 and opcao != 3 and opcao != 4 and opcao != 5 and opcao != 6 and opcao != 0:
                     raise ValueError
                 funcao_escolhida = lista_opcoes[opcao]
                 return funcao_escolhida()
         except ValueError:
-            print("Digite uma das opções sugeridas, por favor.")
+            self.__tela_aluno.mostrar_msg("Digite uma das opções sugeridas, por favor")
             self.abre_tela_funcoes_aluno()
 
     def retornar(self):
@@ -198,7 +196,7 @@ class ControladorAluno():
                     funcao_escolhida = mexer_aluno_opcoes[opcao_escolhida]
                     return funcao_escolhida()
         except ValueError:
-            print("Digite os valores que são fornecidos, por favor.")
+            self.__tela_aluno.mostrar_msg("Digite uma das opções sugeridas, por favor")
             self.abre_tela_inicial()
 
     def consultar_treino_aluno(self, treinos):
