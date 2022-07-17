@@ -123,7 +123,7 @@ class ControladorTreino:
                             0: self.__controlador_sistema.controlador_personal_trainer.abre_tela_inicial}
             while True:
                 opcao = self.__tela_treino.mexer_treino()
-                if opcao != 1 and opcao != 2 and opcao != 3 and opcao != 4 and opcao != 5 and opcao != 6:
+                if opcao != 1 and opcao != 2 and opcao != 3 and opcao != 4 and opcao != 5 and opcao != 0:
                     raise ValueError
                 funcao_escolhida = lista_opcoes[opcao]
                 return funcao_escolhida()
