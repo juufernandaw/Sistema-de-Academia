@@ -96,8 +96,8 @@ class ControladorTreinoDiario:
                         aluno_escolhido = aluno
                         dias = self.verificar_dias_treino(aluno_escolhido)
                         calorias = self.verificar_calorias(aluno_escolhido)
-                        self.__tela_treinoDiario.mostrar_dias_treino_aluno(aluno_escolhido, dias)
-                        self.__tela_treinoDiario.contar_calorias_aluno(aluno_escolhido, calorias)
+                        self.__tela_treinoDiario.mostrar_dias_treino_aluno(aluno_escolhido.cpf, dias)
+                        self.__tela_treinoDiario.contar_calorias_aluno(aluno_escolhido.cpf, calorias)
         return self.__controlador_sistema.controlador_aluno.abre_tela_funcoes_aluno()
 
     def desempenho_aluno(self):
