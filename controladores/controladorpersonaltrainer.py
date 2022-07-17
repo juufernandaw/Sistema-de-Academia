@@ -1,15 +1,15 @@
 from entidades.personaltrainer import PersonalTrainer
 from telas.telapersonaltrainer import TelaPersonalTrainer
-#from telas.telasistema import TelaSistema
-#from telas.telaaluno import TelaAluno
+from telas.telasistema import TelaSistema
+from telas.telaaluno import TelaAluno
 
 
 class ControladorPersonalTrainer():
 
     def __init__(self, controlador_sistema):
         self.__tela_personal = TelaPersonalTrainer()
-        #self.__tela_aluno = TelaAluno()
-        #self.__tela_sistema = TelaSistema()
+        self.__tela_aluno = TelaAluno()
+        self.__tela_sistema = TelaSistema()
         self.__controlador_sistema = controlador_sistema
         self.__personal = PersonalTrainer("12345678905", "Judi", "a", "a", "01")  # criou o personal
 
@@ -36,8 +36,8 @@ class ControladorPersonalTrainer():
                 funcao_escolhida = mexer_personal_opcoes[opcao_escolhida]
                 return funcao_escolhida()
         except ValueError as e:
-            print(e)
-            print("Valor digitado incorreto, tente novamente.")
+            self.__tela_sistema.mostrar_msg(e)
+            self.__tela_sistema.mostrar_msg("Valor digitado incorreto, tente novamente.")
             self.abre_tela_inicial()
 
     def voltar(self):
@@ -64,8 +64,8 @@ class ControladorPersonalTrainer():
                     funcao_escolhida = mexer_personal_opcoes[opcao_escolhida]
                     return funcao_escolhida()
         except ValueError as e:
-            print(e)
-            print("Digite novamente, com as opções corretas na tela")
+            self.__tela_sistema.mostrar_msg(e)
+            self.__tela_sistema.mostrar_msg("Digite novamente, com as opções corretas na tela")
             self.abre_tela_funcoes_personal()
 
     def alterar_personal(self):  # aqui ele está alterando os dados do personal baseado no dicionario da tela

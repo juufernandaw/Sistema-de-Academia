@@ -64,12 +64,12 @@ class ControladorSistema:
                     funcao_escolhida = lista_opcoes[opcao_escolhida]
                     return funcao_escolhida()
         except ValueError as e:
-            print(e)
-            print(f"Erro! Valor incorreto: o Número {opcao_escolhida} é invalido"
+            self.__tela_sistema.mostrar_msg(e)
+            self.__tela_sistema.mostrar_msg(f"Erro! Valor incorreto: o Número {opcao_escolhida} é invalido"
                                                         f" digite 1, 2 ou 0. ")
             self.iniciar_tela_sistema()
         except TypeError:
-            print("Usuário inexistente. Favor digitar login e senha corretos!")
+            self.__tela_sistema.mostrar_msg("Usuário inexistente. Favor digitar login e senha corretos!")
             self.iniciar_tela_sistema()
 
     def encerrar_sistema(self):  # OK
