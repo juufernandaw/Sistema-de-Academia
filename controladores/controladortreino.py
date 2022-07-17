@@ -120,7 +120,7 @@ class ControladorTreino:
         try:
             lista_opcoes = {1: self.incluir_treino, 2: self.alterar_treino,
                             3: self.excluir_treino, 4: self.listar_treinos, 5: self.consultar_treino,
-                            6: self.__controlador_sistema.controlador_personal_trainer.abre_tela_inicial}
+                            0: self.__controlador_sistema.controlador_personal_trainer.abre_tela_inicial}
             while True:
                 opcao = self.__tela_treino.mexer_treino()
                 if opcao != 1 and opcao != 2 and opcao != 3 and opcao != 4 and opcao != 5 and opcao != 6:

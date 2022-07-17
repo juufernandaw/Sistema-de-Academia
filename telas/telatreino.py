@@ -56,7 +56,7 @@ class TelaTreino():
         print("3 - Excluir treino")
         print("4 - Listar treinos")
         print("5 - Consultar treino")
-        print("6 - Retornar à tela inicial")
+        print("0 - Retornar à tela inicial")
 
         opcao = int(input())
         return opcao

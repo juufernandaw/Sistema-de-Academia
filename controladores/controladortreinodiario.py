@@ -24,11 +24,11 @@ class ControladorTreinoDiario:
         try:
             treino_diario_opcoes = {1: self.confirmar_checkin,
                                     2: self.desempenho_aluno,
-                                    0: self.voltar_menu_inicial_aluno
+                                    0: self.__controlador_sistema.iniciar_tela_sistema
                                     }
             while True:
                 opcao_treino_diario = self.__tela_treinoDiario.mostrar_tela_desempenho()
-                if opcao_treino_diario != 1 and opcao_treino_diario != 2 and opcao_treino_diario != 3:
+                if opcao_treino_diario != 1 and opcao_treino_diario != 2 and opcao_treino_diario != 0:
                     raise ValueError
                 funcao_escolhida = treino_diario_opcoes[opcao_treino_diario]
                 return funcao_escolhida()
@@ -37,22 +37,20 @@ class ControladorTreinoDiario:
             self.mostrar_tela_treino_diario()
 
     def mostrar_tela_treino_diario_personal(self):  # ABA Treino Diario personal
-        try:
-            treino_diario_opcoes = {1: self.achar_desempenho_aluno_personal,
-                                    0: self.__controlador_sistema.controlador_personal_trainer.abre_tela_inicial
-                                    }
-            while True:
-                opcao_treino_personal = self.__tela_treinoDiario.printar_tela_treino_diario()
-                if opcao_treino_personal != 1 and opcao_treino_personal != 0:
-                    raise ValueError
-                funcao_escolhida = treino_diario_opcoes[opcao_treino_personal]
-                return funcao_escolhida()
-        except ValueError:
-            self.__tela_treinoDiario.mensagem("Atenção digite uma opção válida")
-            self.mostrar_tela_treino_diario_personal()
-
-    def voltar_menu_inicial_aluno(self):
-        return self.__controlador_sistema.controladoraluno.abre_tela_inicial()
+        self.achar_desempenho_aluno_personal()
+        # try:
+        #     treino_diario_opcoes = {1: self.achar_desempenho_aluno_personal,
+        #                             0: self.__controlador_sistema.controlador_personal_trainer.abre_tela_inicial
+        #                             }
+        #     while True:
+        #         opcao_treino_personal = self.__tela_treinoDiario.printar_tela_treino_diario()
+        #         if opcao_treino_personal != 1 and opcao_treino_personal != 0:
+        #             raise ValueError
+        #         funcao_escolhida = treino_diario_opcoes[opcao_treino_personal]
+        #         return funcao_escolhida()
+        # except ValueError:
+        #     self.__tela_treinoDiario.mensagem("Atenção digite uma opção válida")
+        #     self.mostrar_tela_treino_diario_personal()
 
     # def contabilizar_calorias(self):
     #     usuario = self.__controlador_sistema.usuario_logado
@@ -100,7 +98,7 @@ class ControladorTreinoDiario:
                         calorias = self.verificar_calorias(aluno_escolhido)
                         self.__tela_treinoDiario.mostrar_dias_treino(dias)
                         self.__tela_treinoDiario.contar_calorias(calorias)
-        return self.mostrar_tela_treino_diario_personal()
+        return self.__controlador_sistema.controlador_aluno.abre_tela_funcoes_aluno()
 
     def desempenho_aluno(self):
         usuario = self.__controlador_sistema.usuario_logado

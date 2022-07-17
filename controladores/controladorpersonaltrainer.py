@@ -27,7 +27,7 @@ class ControladorPersonalTrainer:
             mexer_personal_opcoes = {1: self.abre_tela_funcoes_personal,
                                      2: self.__controlador_sistema.controlador_aluno.abre_tela_funcoes_aluno,
                                      3: self.__controlador_sistema.controlador_treino.abre_tela_funcoes_treino,
-                                     0: self.voltar
+                                     0: self.__controlador_sistema.iniciar_tela_sistema
                                      }
             while True:
                 opcao_escolhida = self.__tela_personal.mexer_personal()
