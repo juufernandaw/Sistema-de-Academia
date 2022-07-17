@@ -178,9 +178,6 @@ class ControladorAluno():
             self.abre_tela_funcoes_aluno()
 
     def retornar(self):
-        return self.__controlador_sistema.iniciar_tela_sistema()
-
-    def voltar_menu_personal(self):
         return self.__controlador_sistema.controlador_personal_trainer.abre_tela_inicial()
 
     def abre_tela_inicial(self):  # abre a tela aluno pós login da tela

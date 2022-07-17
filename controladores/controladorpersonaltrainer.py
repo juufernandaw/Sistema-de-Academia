@@ -27,7 +27,7 @@ class ControladorPersonalTrainer():
             mexer_personal_opcoes = {1: self.abre_tela_funcoes_personal,
                                      2: self.__controlador_sistema.controlador_aluno.abre_tela_funcoes_aluno,
                                      3: self.__controlador_sistema.controlador_treino.abre_tela_funcoes_treino,
-                                     0: self.retornar
+                                     0: self.voltar
                                      }
             while True:
                 opcao_escolhida = self.__tela_personal.mexer_personal()
@@ -85,5 +85,5 @@ class ControladorPersonalTrainer():
     def consultar_tela_desempenho(self):
         return self.__controlador_sistema.controlador_treino_diario.mostrar_tela_treino_diario()
 
-    def retornar(self):
-        return self.__controlador_sistema.iniciar_tela_sistema()
+    def sair(self):
+        return exit(0)
