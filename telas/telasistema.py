@@ -9,8 +9,9 @@ class TelaSistema:
         self.layout_logar_aluno()
         self.layout_logar_personal()
 
-        # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
-        # precisa chamar self.init_components() aqui para o caso de chamar essa janela uma 2a vez. Não é possível reusar layouts de janelas depois de fechadas.
+        # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado precisa chamar
+        # self.init_components() aqui para o caso de chamar essa janela uma 2a vez. Não é possível reusar layouts de
+        # janelas depois de fechadas.
     def logar(self, opcao_escolhida):
         if opcao_escolhida == 1:
             self.layout_logar_aluno()
