@@ -56,20 +56,25 @@ class ControladorAluno():
 
     def alterar_aluno(self):
         opcao_alteracao = self.__tela_aluno.opcao_alterar()
-        aluno = self.selecionar_aluno()
         lista_opcoes = {1: self.alterar_aluno_nome, 2: self.alterar_aluno_cpf,
-                        3: self.alterar_aluno_login, 4: self.alterar_aluno_senha, 5: self.alterar_aluno_treino, 0: self.retornar}
-        try:
-            while True:
-                if aluno is not None:
-                    # retorna a opcao escolhida
-                    alteracao_aluno = lista_opcoes[opcao_alteracao]  # executa a alteração
-                    return alteracao_aluno(aluno)
-                else:
-                    raise Exception
-        except Exception:
-            self.__tela_aluno.mostrar_msg("ATENCAO: aluno não existente. Favor escolher um aluno existente.")
-            return self.alterar_aluno()
+                        3: self.alterar_aluno_login, 4: self.alterar_aluno_senha,
+                        5: self.alterar_aluno_treino, 0: self.retornar}
+        if opcao_alteracao != 0:
+            aluno = self.selecionar_aluno()
+            try:
+                while True:
+                    if aluno is not None:
+                        # retorna a opcao escolhida
+                        alteracao_aluno = lista_opcoes[opcao_alteracao]  # executa a alteração
+                        return alteracao_aluno(aluno)
+                    else:
+                        raise Exception
+            except Exception:
+                self.__tela_aluno.mostrar_msg("ATENCAO: aluno não existente. Favor escolher um aluno existente.")
+                return self.alterar_aluno()
+        else:
+            alteracao_aluno = lista_opcoes[opcao_alteracao]  # executa a alteração
+            return alteracao_aluno()
 
 
     def alterar_aluno_nome(self, aluno: Aluno):
