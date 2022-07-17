@@ -9,6 +9,10 @@ class ControladorAluno():
         self.__alunos = []
         self.__tela_aluno = TelaAluno()
 
+    @property
+    def alunos(self):
+        return self.__alunos
+
     def verificar_login_senha(self, login, senha):  # VERIFICAR o login e senha.
         if isinstance(login, str) and isinstance(senha, str):
             try:
