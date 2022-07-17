@@ -40,11 +40,11 @@ class TelaTreinoDiario:
     def contar_calorias(self, calorias):
         print(f"Parabéns! Você perdeu {calorias} calorias")
 
-    def mostrar_dias_treino_aluno(self, dias):
-        print(f"O aluno foi {dias} dia(s) treinar")
+    def mostrar_dias_treino_aluno(self, aluno, dias):
+        print(f"O {aluno} foi {dias} dia(s) treinar")
 
-    def contar_calorias_aluno(self, calorias):
-        print(f"O aluno perdeu {calorias} calorias")
+    def contar_calorias_aluno(self, aluno, calorias):
+        print(f"O {aluno} perdeu {calorias} calorias")
 
     def mensagem(self, msg):
         print(msg)
