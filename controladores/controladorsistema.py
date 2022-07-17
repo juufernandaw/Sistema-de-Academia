@@ -66,7 +66,7 @@ class ControladorSistema:
         except ValueError as e:
             self.__tela_sistema.mostrar_msg(e)
             self.__tela_sistema.mostrar_msg(f"Erro! Valor incorreto: o Número {opcao_escolhida} é invalido"
-                                                        f" digite 1, 2 ou 0. ")
+                                            f" digite 1, 2 ou 0. ")
             self.iniciar_tela_sistema()
         except TypeError:
             self.__tela_sistema.mostrar_msg("Usuário inexistente. Favor digitar login e senha corretos!")

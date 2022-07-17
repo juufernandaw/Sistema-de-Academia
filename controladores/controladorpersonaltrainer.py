@@ -4,7 +4,7 @@ from telas.telasistema import TelaSistema
 from telas.telaaluno import TelaAluno
 
 
-class ControladorPersonalTrainer():
+class ControladorPersonalTrainer:
 
     def __init__(self, controlador_sistema):
         self.__tela_personal = TelaPersonalTrainer()
@@ -84,6 +84,3 @@ class ControladorPersonalTrainer():
 
     def consultar_tela_desempenho(self):
         return self.__controlador_sistema.controlador_treino_diario.mostrar_tela_treino_diario()
-
-    def sair(self):
-        return exit(0)
