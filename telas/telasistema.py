@@ -55,25 +55,8 @@ class TelaSistema:
         ]
         self.__window = sg.Window('Sistema de login').Layout(layout)
 
-    # def mostrar_menu_inicial(self):
-    #     global opcao
-    #     try:
-    #         print("Olá, bem vindo! Aqui começa sua jornada"
-    #               " para superar seus limites!")
-    #         print("Faça seu login")
-    #         print("1 - Aluno")
-    #         print("2 - Professor")
-    #         print("0 - Sair")
-    #         opcao = int(input())
-    #     except ValueError:
-    #         print("Só é possível digitar número.")
-    #         self.mostrar_menu_inicial()
-    #     return opcao
-
     def layout_logar_aluno(self):
         sg.ChangeLookAndFeel('DarkTeal4')
-        login = None
-        senha = None
         layout = [
                 [sg.Text('Bem vindo ao login!', font=("Helvica", 25))],
                 [sg.Text('Aluno, digite seu login', font=("Helvica", 25))],
@@ -86,8 +69,6 @@ class TelaSistema:
 
     def layout_logar_personal(self):
         sg.ChangeLookAndFeel('DarkTeal4')
-        login = None
-        senha = None
         layout = [
              [sg.Text('Bem vindo ao login!', font=("Helvica", 25))],
              [sg.Text('Personal, digite seu login', font=("Helvica", 25))],

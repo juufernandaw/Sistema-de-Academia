@@ -1,14 +1,31 @@
+import PySimpleGUI as sg
+
+
 class TelaAluno():
 
+    def __init__(self):
+        self.__window = None
+        self.layout_pegar_nome()
+        self.layout_pegar_cpf()
+        self.layout_pegar_login()
+        self.layout_pegar_senha()
+        self.layout_opcao_alterar()
+        self.mostrar_aluno()
+        self.layout_mexer_aluno()
+
     def mostrar_msg(self, msg):
-        print(msg)
+        sg.popup("", msg)
+
+    def close(self):
+        self.__window.Close()
 
     def mostrar_aluno(self, dados_aluno):  # mostra os dados do aluno
-        print("Nome:", dados_aluno["nome"])
-        print("Login:", dados_aluno["login"])
-        print("Senha:", dados_aluno["senha"])
-        print("CPF:", dados_aluno["cpf"])
-        print("Treinos:", dados_aluno["treinos"])
+        infos_aluno = "Nome:" + dados_aluno["nome"] + '\n'
+        infos_aluno = infos_aluno + "Login:" + dados_aluno["login"] + '\n'
+        infos_aluno = infos_aluno + "Senha:" + dados_aluno["senha"] + '\n'
+        infos_aluno = infos_aluno + "CPF:" + dados_aluno["cpf"] + '\n'
+        infos_aluno = infos_aluno + "Treinos:" + dados_aluno["treinos"] + '\n'
+        sg.popup("------DADOS ALUNO------", infos_aluno)
 
     def mostrar_treino_aluno(self, treinos):
         contador = 0
@@ -30,45 +47,143 @@ class TelaAluno():
         return {"nome": nome, "login": login, "senha": senha, "cpf": cpf}
 
     def mexer_aluno(self):
-        print("----- INÍCIO -----")
-        print("----- ABA ALUNO -----")  # Aba personal
-        print("O que você deseja fazer hoje? Digite o número correspondente:")
-        print("1 - Cadastrar aluno")
-        print("2 - Alterar aluno")
-        print("3 - Excluir aluno")
-        print("4 - Listar alunos")
-        print("5 - Consultar aluno")
-        print("6 - Consultar Desempenho do aluno")
-        print("0 - Retornar à tela inicial")
-
-        opcao = int(input())
+        self.layout_mexer_aluno()
+        button, values = self.__window.Read()
+        opcao = 0
+        if values['1']:
+            opcao = 1
+        elif values['2']:
+            opcao = 2
+        elif values['3']:
+            opcao = 3
+        elif values['4']:
+            opcao = 4
+        elif values['5']:
+            opcao = 5
+        elif values['0'] or button in (None, 'Cancelar'):
+            opcao = 0
+        self.close()
         return opcao
+
+    def layout_mexer_aluno(self):
+        sg.ChangeLookAndFeel('DarkTeal4')
+        layout = [
+            [sg.Text('----- INÍCIO -----', font=("Helvica", 25))],
+            [sg.Text('----- ABA ALUNO -----', font=("Helvica", 25))],
+            [sg.Text('O que você deseja fazer hoje?', font=("Helvica", 15))],
+            [sg.Radio('Cadastrar aluno', "RD1", key='1')],
+            [sg.Radio('Alterar aluno', "RD1", key='2')],
+            [sg.Radio('Excluir aluno', "RD1", key='3')],
+            [sg.Radio('Listar alunos', "RD1", key='4')],
+            [sg.Radio('Consultar aluno', "RD1", key='5')],
+            [sg.Radio('Consultar Desempenho do aluno', "RD1", key='6')],
+            [sg.Radio('Retornar', "RD1", key='0')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+        ]
+        self.__window = sg.Window('').Layout(layout)
 
     def opcao_alterar(self):
-        print("----- ALTERAR ALUNO -----")
-        print("O que você deseja alterar no aluno?")
-        print("1 - Alterar nome")
-        print("2 - Alterar cpf")
-        print("3 - Alterar login")
-        print("4 - Alterar senha")
-        print("5 - Alterar treino")
-        print("0 - Retornar")
-
-        opcao = int(input())
+        self.layout_opcao_alterar()
+        button, values = self.__window.Read()
+        opcao = 0
+        if values['nome']:
+            opcao = 1
+        elif values['cpf']:
+            opcao = 2
+        elif values['login']:
+            opcao = 3
+        elif values['senha']:
+            opcao = 4
+        elif values['treino']:
+            opcao = 5
+        elif values['0'] or button in (None, 'Cancelar'):
+            opcao = 0
+        self.close()
         return opcao
 
+    def layout_opcao_alterar(self):
+        sg.ChangeLookAndFeel('DarkTeal4')
+        layout = [
+            [sg.Text('----- ALTERAR ALUNO -----', font=("Helvica", 25))],
+            [sg.Text('O que você deseja alterar no aluno?', font=("Helvica", 15))],
+            [sg.Radio('Alterar nome', "RD1", key='nome')],
+            [sg.Radio('Alterar cpf', "RD1", key='cpf')],
+            [sg.Radio('Alterar login', "RD1", key='login')],
+            [sg.Radio('Alterar senha', "RD1", key='senha')],
+            [sg.Radio('Alterar treino', "RD1", key='treino')],
+            [sg.Radio('Retornar', "RD1", key='0')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+        ]
+        self.__window = sg.Window('').Layout(layout)
+
+    def layout_pegar_nome(self):
+        sg.ChangeLookAndFeel('DarkTeal4')
+        layout = [
+                [sg.Text('Digite o nome do aluno:', font=("Helvica", 25))],
+                [sg.InputText('', key='nome')],
+                [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+                ]
+        self.__window = sg.Window('').Layout(layout)
+
     def pegar_nome(self):
-        nome = input("Digite o nome do aluno:")
+        self.layout_pegar_nome()
+        button, values = self.__window.Read()
+        if button in (None, 'Cancelar'):
+            nome = None
+        else:
+            nome = values['nome']
         return nome
 
     def pegar_cpf(self):
-        cpf = input("Digite o cpf do aluno:")
+        self.layout_pegar_cpf()
+        button, values = self.__window.Read()
+        if button in (None, 'Cancelar'):
+            cpf = None
+        else:
+            cpf = values['cpf']
         return cpf
 
+    def layout_pegar_cpf(self):
+        sg.ChangeLookAndFeel('DarkTeal4')
+        layout = [
+                [sg.Text('Digite o cpf do aluno:', font=("Helvica", 25))],
+                [sg.InputText('', key='cpf')],
+                [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+                ]
+        self.__window = sg.Window('').Layout(layout)
+
     def pegar_login(self):
-        login = input("Digite o login do aluno:")
+        self.layout_pegar_login()
+        button, values = self.__window.Read()
+        if button in (None, 'Cancelar'):
+            login = None
+        else:
+            login = values['login']
         return login
 
+    def layout_pegar_login(self):
+        sg.ChangeLookAndFeel('DarkTeal4')
+        layout = [
+                [sg.Text('Digite o login do aluno:', font=("Helvica", 25))],
+                [sg.InputText('', key='login')],
+                [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+                ]
+        self.__window = sg.Window('').Layout(layout)
+
     def pegar_senha(self):
-        senha = input("Digite a senha do aluno:")
+        self.layout_pegar_senha()
+        button, values = self.__window.Read()
+        if button in (None, 'Cancelar'):
+            senha = None
+        else:
+            senha = values['senha']
         return senha
+
+    def layout_pegar_senha(self):
+        sg.ChangeLookAndFeel('DarkTeal4')
+        layout = [
+                [sg.Text('Digite a senha do aluno:', font=("Helvica", 25))],
+                [sg.InputText('', key='senha')],
+                [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+                ]
+        self.__window = sg.Window('').Layout(layout)
