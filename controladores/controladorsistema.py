@@ -48,7 +48,8 @@ class ControladorSistema:
                 opcao_escolhida = self.__tela_sistema.mostrar_menu_inicial()
                 if opcao_escolhida != 1 and opcao_escolhida != 2 and opcao_escolhida != 0:
                     raise ValueError
-                login, senha = self.__tela_sistema.logar(opcao_escolhida)  # ele vai entrar no login: aluno ou personal
+                else:
+                    login, senha = self.__tela_sistema.logar(opcao_escolhida)  # ele vai entrar no login: aluno ou personal
                 if opcao_escolhida == 1:
                     login_com_sucesso, self.__usuario_logado = self.__controlador_aluno.verificar_login_senha(login,
                                                                                                               senha)
