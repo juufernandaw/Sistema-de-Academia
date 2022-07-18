@@ -17,11 +17,11 @@ class TelaPersonalTrainer:
     def mostrar_personal_trainer(self, dados_personal):
         sg.ChangeLookAndFeel('DarkTeal4')
         layout = [
-            [sg.Radio('Nome:', dados_personal["nome"], font=("Helvica", 25))],
-            [sg.Radio('Login:', dados_personal["login"], font=("Helvica", 15))],
-            [sg.Radio('Senha:', dados_personal["senha"], font=("Helvica", 15))],
-            [sg.Radio('CPF:', dados_personal["cpf"], font=("Helvica", 15))],
-            [sg.Radio('Habilitação:', dados_personal["habilitacao"], font=("Helvica", 15))],
+            [sg.Text('Nome:', dados_personal["nome"], font=("Helvica", 25))],
+            [sg.Text('Login:', dados_personal["login"], font=("Helvica", 15))],
+            [sg.Text('Senha:', dados_personal["senha"], font=("Helvica", 15))],
+            [sg.Text('CPF:', dados_personal["cpf"], font=("Helvica", 15))],
+            [sg.Text('Habilitação:', dados_personal["habilitacao"], font=("Helvica", 15))],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
         self.__window = sg.Window('Informações do Personal').Layout(layout)
@@ -58,7 +58,7 @@ class TelaPersonalTrainer:
             opcao = 2
         elif values['0'] or button in (None, 'Cancelar'):
             opcao = 0
-            self.close()
+        self.close()
         return opcao
         # print("----- ABA PERSONAL -----")
         # print("O que você deseja fazer hoje ?")

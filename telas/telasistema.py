@@ -2,7 +2,6 @@ import PySimpleGUI as sg
 
 
 class TelaSistema:
-
     def __init__(self):
         self.__window = None
         self.layout_mostrar_menu_inicial()
