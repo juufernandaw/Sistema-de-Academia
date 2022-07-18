@@ -1,7 +1,13 @@
+import PySimpleGUI as sg
+
+
 class TelaTreino():
 
+    def __int__(self):
+        
+
     def mostrar_msg(self, msg: str):
-        print(msg)
+        sg.popup("", msg)
 
     def mostrar_tela_treino(self, treino):  # mostra tela com os dados do treino
         print("Nome do treino", treino["nome"])

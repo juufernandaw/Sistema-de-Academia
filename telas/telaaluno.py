@@ -12,6 +12,8 @@ class TelaAluno():
         self.layout_opcao_alterar()
         self.mostrar_aluno()
         self.layout_mexer_aluno()
+        self.layout_pega_dados_aluno()
+        self.layout_escolher_opcao_treino()
 
     def mostrar_msg(self, msg):
         sg.popup("", msg)
@@ -27,24 +29,60 @@ class TelaAluno():
         infos_aluno = infos_aluno + "Treinos:" + dados_aluno["treinos"] + '\n'
         sg.popup("------DADOS ALUNO------", infos_aluno)
 
-    def mostrar_treino_aluno(self, treinos):
-        contador = 0
-        for treino in treinos:
-            print(contador, ") Treino:", treino)
-            contador += 1
-        escolha = int(input("Qual treino você escolhe alterar?"))
-        return escolha
+    def mostrar_treino_aluno(self):
+        #ver como implementar
+        #return escolha
+
+    def layout_mostrar_treino_aluno(self, treinos):
+        layout = [
+            [sg.Text('Qual treino você deseja alterar?')],
+            *[[sg.Radio(treino, 1), ] for treino in treinos],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+        ]
+        self.__window = sg.Window('').Layout(layout)
 
     def escolher_opcao_treino(self):
-        escolha = int(input("Você deseja 1) Excluir um treino de um aluno ou 2) Adicionar um treino ao aluno? "))
+        self.layout_escolher_opcao_treino()
+        button, values = self.__window.Read()
+        escolha = 0
+        if values['1']:
+            escolha = 1
+        elif values['2']:
+            escolha = 2
         return escolha
+
+    def layout_escolher_opcao_treino(self):
+        layout = [
+            [sg.Text('O que você deseja fazer?', font=("Helvica", 25))],
+            [sg.Radio('Excluir um treino de um aluno', "RD2", key='1')],
+            [sg.Radio('Adicionar um treino ao aluno', "RD2", key='2')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+        ]
+        self.__window = sg.Window('').Layout(layout)
         
-    def pega_dados_aluno(self): 
-        nome = input("Digite o nome do aluno:")
-        login = input("Digite o login do aluno:")
-        senha = input("Digite a senha do aluno:")
-        cpf = input("Digite o cpf do aluno:")
+    def pega_dados_aluno(self):
+        self.layout_pega_dados_aluno()
+        button, values = self.__window.Read()
+        nome = values['nome']
+        login = values['login']
+        senha = values['senha']
+        cpf = values['cpf']
+        #tratar botão cancelar e inserções incorretas
         return {"nome": nome, "login": login, "senha": senha, "cpf": cpf}
+
+    def layout_pega_dados_aluno(self):
+        layout = [
+            [sg.Text('Digite o nome do aluno:', font=("Helvica", 25))],
+            [sg.InputText('', key='nome')],
+            [sg.Text('Digite o login do aluno:', font=("Helvica", 25))],
+            [sg.InputText('', key='login')],
+            [sg.Text('Digite a senha do aluno:', font=("Helvica", 25))],
+            [sg.InputText('', key='senha')],
+            [sg.Text('Digite o cpf do aluno:', font=("Helvica", 25))],
+            [sg.InputText('', key='cpf')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+        ]
+        self.__window = sg.Window('').Layout(layout)
 
     def mexer_aluno(self):
         self.layout_mexer_aluno()
@@ -71,13 +109,13 @@ class TelaAluno():
             [sg.Text('----- INÍCIO -----', font=("Helvica", 25))],
             [sg.Text('----- ABA ALUNO -----', font=("Helvica", 25))],
             [sg.Text('O que você deseja fazer hoje?', font=("Helvica", 15))],
-            [sg.Radio('Cadastrar aluno', "RD1", key='1')],
-            [sg.Radio('Alterar aluno', "RD1", key='2')],
-            [sg.Radio('Excluir aluno', "RD1", key='3')],
-            [sg.Radio('Listar alunos', "RD1", key='4')],
-            [sg.Radio('Consultar aluno', "RD1", key='5')],
-            [sg.Radio('Consultar Desempenho do aluno', "RD1", key='6')],
-            [sg.Radio('Retornar', "RD1", key='0')],
+            [sg.Radio('Cadastrar aluno', "RD3", key='1')],
+            [sg.Radio('Alterar aluno', "RD3", key='2')],
+            [sg.Radio('Excluir aluno', "RD3", key='3')],
+            [sg.Radio('Listar alunos', "RD3", key='4')],
+            [sg.Radio('Consultar aluno', "RD3", key='5')],
+            [sg.Radio('Consultar Desempenho do aluno', "RD3", key='6')],
+            [sg.Radio('Retornar', "RD3", key='0')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
         self.__window = sg.Window('').Layout(layout)
@@ -106,12 +144,12 @@ class TelaAluno():
         layout = [
             [sg.Text('----- ALTERAR ALUNO -----', font=("Helvica", 25))],
             [sg.Text('O que você deseja alterar no aluno?', font=("Helvica", 15))],
-            [sg.Radio('Alterar nome', "RD1", key='nome')],
-            [sg.Radio('Alterar cpf', "RD1", key='cpf')],
-            [sg.Radio('Alterar login', "RD1", key='login')],
-            [sg.Radio('Alterar senha', "RD1", key='senha')],
-            [sg.Radio('Alterar treino', "RD1", key='treino')],
-            [sg.Radio('Retornar', "RD1", key='0')],
+            [sg.Radio('Alterar nome', "RD4", key='nome')],
+            [sg.Radio('Alterar cpf', "RD4", key='cpf')],
+            [sg.Radio('Alterar login', "RD4", key='login')],
+            [sg.Radio('Alterar senha', "RD4", key='senha')],
+            [sg.Radio('Alterar treino', "RD4", key='treino')],
+            [sg.Radio('Retornar', "RD4", key='0')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
         self.__window = sg.Window('').Layout(layout)
