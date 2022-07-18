@@ -114,6 +114,7 @@ class TelaTreinoDiario:
         # resposta = int(input("Qual treino você fará hoje?"))
         button, values = self.__window.Read()
         escolha_treino = values['treino']
+        sg.popup(values['treino'])  # AQUI SERIA PRA ABRIR UM POPUP COM O TREINO ESCOLHIDO
         if button in (None, 'Cancelar'):
             self.close()
         self.close()
