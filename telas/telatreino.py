@@ -4,7 +4,7 @@ import PySimpleGUI as sg
 class TelaTreino():
 
     def __int__(self):
-
+        pass
 
     def mostrar_msg(self, msg: str):
         sg.popup("", msg)
