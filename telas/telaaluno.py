@@ -10,7 +10,7 @@ class TelaAluno():
         self.layout_pegar_login()
         self.layout_pegar_senha()
         self.layout_opcao_alterar()
-        self.mostrar_aluno()
+        #self.mostrar_aluno()
         self.layout_mexer_aluno()
         self.layout_pega_dados_aluno()
         self.layout_escolher_opcao_treino()
@@ -29,17 +29,20 @@ class TelaAluno():
         infos_aluno = infos_aluno + "Treinos:" + dados_aluno["treinos"] + '\n'
         sg.popup("------DADOS ALUNO------", infos_aluno)
 
-    def mostrar_treino_aluno(self):
-        #ver como implementar
-        #return escolha
-
-    def layout_mostrar_treino_aluno(self, treinos):
+    def mostrar_treino_aluno(self, treinos):
+        botoes_treinos = []
+        for id, treino in enumerate(treinos):
+            botoes_treinos.append([sg.Radio(id, "RD1", key=treino.nome)])
         layout = [
             [sg.Text('Qual treino você deseja alterar?')],
-            *[[sg.Radio(treino, 1), ] for treino in treinos],
+            botoes_treinos,
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
         self.__window = sg.Window('').Layout(layout)
+        button, values = self.__window.Read()
+        treino_escolhido = values[treino.nome]
+        #alterar para dicionário e retornar certo
+        return treino_escolhido
 
     def escolher_opcao_treino(self):
         self.layout_escolher_opcao_treino()

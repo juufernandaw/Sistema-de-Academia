@@ -144,7 +144,6 @@ class TelaTreinoDiario:
             self.close()
         self.close()
         return opcao
-
         # print(f"Você gostaria de fazer outro treino?")
         # opcao = int(input("1 - Sim ou 2 - Não"))
         # return opcao

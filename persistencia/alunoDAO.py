@@ -11,3 +11,6 @@ class AlunoDAO(DAO):
 
     def get(self, cpf_aluno: str):
         return super().get(cpf_aluno)
+
+    def remove(self, aluno: Aluno):
+        super().remove(aluno.cpf)

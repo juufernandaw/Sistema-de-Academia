@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 import pickle
-
+#LEMBRAR DE COLOCAR CÓDIGO DA PAG 22 DOS SLIDES (SINGLETON) EM CONTROLADORES E TELAS
 
 class DAO(ABC):
     @abstractmethod
