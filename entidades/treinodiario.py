@@ -2,7 +2,7 @@ from entidades.aluno import Aluno
 from datetime import date
 
 
-class TreinoDiario():
+class TreinoDiario:
     def __init__(self, aluno: Aluno, data: date, treinos: []):
         self.__aluno = aluno
         self.__data = data

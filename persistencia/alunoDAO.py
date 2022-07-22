@@ -7,7 +7,7 @@ class AlunoDAO(DAO):
 
     def add(self, aluno: Aluno):
         if aluno is not None:
-            super().add(aluno.cpf, aluno) #passa a chave e o objeto
+            super().add(aluno.cpf)  #passa a chave e o objeto
 
     def get(self, cpf_aluno: str):
         return super().get(cpf_aluno)
