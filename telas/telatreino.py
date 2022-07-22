@@ -4,19 +4,20 @@ import PySimpleGUI as sg
 class TelaTreino():
 
     def __int__(self):
-        pass
+        self.__window = None
 
     def mostrar_msg(self, msg: str):
         sg.popup("", msg)
 
     def mostrar_tela_treino(self, treino):  # mostra tela com os dados do treino
-        print("Nome do treino", treino["nome"])
+        infos_treino = "Nome:" + treino["nome"] + '\n'
         for exercicio in treino["exercicios"]:
-            print("Nome do exercício", exercicio.nome)
-            print("Série do exercício", exercicio.serie)
-            print("Repetição do exercício", exercicio.repeticao)
-            print("Tempo de descanso do exercício", exercicio.tempo_descanso)
-            print("Tipo do exercício", exercicio.tipo_exercicio.categoria_exercicio)
+            infos_treino = infos_treino + "Nome:" + exercicio["nome"] + '\n'
+            infos_treino = infos_treino + "Serie:" + exercicio["serie"] + '\n'
+            infos_treino = infos_treino + "Repeticao:" + exercicio["repeticao"] + '\n'
+            infos_treino = infos_treino + "Tempo de Descanso:" + exercicio["tempo_descanso"] + '\n'
+            infos_treino = infos_treino + "Categoria:" + exercicio["tipo_exercicio"].categoria_exercicio + '\n' + '\n'
+        sg.popup("------DADOS TREINO------", infos_treino)
 
     def montar_treino(self):  # mostra tela perguntando se quer cadastrar novo treino
         opcao = int(input("Deseja cadastrar um novo treino? 1- Sim 2- Não"))
@@ -45,24 +46,55 @@ class TelaTreino():
             return opcao, None
 
     def selecionar_treino_por_nome(self):
-        nome_treino = input("Nome do treino:")
-        return nome_treino
+        layout = [
+            [sg.Text('Digite o nome do treino:', font=("Helvica", 25))],
+            [sg.InputText('', key='nome')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+        ]
+        self.__window = sg.Window('').Layout(layout)
+        button, values = self.__window.Read()
+        nome = values['nome']
+        return nome
 
     def escolher_alteracao_treino(self):
-        opcao = int(input("Escolha o que deseja fazer: 1) Alterar nome do treino 2) Excluir e incluir novos "
-                          "exercícios no treino "))
-        return opcao
+        layout = [
+            [sg.Text('O que você deseja fazer?', font=("Helvica", 25))],
+            [sg.Radio('Alterar nome do treino', "RD7", key='1')],
+            [sg.Radio('Excluir e incluir novos exercícios no treino', "RD7", key='2')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+        ]
+        self.__window = sg.Window('').Layout(layout)
+        button, values = self.__window.Read()
+        escolha = 0
+        if values['1']:
+            escolha = 1
+        elif values['2']:
+            escolha = 2
+        return escolha
 
     def mexer_treino(self):
-        print("----- INÍCIO -----")
-        print("----- ABA TREINO -----") 
-        print("O que você deseja fazer hoje? Digite o número correspondente:")
-        print("1 - Cadastrar treino")
-        print("2 - Alterar treino")
-        print("3 - Excluir treino")
-        print("4 - Listar treinos")
-        print("5 - Consultar treino")
-        print("0 - Retornar à tela inicial")
-
-        opcao = int(input())
-        return opcao
+        layout = [
+            [sg.Text('----- INÍCIO -----', font=("Helvica", 25))],
+            [sg.Text('----- ABA TREINO -----', font=("Helvica", 25))],
+            [sg.Text('O que você deseja fazer?', font=("Helvica", 25))],
+            [sg.Radio('Cadastrar treino', "RD8", key='1')],
+            [sg.Radio('Alterar treino', "RD8", key='2')],
+            [sg.Radio('Excluir treino', "RD8", key='3')],
+            [sg.Radio('Listar treinos', "RD8", key='4')],
+            [sg.Radio('Consultar treino', "RD8", key='5')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+        ]
+        self.__window = sg.Window('').Layout(layout)
+        button, values = self.__window.Read()
+        escolha = 0
+        if values['1']:
+            escolha = 1
+        elif values['2']:
+            escolha = 2
+        elif values['3']:
+            escolha = 3
+        elif values['4']:
+            escolha = 4
+        elif values['5']:
+            escolha = 5
+        return escolha

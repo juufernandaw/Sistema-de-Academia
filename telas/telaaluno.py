@@ -32,7 +32,7 @@ class TelaAluno():
     def mostrar_treino_aluno(self, treinos):
         botoes_treinos = []
         for id, treino in enumerate(treinos):
-            botoes_treinos.append([sg.Radio(id, "RD1", key=treino.nome)])
+            botoes_treinos.append([sg.Radio(id, "RD6", key=treino.nome)])
         layout = [
             [sg.Text('Qual treino você deseja alterar?')],
             botoes_treinos,
@@ -41,7 +41,6 @@ class TelaAluno():
         self.__window = sg.Window('').Layout(layout)
         button, values = self.__window.Read()
         treino_escolhido = values[treino.nome]
-        #alterar para dicionário e retornar certo
         return treino_escolhido
 
     def escolher_opcao_treino(self):
@@ -54,7 +53,7 @@ class TelaAluno():
             escolha = 2
         return escolha
 
-    def layout_escolher_opcao_treino(self):
+    def layout_escolher_opcao_treino(self): #necessário mudar
         layout = [
             [sg.Text('O que você deseja fazer?', font=("Helvica", 25))],
             [sg.Radio('Excluir um treino de um aluno', "RD2", key='1')],

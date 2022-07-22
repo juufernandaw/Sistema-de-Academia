@@ -106,9 +106,8 @@ class ControladorAluno():
             if opcao != 1 and opcao != 2:
                 raise ValueError
             lista_opcoes = {1: self.desvincular_aluno_treino, 2: self.vincular_aluno_treino}
-            treino = self.__tela_aluno.mostrar_treino_aluno(aluno.treinos)  # retorna o numero do treino
-            #transformar pra dicionário
-            treino_escolhido = aluno.treinos[treino]  # retorna a instancia do treino da lista de treinos
+            treino_escolhido = self.__tela_aluno.mostrar_treino_aluno(aluno.treinos)  # retorna o numero do treino
+            #alterado pq transformei pra dict
             while True:
                 funcao_escolhida = lista_opcoes[opcao]
                 return funcao_escolhida(aluno, treino_escolhido)

@@ -31,12 +31,12 @@ class ControladorTreino:
                 else:
                     treino = Treino(nome_treino)  # instancia o treino
                     self.criar_exercicio(treino)  # chama o método para incluir exercicios no treino
-                    self.__treinos.append(treino)  # adiciona o treino a lista de todos os treinos do sistema
+                    self.__treinos.append({"nome": treino.nome, "exercicios": treino.exercicios})  # adiciona o treino a lista de todos os treinos do sistema
                     aluno = self.__controlador_sistema.controlador_aluno.selecionar_aluno()  # seleciona o aluno pra vincular #seleciona a instancia do aluno
                     while (aluno is None):
                         self.__tela_treino.mostrar_msg("ATENÇÃO: Aluno inexistente! Favor digite um aluno válido")
                         aluno = self.__controlador_sistema.controlador_aluno.selecionar_aluno()
-                    aluno.adicionar_treino_aluno(treino)  # chama o método pela instancia do aluno
+                    aluno.adicionar_treino_aluno({"nome": treino.nome, "exercicios": treino.exercicios})  # chama o método pela instancia do aluno
                     novo_treino, nome_treino = self.__tela_treino.montar_treino()  # pedir se quer incluir novo treino e o nome do treino
             if novo_treino == 2:  # se não deseja criar novo treino
                 return self.abre_tela_funcoes_treino()
