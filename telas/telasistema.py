@@ -31,12 +31,12 @@ class TelaSistema:
         opcao = 0
         if values['1']:
             opcao = 1
-        if values['2']:
+        elif values['2']:
             opcao = 2
         # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
-        if values['0'] or button in (None, 'Cancelar'):
+        elif values['0'] or button in (None, 'Cancelar'):
             opcao = 0
-            self.close()
+        self.close()
         return opcao
 
     def close(self):

@@ -101,15 +101,16 @@ class TelaTreinoDiario:
     def montar_treino_diario(self, lista_treinos):
         sg.ChangeLookAndFeel('DarkTeal4')
         contador = 0
-        for treino in lista_treinos:
-            layout = [
-                [sg.Text("Qual treino você fará hoje?", font=("Helvica", 25))],
-                [sg.Text(f"{contador} - Nome do treino: {treino.nome}", font=("Helvica", 15))],
-                [sg.Text('Treino escolhido:', size=(15, 1)), sg.InputText('', key='treino')],
-                [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
-            ]
-            # print(contador, " - Nome do treino:", treino.nome)
+        botoes_treinos = []
+        for id, treino in enumerate(lista_treinos):
+            botoes_treinos.append([sg.Radio(f"{id}", "RD1", key=treino.nome)])
             contador += 1
+        layout = [
+            [sg.Text("Qual treino você fará hoje?", font=("Helvica", 25))],
+            botoes_treinos,
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+        ]
+        # print(contador, " - Nome do treino:", treino.nome)
         self.__window = sg.Window("Seleciona treino").Layout(layout)
         # resposta = int(input("Qual treino você fará hoje?"))
         button, values = self.__window.Read()
@@ -149,9 +150,11 @@ class TelaTreinoDiario:
         # return opcao
 
     def mostrar_dias_treino(self, dias):
+        #sg.popup("------Dias de Treino------", dias)
         sg.popup(f"Parabéns! Você foi {dias} dia(s) treinar")
 
     def contar_calorias(self, calorias):
+        # sg.popup("------Calorias Perdidas------", dias)
         sg.popup(f"Parabéns! Você perdeu {calorias} calorias")
 
     def mostrar_dias_treino_aluno(self, aluno, dias):

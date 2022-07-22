@@ -15,19 +15,12 @@ class TelaPersonalTrainer:
         sg.popup("", msg)
 
     def mostrar_personal_trainer(self, dados_personal):
-        sg.ChangeLookAndFeel('DarkTeal4')
-        layout = [
-            [sg.Text('Nome:', dados_personal["nome"], font=("Helvica", 25))],
-            [sg.Text('Login:', dados_personal["login"], font=("Helvica", 15))],
-            [sg.Text('Senha:', dados_personal["senha"], font=("Helvica", 15))],
-            [sg.Text('CPF:', dados_personal["cpf"], font=("Helvica", 15))],
-            [sg.Text('Habilitação:', dados_personal["habilitacao"], font=("Helvica", 15))],
-            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
-        ]
-        self.__window = sg.Window('Informações do Personal').Layout(layout)
-        button = self.__window.Read()
-        if button in (None, 'Cancelar'):
-            self.tela_aba_personal()
+        infos_personal = "Nome:" + dados_personal["nome"] + '\n'
+        infos_personal = infos_personal + "Login:" + dados_personal["login"] + '\n'
+        infos_personal = infos_personal + "Senha:" + dados_personal["senha"] + '\n'
+        infos_personal = infos_personal + "CPF:" + dados_personal["cpf"] + '\n'
+        infos_personal = infos_personal + "Habilitação:" + dados_personal["habilitacao"] + '\n'
+        sg.popup("------DADOS PERSONAL------", infos_personal)
 
     # def mostrar_personal_trainer(self, dados_personal):  # mostra os dados do personal
     #     print("Nome:", dados_personal["nome"])
@@ -81,7 +74,7 @@ class TelaPersonalTrainer:
                 [sg.Text('Digite a senha:', font=("Helvica", 25))],
                 [sg.InputText('', key='senha')],
                 [sg.Text('Digite a habilitação:', font=("Helvica", 25))],
-                [sg.InputText('', key='habilitacão')],
+                [sg.InputText('', key='habilitacao')],
                 [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
                 ]
         self.__window = sg.Window('Renovação dos dados, personal').Layout(layout)
@@ -89,13 +82,18 @@ class TelaPersonalTrainer:
     def tela_alterar_dados(self):  # alterando personal
         self.layout_tela_alterar_dados()
         button, values = self.__window.Read()
-        nome = values["nome"]
-        cpf = values["nome"]
-        login = values["nome"]
-        senha = values["nome"]
-        habilitacao = values["habilitacao"]
         if button in (None, 'Cancelar'):
-            nome, cpf, login, senha, habilitacao = None
+            nome = None
+            cpf = None
+            login = None
+            senha = None
+            habilitacao = None
+        else:
+            nome = values["nome"]
+            cpf = values["cpf"]
+            login = values["login"]
+            senha = values["senha"]
+            habilitacao = values["habilitacao"]
         self.close()
         return {"cpf": cpf, "nome": nome, "login": login, "senha": senha, "habilitacao": habilitacao}
 
@@ -111,21 +109,21 @@ class TelaPersonalTrainer:
         sg.ChangeLookAndFeel('DarkTeal4')
         layout = [
             [sg.Text("------ INÍCIO ------", font=("Helvica", 25))],
-            [sg.Text('Seja bem vindo, personal!', font=("Helvica", 15))],
-            [sg.Text('O que você deseja fazer hoje? Digite o número correspondente:', font=("Helvica", 15))],
-            [sg.Radio('ABA Personal', "RD1", key='1')],
-            [sg.Radio('ABA Alunos', "RD1", key='2')],
-            [sg.Radio('ABA Treinos', "RD1", key='3')],
-            [sg.Radio('Sair', "RD1", key='0')],
+            [sg.Text("------ ABA PERSONAL ------", font=("Helvica", 25))],
+            [sg.Text('Seja bem vindo, personal! O que você deseja fazer hoje?', font=("Helvica", 15))],
+            [sg.Radio('ABA Personal', "RD3", key='1')],
+            [sg.Radio('ABA Alunos', "RD3", key='2')],
+            [sg.Radio('ABA Treinos', "RD3", key='3')],
+            [sg.Radio('Sair', "RD3", key='0')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
         self.__window = sg.Window('Personal').Layout(layout)
 
     def mexer_personal(self):
         while True:
+            global opcao
             self.layout_mexer_personal()
             button, values = self.__window.Read()
-            opcao = 0
             if values['1']:
                 opcao = 1
             elif values['2']:
