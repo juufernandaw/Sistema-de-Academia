@@ -1,5 +1,5 @@
 
 class TypeErrorException(Exception):
-    def __init__(self, valor):
-        self.mensagem = f"Inexistente, tente novamente."
+    def __init__(self):
+        self.mensagem = f"Usuário inexistente, tente novamente."
         super().__init__(self.mensagem)
