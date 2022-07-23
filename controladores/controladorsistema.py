@@ -48,10 +48,12 @@ class ControladorSistema:
                 opcao_escolhida = self.__tela_sistema.mostrar_menu_inicial()
                 if opcao_escolhida != 1 and opcao_escolhida != 2 and opcao_escolhida != 0:
                     raise ValueError
+                elif opcao_escolhida == 0:
+                    self.encerrar_sistema()
                 else:
                     login, senha = self.__tela_sistema.logar(opcao_escolhida)  # ele vai entrar no login: aluno ou personal
                 if opcao_escolhida == 1:
-                    login_com_sucesso, self.__usuario_logado = self.__controlador_aluno.verificar_login_senha(login,
+                    login_com_sucesso, self._usuario_logado = self._controlador_aluno.verificar_login_senha(login,
                                                                                                               senha)
                     if self.__usuario_logado is None:
                         raise TypeError
@@ -59,8 +61,6 @@ class ControladorSistema:
                     login_com_sucesso = self.__controlador_personal_trainer.verificar_login_senha(login, senha)
                     if not login_com_sucesso:
                         raise TypeError
-                elif opcao_escolhida == 0:
-                    self.encerrar_sistema()
                 if login_com_sucesso is not None:
                     funcao_escolhida = lista_opcoes[opcao_escolhida]
                     return funcao_escolhida()
