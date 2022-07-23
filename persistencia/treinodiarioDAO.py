@@ -3,16 +3,16 @@ from entidades.treinodiario import TreinoDiario
 from entidades.aluno import Aluno
 
 
-class TreinoDiario(DAO):
+class TreinoDiariDAO(DAO):
     def __int__(self):
         super().__int__("treino diario.pkl")
 
     def add(self, treino_diario: TreinoDiario):
         if treino_diario is not None:
-            super().add(treino_diario.aluno)  #passa a chave e o objeto
+            super().add(treino_diario.chave(), treino_diario)  # passa a chave e o objeto
 
-    def get(self, aluno: Aluno):
-        return super().get(aluno)
+    def get(self, treino_diario: TreinoDiario):
+        return super().get(treino_diario.chave())
 
     def remove(self, treino_diario: TreinoDiario):
-        super().remove(treino_diario.aluno)
+        super().remove(treino_diario.chave())

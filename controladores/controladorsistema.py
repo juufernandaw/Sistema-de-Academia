@@ -52,18 +52,18 @@ class ControladorSistema:
                     self.encerrar_sistema()
                 else:
                     login, senha = self.__tela_sistema.logar(opcao_escolhida)  # ele vai entrar no login: aluno ou personal
-                if opcao_escolhida == 1:
-                    login_com_sucesso, self._usuario_logado = self._controlador_aluno.verificar_login_senha(login,
-                                                                                                              senha)
-                    if self.__usuario_logado is None:
-                        raise TypeError
-                elif opcao_escolhida == 2:
-                    login_com_sucesso = self.__controlador_personal_trainer.verificar_login_senha(login, senha)
-                    if not login_com_sucesso:
-                        raise TypeError
-                if login_com_sucesso is not None:
-                    funcao_escolhida = lista_opcoes[opcao_escolhida]
-                    return funcao_escolhida()
+                    if opcao_escolhida == 1:
+                        login_com_sucesso, self.__usuario_logado = self.__controlador_aluno.verificar_login_senha(login,
+                                                                                                                  senha)
+                        if self.__usuario_logado is None:
+                            raise TypeError
+                    elif opcao_escolhida == 2:
+                        login_com_sucesso = self.__controlador_personal_trainer.verificar_login_senha(login, senha)
+                        if not login_com_sucesso:
+                            raise TypeError
+                    if login_com_sucesso is not None:
+                        funcao_escolhida = lista_opcoes[opcao_escolhida]
+                        return funcao_escolhida()
         except ValueError as e:
             self.__tela_sistema.mostrar_msg(e)
             self.__tela_sistema.mostrar_msg(f"Erro! Valor incorreto: o Número {opcao_escolhida} é invalido"

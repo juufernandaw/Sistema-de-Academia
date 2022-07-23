@@ -34,3 +34,7 @@ class TreinoDiario:
     def treinos(self, lista_treinos):
         if isinstance(lista_treinos, list):
             self.__treinos = lista_treinos
+
+    def chave(self): #ve se funciona se nao converter em str antes
+        chave = self.__aluno.nome + self.__data.strftime("%m%d%Y, %H:%M:%S") #date_str = dia_atual.strftime("%m%d%Y, %H:%M:%S")
+        return chave
