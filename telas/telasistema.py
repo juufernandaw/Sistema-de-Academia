@@ -21,7 +21,7 @@ class TelaSistema:
         senha = values['senha']
         # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
         if button in (None, 'Cancelar'):
-            login, senha = None
+            self.close()
         self.close()
         return login, senha
 

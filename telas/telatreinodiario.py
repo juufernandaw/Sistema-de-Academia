@@ -142,7 +142,6 @@ class TelaTreinoDiario:
             opcao = 2
         elif button in (None, 'Cancelar'):
             opcao = 0
-            self.close()
         self.close()
         return opcao
         # print(f"Você gostaria de fazer outro treino?")
