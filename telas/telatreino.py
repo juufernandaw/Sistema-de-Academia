@@ -9,6 +9,30 @@ class TelaTreino:
     def mostrar_msg(self, msg: str):
         sg.popup("", msg)
 
+    def layout_alterar_treino(self, treino: {}):
+        botoes_exercicios = []
+        print("botoes_exer", botoes_exercicios)
+        print("treino", treino)
+        for i, exercicio in enumerate(treino["exercicios"]):
+            print("treino exercicios", treino["exercicios"])
+            print("exercicio", exercicio)
+            botoes_exercicios.append([sg.InputText(exercicio["nome"], key=exercicio["nome"])])
+            botoes_exercicios.append([sg.InputText(exercicio["repeticao"], key=exercicio["repeticao"])])
+            botoes_exercicios.append([sg.InputText(exercicio["serie"], key=exercicio["serie"])])
+            botoes_exercicios.append([sg.InputText(exercicio["tempo_descanso"], key=exercicio["tempo_descanso"])])
+        layout = [
+            [sg.Text('Nome do treino:', font=("Helvica", 25))],
+            [sg.InputText(treino["nome"], key='nome')],
+            [sg.Text('Exercicios', font=("Helvica", 25))],
+            botoes_exercicios,
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+        ]
+        self.__window = sg.Window('').Layout(layout)
+        button, values = self.__window.Read()
+        nome = values['nome']
+        self.close()
+        return {"nome": nome}
+
     def exercicio_novamente(self):
         layout = [[sg.Text('Deseja cadastrar um novo exercicio?', font=("Helvica", 25))],
             [sg.Button('Sim'), sg.Button('Nao')]]
@@ -90,23 +114,6 @@ class TelaTreino:
         self.close()
         return nome
 
-    def escolher_alteracao_treino(self):
-        layout = [
-            [sg.Text('O que você deseja fazer?', font=("Helvica", 25))],
-            [sg.Radio('Alterar nome do treino', "RD7", key='1')],
-            [sg.Radio('Excluir e incluir novos exercícios no treino', "RD7", key='2')],
-            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
-        ]
-        self.__window = sg.Window('').Layout(layout)
-        button, values = self.__window.Read()
-        escolha = 0
-        if values['1']:
-            escolha = 1
-        elif values['2']:
-            escolha = 2
-        self.close()
-        return escolha
-
 
     def mexer_treino(self):
         layout = [
@@ -118,11 +125,13 @@ class TelaTreino:
             [sg.Radio('Excluir treino', "RD8", key='3')],
             [sg.Radio('Listar treinos', "RD8", key='4')],
             [sg.Radio('Consultar treino', "RD8", key='5')],
-            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+            [sg.Button('Confirmar'), sg.Cancel('Retornar')]
         ]
         self.__window = sg.Window('').Layout(layout)
         button, values = self.__window.Read()
         escolha = 0
+        if button == 'Retornar':
+            escolha = 0
         if values['1']:
             escolha = 1
         elif values['2']:
@@ -135,7 +144,6 @@ class TelaTreino:
             escolha = 5
         self.close()
         return escolha
-
 
     def close(self):
         self.__window.Close()

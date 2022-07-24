@@ -17,21 +17,23 @@ class TelaAluno:
     def mostrar_aluno(self, dados_aluno):  # mostra os dados do aluno
         infos_aluno = ""
         for aluno in dados_aluno:
-            print("ALuno", aluno)
+            #print("ALuno", aluno)
             infos_aluno += "Nome:" + aluno["nome"] + '\n'
             infos_aluno += "Login:" + aluno["login"] + '\n'
             infos_aluno += "Senha:" + aluno["senha"] + '\n'
             infos_aluno += "CPF:" + aluno["cpf"] + '\n'
             for treino in aluno["treinos"]:
-                infos_aluno += "Nome do treino:" + treino.nome + '\n'
-                for exercicio in treino.exercicios:
-                    infos_aluno += "Nome do exercício:" + exercicio.nome + '\n'
-                    infos_aluno += "Repeticao:" + exercicio.repeticao + '\n'
-                    infos_aluno += "Series:" + exercicio.serie + '\n'
-                    infos_aluno += "Tempo descanso:" + exercicio.tempo_descanso + '\n'
-                    infos_aluno += "Tipo exercicio:" + exercicio.tipo_exercicio.categoria_exercicio + '\n' + '\n'
+                print("treino", treino)
+                print("treinos aluno: ", aluno["treinos"])
+                infos_aluno += "Nome do treino:" + treino["nome"] + '\n'
+                for exercicio in treino["exercicios"]:
+                    infos_aluno += "Nome do exercício:" + exercicio["nome"] + '\n'
+                    infos_aluno += "Repeticao:" + exercicio["repeticao"] + '\n'
+                    infos_aluno += "Series:" + exercicio["serie"] + '\n'
+                    infos_aluno += "Tempo descanso:" + exercicio["tempo_descanso"] + '\n'
+                    infos_aluno += "Tipo exercicio:" + exercicio["tipo_exercicio"].categoria_exercicio + '\n' + '\n'
         sg.popup("------DADOS ALUNO------", infos_aluno)
-        #self.close()
+        self.close()
 
     def mostrar_treino_aluno(self, treinos):
         botoes_treinos = []
@@ -45,7 +47,7 @@ class TelaAluno:
         self.__window = sg.Window('').Layout(layout)
         button, values = self.__window.Read()
         treino_escolhido = values[treino.nome]
-        #self.close()
+        self.close()
         return treino_escolhido
 
     def escolher_opcao_treino(self):
@@ -56,7 +58,7 @@ class TelaAluno:
             escolha = 1
         elif values['2']:
             escolha = 2
-        #self.close()
+        self.close()
         return escolha
 
     def layout_escolher_opcao_treino(self): #necessário mudar
@@ -75,8 +77,7 @@ class TelaAluno:
         login = values['login']
         senha = values['senha']
         cpf = values['cpf']
-        #tratar botão cancelar e inserções incorretas
-        #self.close()
+        self.close()
         return {"nome": nome, "login": login, "senha": senha, "cpf": cpf}
 
     def layout_pega_dados_aluno(self):
@@ -107,9 +108,9 @@ class TelaAluno:
             opcao = 4
         elif values['5']:
             opcao = 5
-        elif values['0'] or button in (None, 'Cancelar'):
+        elif button == 'Retornar':
             opcao = 0
-        #self.close()
+        self.close()
         return opcao
 
     def layout_mexer_aluno(self):
@@ -124,8 +125,7 @@ class TelaAluno:
             [sg.Radio('Listar alunos', "RD3", key='4')],
             [sg.Radio('Consultar aluno', "RD3", key='5')],
             [sg.Radio('Consultar Desempenho do aluno', "RD3", key='6')],
-            [sg.Radio('Retornar', "RD3", key='0')],
-            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+            [sg.Button('Confirmar'), sg.Cancel('Retornar')]
         ]
         self.__window = sg.Window('mx').Layout(layout)
 
@@ -145,7 +145,7 @@ class TelaAluno:
             nome = None
         else:
             nome = values['nome']
-        #self.close()
+        self.close()
         return nome
 
     def pegar_cpf(self):
@@ -155,7 +155,7 @@ class TelaAluno:
             cpf = None
         else:
             cpf = values['cpf']
-        #self.close()
+        self.close()
         print("CPF:", cpf)
         return cpf
 
@@ -175,7 +175,7 @@ class TelaAluno:
             login = None
         else:
             login = values['login']
-        #self.close()
+        self.close()
         return login
 
     def layout_pegar_login(self):
@@ -194,7 +194,7 @@ class TelaAluno:
             senha = None
         else:
             senha = values['senha']
-        #self.close()
+        self.close()
         return senha
 
     def layout_pegar_senha(self):
@@ -208,19 +208,35 @@ class TelaAluno:
 
     def layout_alterar_aluno(self, aluno):
         botoes_treinos = []
+        botoes_exercicios = []
+        print("1) ", aluno.treinos)
         for id, treino in enumerate(aluno.treinos):
-            #pensar em como implementar
-            botoes_treinos.append([sg.InputText(id, "RD15", key=treino.nome)])
+            botoes_treinos.append([sg.InputText(treino["nome"], key=treino["nome"])])
+            # for i, exercicio in enumerate(treino["exercicios"]):
+            #     print("2) ", exercicio)
+            #     print("3) ", treino["exercicios"])
+            #     botoes_exercicios.append([sg.InputText(exercicio["nome"], key=exercicio["nome"])])
+            #     botoes_exercicios.append([sg.InputText(exercicio["repeticao"], key=exercicio["repeticao"])])
+            #     botoes_exercicios.append([sg.InputText(exercicio["serie"], key=exercicio["serie"])])
+            #     botoes_exercicios.append([sg.InputText(exercicio["tempo_descanso"], key=exercicio["tempo_descanso"])])
         layout = [
             [sg.Text('Nome:', font=("Helvica", 25))],
-            [sg.InputText(aluno.nome, key='nome')],
+            [sg.InputText(aluno["nome"], key='nome')],
             [sg.Text('CPF:', font=("Helvica", 25))],
-            [sg.InputText(aluno.cpf, key='cpf')],
+            [sg.InputText(aluno["cpf"], key='cpf')],
             [sg.Text('Login:', font=("Helvica", 25))],
-            [sg.InputText(aluno.login, key='login')],
+            [sg.InputText(aluno["login"], key='login')],
             [sg.Text('Senha:', font=("Helvica", 25))],
-            [sg.InputText(aluno.senha, key='senha')],
-            botoes_treinos
+            [sg.InputText(aluno["senha"], key='senha')],
+            botoes_treinos,
+            #botoes_exercicios,
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
         self.__window = sg.Window('').Layout(layout)
+        button, values = self.__window.Read()
+        nome = values['nome']
+        cpf = values['cpf']
+        login = values['login']
+        senha = values['senha']
+        self.close()
+        return {"nome": nome, "cpf": cpf, "login": login, "senha": senha}
