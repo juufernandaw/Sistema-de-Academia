@@ -87,7 +87,7 @@ class TelaTreinoDiario:
         self.__window = sg.Window('Personal').Layout(layout)
 
     def printar_tela_escolher_aluno(self):  # qual aluno ele quer ve o desempenho
-        self.printar_tela_escolher_aluno()
+        self.layout_printar_tela_escolher_aluno()
         button, values = self.__window.Read()
         cpf = values['cpf']
         if button in (None, 'Cancelar'):
