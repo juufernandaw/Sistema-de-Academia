@@ -53,7 +53,7 @@ class ControladorAluno():
     def buscar_aluno_por_treino(self, treino):
         for aluno in self.__alunos:
             for treino_individual in aluno.treinos:
-                if treino_individual["nome"] == treino["nome"]:
+                if treino_individual.nome == treino.nome:
                     return aluno
         else:
             return None
@@ -101,10 +101,8 @@ class ControladorAluno():
     def listar_alunos(self):
         dict_alunos = []
         for aluno in self.__alunos:
-            print("self.__alunos", self.__alunos)
             dict_alunos.append({"nome": aluno.nome, "login": aluno.login, "senha": aluno.senha, "cpf": aluno.cpf,
                  "treinos": aluno.treinos})
-        print("cheguei dict_alunos", dict_alunos)
         if self.__alunos == []:
             self.__tela_aluno.mostrar_msg("Não há nenhum aluno cadastrado")
         else:

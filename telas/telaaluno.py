@@ -108,6 +108,8 @@ class TelaAluno:
             opcao = 4
         elif values['5']:
             opcao = 5
+        elif values['6']:
+            opcao = 6
         elif button == 'Retornar':
             opcao = 0
         self.close()

@@ -11,27 +11,33 @@ class TelaTreino:
 
     def layout_alterar_treino(self, treino: {}):
         botoes_exercicios = []
-        print("botoes_exer", botoes_exercicios)
-        print("treino", treino)
         for i, exercicio in enumerate(treino["exercicios"]):
-            print("treino exercicios", treino["exercicios"])
             print("exercicio", exercicio)
-            botoes_exercicios.append([sg.InputText(exercicio["nome"], key=exercicio["nome"])])
-            botoes_exercicios.append([sg.InputText(exercicio["repeticao"], key=exercicio["repeticao"])])
-            botoes_exercicios.append([sg.InputText(exercicio["serie"], key=exercicio["serie"])])
-            botoes_exercicios.append([sg.InputText(exercicio["tempo_descanso"], key=exercicio["tempo_descanso"])])
+            botoes_exercicios.append([sg.InputText(exercicio.nome, key=exercicio.nome)])
+            botoes_exercicios.append([sg.InputText(exercicio.repeticao, key=exercicio.repeticao)])
+            botoes_exercicios.append([sg.InputText(exercicio.serie, key=exercicio.serie)])
+            botoes_exercicios.append([sg.InputText(exercicio.tempo_descanso, key=exercicio.tempo_descanso)])
+            #botoes_exercicios.append([sg.InputText(exercicio.tipo_exercicio.categoria_exercicio, key=exercicio.tipo_exercicio.categoria_exercicio)])
         layout = [
             [sg.Text('Nome do treino:', font=("Helvica", 25))],
             [sg.InputText(treino["nome"], key='nome')],
-            [sg.Text('Exercicios', font=("Helvica", 25))],
+            [sg.Text('Exercícios:', font=("Helvica", 25))],
             botoes_exercicios,
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
         self.__window = sg.Window('').Layout(layout)
         button, values = self.__window.Read()
         nome = values['nome']
+        lista_exercicios = []
+        for exercicio in treino["exercicios"]:
+            nome_ex = values[exercicio.nome]
+            repeticao_ex = values[exercicio.repeticao]
+            serie_ex = values[exercicio.serie]
+            tempo_descanso_ex = values[exercicio.tempo_descanso]
+            lista_exercicios.append({"nome": nome_ex, "repeticao": repeticao_ex, "serie": serie_ex, "tempo_descanso": tempo_descanso_ex})
+        print(lista_exercicios)
         self.close()
-        return {"nome": nome}
+        return {"nome": nome, "exercicios": lista_exercicios}
 
     def exercicio_novamente(self):
         layout = [[sg.Text('Deseja cadastrar um novo exercicio?', font=("Helvica", 25))],
@@ -52,15 +58,14 @@ class TelaTreino:
         infos_treino = ""
         for t in treino:
             print("MISERICORDIA T", t)
-            print("MISERICORDIA T exercicios", t["exercicios"])
-            infos_treino += "Nome:" + t["nome"] + '\n'
-            for exercicio in t["exercicios"]:
-                infos_treino = infos_treino + "Nome:" + exercicio["nome"] + '\n'
-                infos_treino = infos_treino + "Serie:" + exercicio["serie"] + '\n'
-                infos_treino = infos_treino + "Repeticao:" + exercicio["repeticao"] + '\n'
-                infos_treino = infos_treino + "Tempo de Descanso:" + exercicio["tempo_descanso"] + '\n'
-                infos_treino = infos_treino + "Categoria:" + exercicio["tipo_exercicio"].categoria_exercicio + '\n' + '\n'
-        sg.popup("------DADOS caralho------", infos_treino)
+            infos_treino += "Nome:" + t.nome + '\n'
+            for exercicio in t.exercicios:
+                infos_treino = infos_treino + "Nome do exercicio:" + exercicio.nome + '\n'
+                infos_treino = infos_treino + "Serie:" + exercicio.serie + '\n'
+                infos_treino = infos_treino + "Repeticao:" + exercicio.repeticao + '\n'
+                infos_treino = infos_treino + "Tempo de Descanso:" + exercicio.tempo_descanso + '\n'
+                infos_treino = infos_treino + "Tipo exercicio:" + exercicio.tipo_exercicio.categoria_exercicio + '\n' + '\n'
+        sg.popup("------DADOS TREINO------", infos_treino)
         self.close()
 
     def montar_treino(self):  # mostra tela perguntando se quer cadastrar novo treino

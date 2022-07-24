@@ -16,12 +16,12 @@ class Aluno(Usuario):
     def treinos(self, treinos: list):
         self.__treinos = treinos
 
-    def adicionar_treino_aluno(self, treino: {}):
-        if (treino is not None) and (isinstance(treino, dict)):
+    def adicionar_treino_aluno(self, treino: Treino):
+        if (treino is not None) and (isinstance(treino, Treino)):
             if treino not in self.__treinos:
                 self.__treinos.append(treino)
 
-    def remover_treino_aluno(self, treino: {}):
-        if (treino is not None) and (isinstance(treino, dict)):
+    def remover_treino_aluno(self, treino: Treino):
+        if (treino is not None) and (isinstance(treino, Treino)):
             if treino in self.__treinos:
                 self.__treinos.remove(treino)

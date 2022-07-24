@@ -25,21 +25,19 @@ class ControladorTreino:
             nome_treino = self.__tela_treino.montar_treino()  # pedir se quer incluir novo treino e o nome do treino
             if nome_treino is not None:  # pra criar novo treino
                 for treino in self.__treinos:
-                    print("treino nome", treino["nome"])
-                    if treino["nome"] == nome_treino:
+                    if treino.nome == nome_treino:
                         self.__tela_treino.mostrar_msg("ATENÇÃO: Treino já existe no sistema. Favor cadastrar outro.")
                         return self.incluir_treino()
                 else:
                     treino = Treino(nome_treino)  # instancia o treino
                     self.criar_exercicio(treino)  # chama o método para incluir exercicios no treino
-                    print("Oi")
-                    self.__treinos.append({"nome": treino.nome, "exercicios": treino.exercicios})
+                    self.__treinos.append(treino)
                     self.__tela_treino.mostrar_msg("Treino cadastrado com sucesso!")
                     aluno = self.__controlador_sistema.controlador_aluno.selecionar_aluno()  # seleciona o aluno pra vincular #seleciona a instancia do aluno
                     while (aluno is None):
                         self.__tela_treino.mostrar_msg("ATENÇÃO: Aluno inexistente! Favor digite um aluno válido")
                         aluno = self.__controlador_sistema.controlador_aluno.selecionar_aluno()
-                    aluno.adicionar_treino_aluno({"nome": treino.nome, "exercicios": treino.exercicios})  # chama o método pela instancia do aluno
+                    aluno.adicionar_treino_aluno(treino)  # chama o método pela instancia do aluno
                     self.__tela_treino.mostrar_msg("Treino vinculado ao aluno!")
                     return self.abre_tela_funcoes_treino()
             else:
@@ -78,7 +76,7 @@ class ControladorTreino:
     def pegar_treino_por_nome(self):
         nome_treino = self.__tela_treino.selecionar_treino_por_nome()
         for treino in self.__treinos:
-            if treino["nome"] == nome_treino:
+            if treino.nome == nome_treino:
                 print("Treino", treino)
                 return treino
 
@@ -87,12 +85,30 @@ class ControladorTreino:
 
     def alterar_treino(self):
         treino = self.pegar_treino_por_nome()
-        treino_alterado = self.__tela_treino.layout_alterar_treino(treino) #passando em formato de dict
+        treino_alterado = self.__tela_treino.layout_alterar_treino({"nome": treino.nome, "exercicios": treino.exercicios}) #passando em formato de dict
+        treino.nome = treino_alterado["nome"]
+        #treino_alterado: {'nome': nome, 'exercicios': [exercicios]}
+        print("treino.nome", treino.nome)
+        print("treino.exercicios", treino.exercicios)
+        print("treino_alterado.exercicios", treino_alterado["exercicios"])
+        for ex in range(len(treino.exercicios)):
+            treino.exercicios[ex].nome = treino_alterado["exercicios"][ex]["nome"]
+            treino.exercicios[ex].serie = treino_alterado["exercicios"][ex]["serie"]
+            treino.exercicios[ex].repeticao = treino_alterado["exercicios"][ex]["repeticao"]
+            treino.exercicios[ex].tempo_descanso = treino_alterado["exercicios"][ex]["tempo_descanso"]
+        for i in treino.exercicios:
+            print("i nome", i.nome)
+            print("i serie", i.serie)
+            print("i repet", i.repeticao)
+            print("i tempo", i.tempo_descanso)
+            print("i tipo", i.tipo_exercicio)
+        print(treino.nome, treino.exercicios)
+        #precisa alterar nos alunos q possuem tal treino
+        self.__tela_treino.mostrar_msg("Treino alterado!")
+        return self.abre_tela_funcoes_treino()
 
     def consultar_treino(self):
         treino = self.pegar_treino_por_nome()
-        print("Treino", treino)
-        print("oiie",)
         if treino is not None:
             self.__tela_treino.mostrar_tela_treino([treino])
             return self.abre_tela_funcoes_treino()
