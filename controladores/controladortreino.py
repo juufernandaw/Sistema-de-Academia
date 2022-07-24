@@ -89,7 +89,6 @@ class ControladorTreino:
         treino = self.pegar_treino_por_nome()
         treino_alterado = self.__tela_treino.layout_alterar_treino(treino) #passando em formato de dict
 
-
     def consultar_treino(self):
         treino = self.pegar_treino_por_nome()
         print("Treino", treino)
