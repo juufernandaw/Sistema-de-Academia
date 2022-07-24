@@ -129,40 +129,6 @@ class TelaAluno:
         ]
         self.__window = sg.Window('mx').Layout(layout)
 
-    def opcao_alterar(self):
-        self.layout_opcao_alterar()
-        button, values = self.__window.Read()
-        opcao = 0
-        if values['nome']:
-            opcao = 1
-        elif values['cpf']:
-            opcao = 2
-        elif values['login']:
-            opcao = 3
-        elif values['senha']:
-            opcao = 4
-        elif values['treino']:
-            opcao = 5
-        elif values['0'] or button in (None, 'Cancelar'):
-            opcao = 0
-        #self.close()
-        return opcao
-
-    def layout_opcao_alterar(self):
-        sg.ChangeLookAndFeel('DarkTeal4')
-        layout = [
-            [sg.Text('----- ALTERAR ALUNO -----', font=("Helvica", 25))],
-            [sg.Text('O que você deseja alterar no aluno?', font=("Helvica", 15))],
-            [sg.Radio('Alterar nome', "RD4", key='nome')],
-            [sg.Radio('Alterar cpf', "RD4", key='cpf')],
-            [sg.Radio('Alterar login', "RD4", key='login')],
-            [sg.Radio('Alterar senha', "RD4", key='senha')],
-            [sg.Radio('Alterar treino', "RD4", key='treino')],
-            [sg.Radio('Retornar', "RD4", key='0')],
-            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
-        ]
-        self.__window = sg.Window('').Layout(layout)
-
     def layout_pegar_nome(self):
         sg.ChangeLookAndFeel('DarkTeal4')
         layout = [
@@ -238,4 +204,23 @@ class TelaAluno:
                 [sg.InputText('', key='senha')],
                 [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
                 ]
+        self.__window = sg.Window('').Layout(layout)
+
+    def layout_alterar_aluno(self, aluno):
+        botoes_treinos = []
+        for id, treino in enumerate(aluno.treinos):
+            #pensar em como implementar
+            botoes_treinos.append([sg.InputText(id, "RD15", key=treino.nome)])
+        layout = [
+            [sg.Text('Nome:', font=("Helvica", 25))],
+            [sg.InputText(aluno.nome, key='nome')],
+            [sg.Text('CPF:', font=("Helvica", 25))],
+            [sg.InputText(aluno.cpf, key='cpf')],
+            [sg.Text('Login:', font=("Helvica", 25))],
+            [sg.InputText(aluno.login, key='login')],
+            [sg.Text('Senha:', font=("Helvica", 25))],
+            [sg.InputText(aluno.senha, key='senha')],
+            botoes_treinos
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+        ]
         self.__window = sg.Window('').Layout(layout)
