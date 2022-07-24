@@ -90,7 +90,7 @@ class TelaTreinoDiario:
         self.layout_printar_tela_escolher_aluno()
         button, values = self.__window.Read()
         cpf = values['cpf']
-        if button in (None, 'Cancelar'):
+        if button in (None, 'Retornar'):
             self.close()
         self.close()
         return cpf
@@ -108,7 +108,7 @@ class TelaTreinoDiario:
         layout = [
             [sg.Text("Qual treino você fará hoje?", font=("Helvica", 25))],
             botoes_treinos,
-            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+            [sg.Button('Confirmar'), sg.Cancel('Retornar')]
         ]
         self.__window = sg.Window("Seleciona treino").Layout(layout)
         button, values = self.__window.Read()
@@ -116,7 +116,7 @@ class TelaTreinoDiario:
             if id == contador:
                 escolha_treino = contador
                 contador += 1
-        if button in (None, 'Cancelar'):
+        if button in (None, 'Retornar'):
             self.close()
         self.close()
         return escolha_treino

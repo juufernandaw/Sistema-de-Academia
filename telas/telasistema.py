@@ -34,7 +34,7 @@ class TelaSistema:
         elif values['2']:
             opcao = 2
         # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
-        elif values['0'] or button in (None, 'Cancelar'):
+        elif values['0'] or button in (None, 'Sair'):
             opcao = 0
         self.close()
         return opcao
@@ -51,7 +51,7 @@ class TelaSistema:
             [sg.Radio('Aluno', "RD13", key='1')],
             [sg.Radio('Professor', "RD13", key='2')],
             [sg.Radio('Sair', "RD13", key='0')],
-            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+            [sg.Button('Confirmar'), sg.Cancel('Sair')]
         ]
         self.__window = sg.Window('Sistema de login').Layout(layout)
 

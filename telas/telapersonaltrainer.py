@@ -37,7 +37,7 @@ class TelaPersonalTrainer:
             [sg.Radio('Consultar seus dados', "RD1", key='1')],
             [sg.Radio('Alterar seus dados', "RD1", key='2')],
             [sg.Radio('Retornar à tela inicial', "RD1", key='0')],
-            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+            [sg.Button('Confirmar'), sg.Cancel('Retornar')]
         ]
         self.__window = sg.Window('Personal').Layout(layout)
 
@@ -49,7 +49,7 @@ class TelaPersonalTrainer:
             opcao = 1
         elif values['2']:
             opcao = 2
-        elif values['0'] or button in (None, 'Cancelar'):
+        elif values['0'] or button in (None, 'Retornar'):
             opcao = 0
         self.close()
         return opcao
@@ -115,7 +115,7 @@ class TelaPersonalTrainer:
             [sg.Radio('ABA Alunos', "RD3", key='2')],
             [sg.Radio('ABA Treinos', "RD3", key='3')],
             [sg.Radio('Sair', "RD3", key='0')],
-            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+            [sg.Button('Confirmar'), sg.Cancel('Retornar')]
         ]
         self.__window = sg.Window('Personal').Layout(layout)
 
@@ -131,16 +131,7 @@ class TelaPersonalTrainer:
             elif values['3']:
                 opcao = 3
             # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
-            if values['0'] or button in (None, 'Cancelar'):
+            if values['0'] or button in (None, 'Retornar'):
                 opcao = 0
             self.close()
             return opcao
-            # print("----- INÍCIO -----")
-            # print("Seja bem-vindo, personal!")
-            # print("O que você deseja fazer hoje? Digite o número correspondente:")
-            # print("1 - ABA Personal")  # modificar personal
-            # print("2 - ABA Alunos")   # modificar alunos
-            # print("3 - ABA Treinos")  # modificar treino
-            # print("0 - Sair")
-            # opcao = int(input())
-            # return opcao
