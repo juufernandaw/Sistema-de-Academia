@@ -39,13 +39,6 @@ class TelaTreinoDiario:
             escolha = 0
             self.close()
         return escolha
-        # print("----- ABA ALUNO -----")
-        # print("Olá Aluno, o quê deseja fazer hoje?")
-        # print("1 - Efetuar Check-in!")
-        # print("2 - Consultar meu desempenho!")
-        # print("0 - Sair")
-        # escolha = int(input())
-        # return escolha
 
     def layout_printar_tela_treino_diario(self):
         sg.ChangeLookAndFeel('DarkTeal4')
