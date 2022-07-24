@@ -31,7 +31,7 @@ class TelaTreino:
             infos_treino = infos_treino + "Tempo de Descanso:" + exercicio["tempo_descanso"] + '\n'
             infos_treino = infos_treino + "Categoria:" + exercicio["tipo_exercicio"].categoria_exercicio + '\n' + '\n'
         sg.popup("------DADOS TREINO------", infos_treino)
-        self.close()
+        #self.close()
 
     def montar_treino(self):  # mostra tela perguntando se quer cadastrar novo treino
         layout = [
@@ -127,7 +127,7 @@ class TelaTreino:
             escolha = 4
         elif values['5']:
             escolha = 5
-        #self.close()
+        self.close()
         print("escolha", escolha)
         return escolha
 
