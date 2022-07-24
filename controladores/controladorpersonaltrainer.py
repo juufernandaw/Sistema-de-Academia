@@ -2,7 +2,7 @@ from entidades.personaltrainer import PersonalTrainer
 from telas.telapersonaltrainer import TelaPersonalTrainer
 from telas.telasistema import TelaSistema
 from telas.telaaluno import TelaAluno
-
+from excecoes.valueErrorException import ValueErrorException
 
 class ControladorPersonalTrainer:
 
@@ -27,19 +27,16 @@ class ControladorPersonalTrainer:
             mexer_personal_opcoes = {1: self.abre_tela_funcoes_personal,
                                      2: self.__controlador_sistema.controlador_aluno.abre_tela_funcoes_aluno,
                                      3: self.__controlador_sistema.controlador_treino.abre_tela_funcoes_treino,
-                                     #0: self.__controlador_sistema.iniciar_tela_sistema
+                                     0: self.__controlador_sistema.iniciar_tela_sistema
                                      }
             while True:
                 opcao_escolhida = self.__tela_personal.mexer_personal()
                 if opcao_escolhida != 1 and opcao_escolhida != 2 and opcao_escolhida != 3 and opcao_escolhida != 0:
-                    raise ValueError
-                if opcao_escolhida == 0:
-                    print("ACHOU KERIDA")
+                    raise ValueErrorException
                 funcao_escolhida = mexer_personal_opcoes[opcao_escolhida]
                 return funcao_escolhida()
-        except ValueError as e:
+        except ValueErrorException as e:
             self.__tela_sistema.mostrar_msg(e)
-            self.__tela_sistema.mostrar_msg("Valor digitado incorreto, tente novamente.")
             self.abre_tela_inicial()
 
     def voltar(self):
@@ -54,7 +51,7 @@ class ControladorPersonalTrainer:
             while True:
                 opcao_escolhida = self.__tela_personal.tela_aba_personal()
                 if opcao_escolhida != 1 and opcao_escolhida != 2 and opcao_escolhida != 0:
-                    raise ValueError
+                    raise ValueErrorException
                 if opcao_escolhida == 1:
                     self.__tela_personal.mostrar_personal_trainer({"nome": self.__personal.nome,
                                                                    "cpf": self.__personal.cpf,
@@ -65,9 +62,8 @@ class ControladorPersonalTrainer:
                 else:
                     funcao_escolhida = mexer_personal_opcoes[opcao_escolhida]
                     return funcao_escolhida()
-        except ValueError as e:
+        except ValueErrorException as e:
             self.__tela_sistema.mostrar_msg(e)
-            self.__tela_sistema.mostrar_msg("Digite novamente, com as opções corretas na tela")
             self.abre_tela_funcoes_personal()
 
     def alterar_personal(self):  # aqui ele está alterando os dados do personal baseado no dicionario da tela

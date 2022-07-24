@@ -2,6 +2,8 @@ from datetime import date
 from entidades.treinodiario import TreinoDiario
 from telas.telatreinodiario import TelaTreinoDiario
 from entidades.treino import Treino
+from excecoes.treinocaoexistenteExeption import TreinoNaoExistenteException
+from excecoes.valueErrorException import ValueErrorException
 
 
 class ControladorTreinoDiario:
@@ -29,11 +31,11 @@ class ControladorTreinoDiario:
             while True:
                 opcao_treino_diario = self.__tela_treinoDiario.mostrar_tela_desempenho()
                 if opcao_treino_diario != 1 and opcao_treino_diario != 2 and opcao_treino_diario != 0:
-                    raise ValueError
+                    raise ValueErrorException
                 funcao_escolhida = treino_diario_opcoes[opcao_treino_diario]
                 return funcao_escolhida()
-        except ValueError:
-            self.__tela_treinoDiario.mensagem("ATENÇÃO: Treino não existente. Favor digitar um treino válido")
+        except ValueErrorException as e:
+            self.__tela_treinoDiario.mensagem(e)
             self.mostrar_tela_treino_diario()
 
     def mostrar_tela_treino_diario_personal(self):  # ABA Treino Diario personal

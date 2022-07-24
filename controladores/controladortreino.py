@@ -104,7 +104,11 @@ class ControladorTreino:
     def abre_tela_funcoes_treino(self):
         lista_opcoes = {1: self.incluir_treino, 2: self.alterar_treino,
                         3: self.excluir_treino, 4: self.listar_treinos, 5: self.consultar_treino,
+<<<<<<< HEAD
                         0: self.retornar}
+=======
+                        0: self.__controlador_sistema.controlador_personal_trainer.abre_tela_inicial}
+>>>>>>> f9749225757183645b4ea6ee5cecb87c201536c0
         while True:
             opcao = self.__tela_treino.mexer_treino()
             print(" 1 __name__", __name__)

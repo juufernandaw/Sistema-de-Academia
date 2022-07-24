@@ -99,28 +99,40 @@ class TelaTreinoDiario:
         # return escolha
 
     def montar_treino_diario(self, lista_treinos):
+        global escolha_treino, id
         sg.ChangeLookAndFeel('DarkTeal4')
-        contador = 0
         botoes_treinos = []
+        contador = 0
         for id, treino in enumerate(lista_treinos):
-            botoes_treinos.append([sg.Radio(f"{id}", "RD1", key=treino.nome)])
-            contador += 1
+            botoes_treinos.append([sg.Radio(treino['nome'], "RD1", key=id)])
         layout = [
             [sg.Text("Qual treino você fará hoje?", font=("Helvica", 25))],
             botoes_treinos,
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        # print(contador, " - Nome do treino:", treino.nome)
         self.__window = sg.Window("Seleciona treino").Layout(layout)
-        # resposta = int(input("Qual treino você fará hoje?"))
         button, values = self.__window.Read()
-        escolha_treino = values['treino']
-        sg.popup(values['treino'])  # AQUI SERIA PRA ABRIR UM POPUP COM O TREINO ESCOLHIDO
+        for treinos in lista_treinos:
+            if id == contador:
+                escolha_treino = contador
+                contador += 1
         if button in (None, 'Cancelar'):
             self.close()
         self.close()
         return escolha_treino
-        # return resposta
+
+    # def montar_treino_diario(self, lista_treinos):
+    #         contador = 0
+    #         for treino in lista_treinos:
+    #             print(contador, " - Nome do treino:", treino.nome)
+    #             contador += 1
+    #         resposta = int(input("Qual treino você fará hoje?"))
+    #         return resposta
+
+    def listar_treino_escolhido(self, lista: []):  # método n usado
+        layout = [
+            sg.popup_scrolled(*lista, title="Treino Escolhido")
+        ]
 
     def layout_montar_treino_diario_2(self):
         sg.ChangeLookAndFeel('DarkTeal4')
