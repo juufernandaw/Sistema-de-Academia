@@ -86,31 +86,9 @@ class ControladorTreino:
             return None
 
     def alterar_treino(self):
-        try:
-            treino = self.pegar_treino_por_nome()
-            if treino is None:
-                raise ListaVaziaException
-            if treino is not None:
-                opcao = self.__tela_treino.escolher_alteracao_treino()
-                if opcao != 1 and opcao != 2:
-                    raise ValueError
-                if opcao == 1:
-                    self.alterar_nome_treino(treino)
-                elif opcao == 2:
-                    treino.excluir_exercicios()  # exclui os exercicios do treino
-                    self.criar_exercicio(treino)  # inclui os novos exercicios do treino
-                    return self.abre_tela_funcoes_treino()
-        except ValueError:
-            self.__tela_treino.mostrar_msg("ATENÇÃO: Valor inválido. Selecione um dos valores que estão na tela.")
-            return self.alterar_treino()
-        except ListaVaziaException:
-            self.__tela_treino.mostrar_msg("ATENÇÃO: Treino não existente. Informe um treino válido.")
-            return self.alterar_treino()
+        treino = self.pegar_treino_por_nome()
+        treino_alterado = self.__tela_treino.layout_alterar_treino(treino) #passando em formato de dict
 
-    def alterar_nome_treino(self, treino: Treino):
-        treino.nome = self.__tela_treino.selecionar_treino_por_nome()
-        self.__tela_treino.mostrar_msg("Nome do treino alterado com sucesso!")
-        return self.abre_tela_funcoes_treino()
 
     def consultar_treino(self):
         treino = self.pegar_treino_por_nome()
@@ -126,8 +104,13 @@ class ControladorTreino:
     def abre_tela_funcoes_treino(self):
         lista_opcoes = {1: self.incluir_treino, 2: self.alterar_treino,
                         3: self.excluir_treino, 4: self.listar_treinos, 5: self.consultar_treino,
-                        0: self.__controlador_sistema.controlador_personal_trainer.abre_tela_inicial}
+                        0: self.retornar}
         while True:
             opcao = self.__tela_treino.mexer_treino()
+            print(" 1 __name__", __name__)
+            print("opcao!!", opcao)
             funcao_escolhida = lista_opcoes[opcao]
             return funcao_escolhida()
+
+    def retornar(self):
+        return self.__controlador_sistema.controlador_personal_trainer.abre_tela_inicial()
