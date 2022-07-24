@@ -25,7 +25,8 @@ class ControladorTreino:
             nome_treino = self.__tela_treino.montar_treino()  # pedir se quer incluir novo treino e o nome do treino
             if nome_treino is not None:  # pra criar novo treino
                 for treino in self.__treinos:
-                    if treino.nome == nome_treino:
+                    print("treino nome", treino["nome"])
+                    if treino["nome"] == nome_treino:
                         self.__tela_treino.mostrar_msg("ATENÇÃO: Treino já existe no sistema. Favor cadastrar outro.")
                         return self.incluir_treino()
                 else:
@@ -71,18 +72,16 @@ class ControladorTreino:
         return self.abre_tela_funcoes_treino()
 
     def listar_treinos(self):
-        treinos = []
-        for treino in self.__treinos:
-            treinos.append(treino)
-        self.__tela_treino.mostrar_tela_treino(treinos)
+        self.__tela_treino.mostrar_tela_treino(self.__treinos)
         return self.abre_tela_funcoes_treino()
 
     def pegar_treino_por_nome(self):
         nome_treino = self.__tela_treino.selecionar_treino_por_nome()
         for treino in self.__treinos:
             if treino["nome"] == nome_treino:
+                print("Treino", treino)
                 return treino
-                print("TREINO",treino)
+
         else:
             return None
 
@@ -116,8 +115,9 @@ class ControladorTreino:
     def consultar_treino(self):
         treino = self.pegar_treino_por_nome()
         print("Treino", treino)
+        print("oiie",)
         if treino is not None:
-            self.__tela_treino.mostrar_tela_treino(treino)
+            self.__tela_treino.mostrar_tela_treino([treino])
             return self.abre_tela_funcoes_treino()
         else:
             self.__tela_treino.mostrar_msg("ATENÇÃO: Treino não existente. Favor digitar um treino válido")
@@ -129,6 +129,7 @@ class ControladorTreino:
                         #0: self.__controlador_sistema.controlador_personal_trainer.abre_tela_inicial}
         while True:
             opcao = self.__tela_treino.mexer_treino()
+            print(" 1 __name__", __name__)
             print("opcao!!", opcao)
             funcao_escolhida = lista_opcoes[opcao]
             return funcao_escolhida()

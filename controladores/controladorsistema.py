@@ -41,6 +41,7 @@ class ControladorSistema:
         global opcao_escolhida
         try:
             print("OI EUE NTREI")
+            print(" 2 __name__", __name__)
             login_com_sucesso = None
             lista_opcoes = {1: self.__controlador_aluno.abre_tela_inicial,
                             2: self.__controlador_personal_trainer.abre_tela_inicial,

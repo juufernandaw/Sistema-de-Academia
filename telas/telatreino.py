@@ -19,18 +19,24 @@ class TelaTreino:
             opcao = 1
         else:
             opcao = 2
-        #self.close()
+        self.close()
         return opcao
 
     def mostrar_tela_treino(self, treino):  # mostra tela com os dados do treino
-        infos_treino = "Nome:" + treino["nome"] + '\n'
-        for exercicio in treino["exercicios"]:
-            infos_treino = infos_treino + "Nome:" + exercicio["nome"] + '\n'
-            infos_treino = infos_treino + "Serie:" + exercicio["serie"] + '\n'
-            infos_treino = infos_treino + "Repeticao:" + exercicio["repeticao"] + '\n'
-            infos_treino = infos_treino + "Tempo de Descanso:" + exercicio["tempo_descanso"] + '\n'
-            infos_treino = infos_treino + "Categoria:" + exercicio["tipo_exercicio"].categoria_exercicio + '\n' + '\n'
-        sg.popup("------DADOS TREINO------", infos_treino)
+        print("CHEGUEI AQUI")
+        print("MISERICORDIA TREINO", treino)
+        infos_treino = ""
+        for t in treino:
+            print("MISERICORDIA T", t)
+            print("MISERICORDIA T exercicios", t["exercicios"])
+            infos_treino += "Nome:" + t["nome"] + '\n'
+            for exercicio in t["exercicios"]:
+                infos_treino = infos_treino + "Nome:" + exercicio["nome"] + '\n'
+                infos_treino = infos_treino + "Serie:" + exercicio["serie"] + '\n'
+                infos_treino = infos_treino + "Repeticao:" + exercicio["repeticao"] + '\n'
+                infos_treino = infos_treino + "Tempo de Descanso:" + exercicio["tempo_descanso"] + '\n'
+                infos_treino = infos_treino + "Categoria:" + exercicio["tipo_exercicio"].categoria_exercicio + '\n' + '\n'
+        sg.popup("------DADOS caralho------", infos_treino)
         self.close()
 
     def montar_treino(self):  # mostra tela perguntando se quer cadastrar novo treino
@@ -42,7 +48,7 @@ class TelaTreino:
         self.__window = sg.Window('').Layout(layout)
         button, values = self.__window.Read()
         nome = values['nome']
-        #self.close()
+        self.close()
         return nome
 
     def montar_exercicio(self, lista_tipos):  # mostra tela perguntando se quer cadastrar novo exercício
@@ -69,7 +75,7 @@ class TelaTreino:
         serie = values['serie']
         repeticao = values['repeticao']
         tempo_descanso = values['tempo_descanso']
-        #self.close()
+        self.close()
         return {"nome": nome, "serie": serie, "repeticao": repeticao, "tempo_descanso": tempo_descanso, "tipo_exercicio": tipo_escolhido}
 
     def selecionar_treino_por_nome(self):
@@ -81,7 +87,7 @@ class TelaTreino:
         self.__window = sg.Window('').Layout(layout)
         button, values = self.__window.Read()
         nome = values['nome']
-        #self.close()
+        self.close()
         return nome
 
     def escolher_alteracao_treino(self):
@@ -98,7 +104,7 @@ class TelaTreino:
             escolha = 1
         elif values['2']:
             escolha = 2
-        #self.close()
+        self.close()
         return escolha
 
 
@@ -127,8 +133,8 @@ class TelaTreino:
             escolha = 4
         elif values['5']:
             escolha = 5
-        #self.close()
-        print("escolha", escolha)
+        self.close()
+        print("escolha help", escolha)
         return escolha
 
 
