@@ -84,27 +84,19 @@ class ControladorTreino:
             return None
 
     def alterar_treino(self):
-        treino = self.pegar_treino_por_nome()
+        treino = self.pegar_treino_por_nome() #retorna a instancia do treino
+        aluno = self.__controlador_sistema.controlador_aluno.buscar_aluno_por_treino(treino)
+        self.__controlador_sistema.controlador_aluno.desvincular_aluno_treino(aluno, treino) #desvinculando o treino do aluno
         treino_alterado = self.__tela_treino.layout_alterar_treino({"nome": treino.nome, "exercicios": treino.exercicios}) #passando em formato de dict
         treino.nome = treino_alterado["nome"]
-        #treino_alterado: {'nome': nome, 'exercicios': [exercicios]}
-        print("treino.nome", treino.nome)
-        print("treino.exercicios", treino.exercicios)
-        print("treino_alterado.exercicios", treino_alterado["exercicios"])
         for ex in range(len(treino.exercicios)):
             treino.exercicios[ex].nome = treino_alterado["exercicios"][ex]["nome"]
             treino.exercicios[ex].serie = treino_alterado["exercicios"][ex]["serie"]
             treino.exercicios[ex].repeticao = treino_alterado["exercicios"][ex]["repeticao"]
             treino.exercicios[ex].tempo_descanso = treino_alterado["exercicios"][ex]["tempo_descanso"]
-        for i in treino.exercicios:
-            print("i nome", i.nome)
-            print("i serie", i.serie)
-            print("i repet", i.repeticao)
-            print("i tempo", i.tempo_descanso)
-            print("i tipo", i.tipo_exercicio)
-        print(treino.nome, treino.exercicios)
-        #precisa alterar nos alunos q possuem tal treino
-        self.__tela_treino.mostrar_msg("Treino alterado!")
+        self.__controlador_sistema.controlador_aluno.vincular_aluno_treino(aluno, treino) #vinculando o novo treino ao aluno
+        if treino_alterado is not None:
+            self.__tela_treino.mostrar_msg("Treino alterado!")
         return self.abre_tela_funcoes_treino()
 
     def consultar_treino(self):

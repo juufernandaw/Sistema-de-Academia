@@ -26,6 +26,14 @@ class ControladorAluno():
             else:
                 return False
 
+    def vincular_aluno_treino(self, aluno: Aluno, treino):
+        aluno.adicionar_treino_aluno(treino)
+        self.__tela_aluno.mostrar_msg("Treino vinculado ao aluno!")
+
+    def desvincular_aluno_treino(self, aluno: Aluno, treino):
+        aluno.remover_treino_aluno(treino)
+        self.__tela_aluno.mostrar_msg("Treino desvinculado do aluno!")
+
     def incluir_aluno(self):
         dados_aluno = self.__tela_aluno.pega_dados_aluno()
         for aluno in self.__alunos:
