@@ -121,7 +121,7 @@ class TelaPersonalTrainer:
 
     def mexer_personal(self):
         while True:
-            global opcao
+            opcao = 0
             self.layout_mexer_personal()
             button, values = self.__window.Read()
             if values['1']:

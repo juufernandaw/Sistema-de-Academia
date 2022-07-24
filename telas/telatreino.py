@@ -134,7 +134,6 @@ class TelaTreino:
         elif values['5']:
             escolha = 5
         self.close()
-        print("escolha help", escolha)
         return escolha
 
 
