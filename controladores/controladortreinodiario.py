@@ -38,9 +38,6 @@ class ControladorTreinoDiario:
             self.__tela_treinoDiario.mensagem(e)
             self.mostrar_tela_treino_diario()
 
-    def mostrar_tela_treino_diario_personal(self):  # ABA Treino Diario personal
-        self.achar_desempenho_aluno_personal()
-
     def verificar_calorias(self, usuario):
         soma_calorias = 0
         for treino_diario in self.__lista_treinos_diarios:  # lista de treinos que tem os treinos
