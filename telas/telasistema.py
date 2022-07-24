@@ -48,9 +48,9 @@ class TelaSistema:
         layout = [
             [sg.Text('Olá, bem vindo! Aqui começa sua jornada para superar seus limites!', font=("Helvica", 25))],
             [sg.Text('Faça o seu login', font=("Helvica", 15))],
-            [sg.Radio('Aluno', "RD1", key='1')],
-            [sg.Radio('Professor', "RD1", key='2')],
-            [sg.Radio('Sair', "RD1", key='0')],
+            [sg.Radio('Aluno', "RD13", key='1')],
+            [sg.Radio('Professor', "RD13", key='2')],
+            [sg.Radio('Sair', "RD13", key='0')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
         self.__window = sg.Window('Sistema de login').Layout(layout)

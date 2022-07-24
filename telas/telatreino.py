@@ -1,13 +1,26 @@
 import PySimpleGUI as sg
 
 
-class TelaTreino():
+class TelaTreino:
 
     def __int__(self):
         self.__window = None
 
     def mostrar_msg(self, msg: str):
         sg.popup("", msg)
+
+    def exercicio_novamente(self):
+        layout = [[sg.Text('Deseja cadastrar um novo exercicio?', font=("Helvica", 25))],
+            [sg.Button('Sim'), sg.Button('Nao')]]
+        self.__window = sg.Window('').Layout(layout)
+        button, values = self.__window.Read()
+        print("Botao", button)
+        if button == 'Nao':
+            opcao = 1
+        else:
+            opcao = 2
+        #self.close()
+        return opcao
 
     def mostrar_tela_treino(self, treino):  # mostra tela com os dados do treino
         infos_treino = "Nome:" + treino["nome"] + '\n'
@@ -18,32 +31,46 @@ class TelaTreino():
             infos_treino = infos_treino + "Tempo de Descanso:" + exercicio["tempo_descanso"] + '\n'
             infos_treino = infos_treino + "Categoria:" + exercicio["tipo_exercicio"].categoria_exercicio + '\n' + '\n'
         sg.popup("------DADOS TREINO------", infos_treino)
+        self.close()
 
     def montar_treino(self):  # mostra tela perguntando se quer cadastrar novo treino
-        opcao = int(input("Deseja cadastrar um novo treino? 1- Sim 2- Não"))
-        if opcao == 1:
-            nome_treino = input("Nome do treino:")
-        else:
-            nome_treino = None
-        return opcao, nome_treino
+        layout = [
+            [sg.Text('Digite o nome do treino:', font=("Helvica", 25))],
+            [sg.InputText('', key='nome')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+        ]
+        self.__window = sg.Window('').Layout(layout)
+        button, values = self.__window.Read()
+        nome = values['nome']
+        #self.close()
+        return nome
 
     def montar_exercicio(self, lista_tipos):  # mostra tela perguntando se quer cadastrar novo exercício
-        opcao = int(input("Deseja cadastrar um novo exercício? 1- Sim 2- Não"))
-        if opcao == 1:
-            nome = input("Nome:")
-            serie = input("Série:")
-            repeticao = input("Repetição:")
-            tempo_descanso = input("Tempo de descanso:")
-            num = 0
-            for tipo_exercicio in lista_tipos:
-                print("Número:", num, ". Categoria do exercício:", tipo_exercicio.categoria_exercicio)
-                num += 1
-            tipo_exercicio = int(input("Informe o número correspondente ao exercício desejado"))  # chamar a lista de
-            # tipos_chamados
-            return opcao, {"nome": nome, "serie": serie, "repeticao": repeticao, "tempo_descanso": tempo_descanso,
-                           "tipo_exercicio": tipo_exercicio}
-        else:
-            return opcao, None
+        botoes_tipos = []
+        for id, tipo_exercicio in enumerate(lista_tipos):
+            botoes_tipos.append([sg.Radio(tipo_exercicio.categoria_exercicio, "RD9", key=tipo_exercicio.categoria_exercicio)])
+        layout = [
+            [sg.Text('Nome do exercicio:', font=("Helvica", 25))],
+            [sg.InputText('', key='nome')],
+            [sg.Text('Serie:', font=("Helvica", 25))],
+            [sg.InputText('', key='serie')],
+            [sg.Text('Repeticao:', font=("Helvica", 25))],
+            [sg.InputText('', key='repeticao')],
+            [sg.Text('Tempo de descanso:', font=("Helvica", 25))],
+            [sg.InputText('', key='tempo_descanso')],
+            [sg.Text('Tipo do exercício:', font=("Helvica", 25))],
+            botoes_tipos,
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+        ]
+        self.__window = sg.Window('').Layout(layout)
+        button, values = self.__window.Read()
+        tipo_escolhido = values[tipo_exercicio.categoria_exercicio]
+        nome = values['nome']
+        serie = values['serie']
+        repeticao = values['repeticao']
+        tempo_descanso = values['tempo_descanso']
+        #self.close()
+        return {"nome": nome, "serie": serie, "repeticao": repeticao, "tempo_descanso": tempo_descanso, "tipo_exercicio": tipo_escolhido}
 
     def selecionar_treino_por_nome(self):
         layout = [
@@ -54,6 +81,7 @@ class TelaTreino():
         self.__window = sg.Window('').Layout(layout)
         button, values = self.__window.Read()
         nome = values['nome']
+        #self.close()
         return nome
 
     def escolher_alteracao_treino(self):
@@ -70,7 +98,9 @@ class TelaTreino():
             escolha = 1
         elif values['2']:
             escolha = 2
+        #self.close()
         return escolha
+
 
     def mexer_treino(self):
         layout = [
@@ -97,4 +127,10 @@ class TelaTreino():
             escolha = 4
         elif values['5']:
             escolha = 5
+        #self.close()
+        print("escolha", escolha)
         return escolha
+
+
+    def close(self):
+        self.__window.Close()

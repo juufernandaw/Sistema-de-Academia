@@ -33,6 +33,8 @@ class ControladorPersonalTrainer:
                 opcao_escolhida = self.__tela_personal.mexer_personal()
                 if opcao_escolhida != 1 and opcao_escolhida != 2 and opcao_escolhida != 3 and opcao_escolhida != 0:
                     raise ValueError
+                if opcao_escolhida == 0:
+                    print("ACHOU KERIDA")
                 funcao_escolhida = mexer_personal_opcoes[opcao_escolhida]
                 return funcao_escolhida()
         except ValueError as e:

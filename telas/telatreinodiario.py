@@ -20,9 +20,9 @@ class TelaTreinoDiario:
         layout = [
             [sg.Text("----- ABA ALUNO -----", font=("Helvica", 25))],
             [sg.Text('Olá, o quê deseja fazer hoje?', font=("Helvica", 15))],
-            [sg.Radio('Efetuar Check-in!', "RD1", key='1')],
-            [sg.Radio('Consultar meu desempenho!', "RD1", key='2')],
-            [sg.Radio('Sair', "RD1", key='0')],
+            [sg.Radio('Efetuar Check-in!', "RD12", key='1')],
+            [sg.Radio('Consultar meu desempenho!', "RD12", key='2')],
+            [sg.Radio('Sair', "RD12", key='0')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
         self.__window = sg.Window('Tela Desempenho by Aluno').Layout(layout)
@@ -52,8 +52,8 @@ class TelaTreinoDiario:
         layout = [
             [sg.Text("Ola Personal, você que você deseja?", font=("Helvica", 25))],
             [sg.Text('O que você deseja fazer hoje ?', font=("Helvica", 15))],
-            [sg.Radio('Consultar o desempenho', "RD1", key='1')],
-            [sg.Radio('Voltar ao menu inicial', "RD1", key='2')],
+            [sg.Radio('Consultar o desempenho', "RD11", key='1')],
+            [sg.Radio('Voltar ao menu inicial', "RD11", key='2')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
         self.__window = sg.Window('Personal').Layout(layout)
@@ -126,8 +126,8 @@ class TelaTreinoDiario:
         sg.ChangeLookAndFeel('DarkTeal4')
         layout = [
             [sg.Text(f"Você gostaria de fazer outro treino?", font=("Helvica", 25))],
-            [sg.Radio('Sim', 'RD1', key='1')],
-            [sg.Radio('Não', 'RD1', key='2')],
+            [sg.Radio('Sim', 'RD10', key='1')],
+            [sg.Radio('Não', 'RD10', key='2')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
         self.__window = sg.Window('Personal').Layout(layout)

@@ -1,19 +1,12 @@
 import PySimpleGUI as sg
 
 
-class TelaAluno():
+class TelaAluno:
 
     def __init__(self):
         self.__window = None
-        self.layout_pegar_nome()
-        self.layout_pegar_cpf()
-        self.layout_pegar_login()
-        self.layout_pegar_senha()
-        self.layout_opcao_alterar()
-        #self.mostrar_aluno()
         self.layout_mexer_aluno()
-        self.layout_pega_dados_aluno()
-        self.layout_escolher_opcao_treino()
+        self.layout_pegar_cpf()
 
     def mostrar_msg(self, msg):
         sg.popup("", msg)
@@ -22,12 +15,23 @@ class TelaAluno():
         self.__window.Close()
 
     def mostrar_aluno(self, dados_aluno):  # mostra os dados do aluno
-        infos_aluno = "Nome:" + dados_aluno["nome"] + '\n'
-        infos_aluno = infos_aluno + "Login:" + dados_aluno["login"] + '\n'
-        infos_aluno = infos_aluno + "Senha:" + dados_aluno["senha"] + '\n'
-        infos_aluno = infos_aluno + "CPF:" + dados_aluno["cpf"] + '\n'
-        infos_aluno = infos_aluno + "Treinos:" + dados_aluno["treinos"] + '\n'
+        infos_aluno = ""
+        for aluno in dados_aluno:
+            print("ALuno", aluno)
+            infos_aluno += "Nome:" + aluno["nome"] + '\n'
+            infos_aluno += "Login:" + aluno["login"] + '\n'
+            infos_aluno += "Senha:" + aluno["senha"] + '\n'
+            infos_aluno += "CPF:" + aluno["cpf"] + '\n'
+            for treino in aluno["treinos"]:
+                infos_aluno += "Nome do treino:" + treino.nome + '\n'
+                for exercicio in treino.exercicios:
+                    infos_aluno += "Nome do exercício:" + exercicio.nome + '\n'
+                    infos_aluno += "Repeticao:" + exercicio.repeticao + '\n'
+                    infos_aluno += "Series:" + exercicio.serie + '\n'
+                    infos_aluno += "Tempo descanso:" + exercicio.tempo_descanso + '\n'
+                    infos_aluno += "Tipo exercicio:" + exercicio.tipo_exercicio.categoria_exercicio + '\n' + '\n'
         sg.popup("------DADOS ALUNO------", infos_aluno)
+        #self.close()
 
     def mostrar_treino_aluno(self, treinos):
         botoes_treinos = []
@@ -41,6 +45,7 @@ class TelaAluno():
         self.__window = sg.Window('').Layout(layout)
         button, values = self.__window.Read()
         treino_escolhido = values[treino.nome]
+        #self.close()
         return treino_escolhido
 
     def escolher_opcao_treino(self):
@@ -51,6 +56,7 @@ class TelaAluno():
             escolha = 1
         elif values['2']:
             escolha = 2
+        #self.close()
         return escolha
 
     def layout_escolher_opcao_treino(self): #necessário mudar
@@ -70,6 +76,7 @@ class TelaAluno():
         senha = values['senha']
         cpf = values['cpf']
         #tratar botão cancelar e inserções incorretas
+        #self.close()
         return {"nome": nome, "login": login, "senha": senha, "cpf": cpf}
 
     def layout_pega_dados_aluno(self):
@@ -102,7 +109,7 @@ class TelaAluno():
             opcao = 5
         elif values['0'] or button in (None, 'Cancelar'):
             opcao = 0
-        self.close()
+        #self.close()
         return opcao
 
     def layout_mexer_aluno(self):
@@ -120,7 +127,7 @@ class TelaAluno():
             [sg.Radio('Retornar', "RD3", key='0')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('').Layout(layout)
+        self.__window = sg.Window('mx').Layout(layout)
 
     def opcao_alterar(self):
         self.layout_opcao_alterar()
@@ -138,7 +145,7 @@ class TelaAluno():
             opcao = 5
         elif values['0'] or button in (None, 'Cancelar'):
             opcao = 0
-        self.close()
+        #self.close()
         return opcao
 
     def layout_opcao_alterar(self):
@@ -172,6 +179,7 @@ class TelaAluno():
             nome = None
         else:
             nome = values['nome']
+        #self.close()
         return nome
 
     def pegar_cpf(self):
@@ -181,6 +189,8 @@ class TelaAluno():
             cpf = None
         else:
             cpf = values['cpf']
+        #self.close()
+        print("CPF:", cpf)
         return cpf
 
     def layout_pegar_cpf(self):
@@ -199,6 +209,7 @@ class TelaAluno():
             login = None
         else:
             login = values['login']
+        #self.close()
         return login
 
     def layout_pegar_login(self):
@@ -217,6 +228,7 @@ class TelaAluno():
             senha = None
         else:
             senha = values['senha']
+        #self.close()
         return senha
 
     def layout_pegar_senha(self):
