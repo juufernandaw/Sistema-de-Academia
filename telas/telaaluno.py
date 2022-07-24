@@ -17,7 +17,6 @@ class TelaAluno:
     def mostrar_aluno(self, dados_aluno):  # mostra os dados do aluno
         infos_aluno = ""
         for aluno in dados_aluno:
-            #print("ALuno", aluno)
             infos_aluno += "Nome:" + aluno["nome"] + '\n'
             infos_aluno += "Login:" + aluno["login"] + '\n'
             infos_aluno += "Senha:" + aluno["senha"] + '\n'
@@ -27,11 +26,11 @@ class TelaAluno:
                 print("treinos aluno: ", aluno["treinos"])
                 infos_aluno += "Nome do treino:" + treino["nome"] + '\n'
                 for exercicio in treino["exercicios"]:
-                    infos_aluno += "Nome do exercício:" + exercicio["nome"] + '\n'
-                    infos_aluno += "Repeticao:" + exercicio["repeticao"] + '\n'
-                    infos_aluno += "Series:" + exercicio["serie"] + '\n'
-                    infos_aluno += "Tempo descanso:" + exercicio["tempo_descanso"] + '\n'
-                    infos_aluno += "Tipo exercicio:" + exercicio["tipo_exercicio"].categoria_exercicio + '\n' + '\n'
+                    infos_aluno += "Nome do exercício:" + exercicio.nome + '\n'
+                    infos_aluno += "Repeticao:" + exercicio.repeticao + '\n'
+                    infos_aluno += "Series:" + exercicio.serie + '\n'
+                    infos_aluno += "Tempo descanso:" + exercicio.tempo_descanso + '\n' + '\n'
+                    #infos_aluno += "Tipo exercicio:" + exercicio.tipo_exercicio.categoria_exercicio + '\n' + '\n'
         sg.popup("------DADOS ALUNO------", infos_aluno)
         self.close()
 
