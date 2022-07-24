@@ -114,7 +114,7 @@ class ControladorAluno():
     def abre_tela_funcoes_aluno(self):
             lista_opcoes = {1: self.incluir_aluno, 2: self.alterar_aluno,
                             3: self.excluir_aluno, 4: self.listar_alunos, 5: self.consultar_aluno,
-                            6: self.__controlador_sistema.controlador_treino_diario.mostrar_tela_treino_diario_personal,
+                            6: self.__controlador_sistema.controlador_treino_diario.achar_desempenho_aluno_personal,
                             0: self.retornar
                             }
             while True:
