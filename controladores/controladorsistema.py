@@ -5,6 +5,7 @@ from controladores.controladorpersonaltrainer import ControladorPersonalTrainer
 from telas.telasistema import TelaSistema
 from excecoes.typeErrorException import TypeErrorException
 from excecoes.valueErrorException import ValueErrorException
+from excecoes.usuarioinexistenteException import UsuarioInexistenteException
 
 
 class ControladorSistema:
@@ -40,8 +41,6 @@ class ControladorSistema:
     def iniciar_tela_sistema(self):  # OK
         global opcao_escolhida
         try:
-            print("OI EUE NTREI")
-            print(" 2 __name__", __name__)
             login_com_sucesso = None
             lista_opcoes = {1: self.__controlador_aluno.abre_tela_inicial,
                             2: self.__controlador_personal_trainer.abre_tela_inicial,
@@ -49,7 +48,6 @@ class ControladorSistema:
             login = None
             senha = None
             while True:
-                print("OI")
                 opcao_escolhida = self.__tela_sistema.mostrar_menu_inicial()
                 if opcao_escolhida != 1 and opcao_escolhida != 2 and opcao_escolhida != 0:
                     raise ValueErrorException(opcao_escolhida)
@@ -57,43 +55,25 @@ class ControladorSistema:
                     self.encerrar_sistema()
                 else:
                     login, senha = self.__tela_sistema.logar(opcao_escolhida)  # ele vai entrar no login: aluno ou personal
-                if opcao_escolhida == 1:
-                    print("OPA")
-                    login_com_sucesso, self._usuario_logado = self._controlador_aluno.verificar_login_senha(login,
-                                                                                                              senha)
-                    if self.__usuario_logado is None:
-                        raise TypeError
-                elif opcao_escolhida == 2:
-                    print("OI KK")
-                    login_com_sucesso = self.__controlador_personal_trainer.verificar_login_senha(login, senha)
-                    if not login_com_sucesso:
-                        raise TypeError
-                if login_com_sucesso is not None:
-                    funcao_escolhida = lista_opcoes[opcao_escolhida]
-                    return funcao_escolhida()
-        except ValueError as e:
                     if opcao_escolhida == 1:
                         login_com_sucesso, self.__usuario_logado = self.__controlador_aluno.verificar_login_senha(login,
                                                                                                                   senha)
                         if self.__usuario_logado is None:
-                            raise TypeErrorException and TypeError
+                            raise UsuarioInexistenteException
                     elif opcao_escolhida == 2:
                         login_com_sucesso = self.__controlador_personal_trainer.verificar_login_senha(login, senha)
                         if not login_com_sucesso:
-                            raise TypeErrorException
+                            raise UsuarioInexistenteException
                     if login_com_sucesso is not None:
                         funcao_escolhida = lista_opcoes[opcao_escolhida]
                         return funcao_escolhida()
         except ValueErrorException as e:
             self.__tela_sistema.mostrar_msg(e)
-            #self.__tela_sistema.mostrar_msg(f"Erro! Valor incorreto: o Número {opcao_escolhida} é invalido"
-            #                                f" digite 1, 2 ou 0. ")
             self.iniciar_tela_sistema()
         except TypeError:
             self.iniciar_tela_sistema()
-        except TypeErrorException as e:
+        except UsuarioInexistenteException as e:
             self.__tela_sistema.mostrar_msg(e)
-            #self.__tela_sistema.mostrar_msg("Usuário inexistente. Favor digitar login e senha corretos!")
             self.iniciar_tela_sistema()
 
     def encerrar_sistema(self):  # OK
