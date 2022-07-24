@@ -37,7 +37,7 @@ class TelaTreinoDiario:
             escolha = 2
         elif values['0'] or button in (None, 'Cancelar'):
             escolha = 0
-            self.close()
+        self.close()
         return escolha
 
     def layout_printar_tela_treino_diario(self):
