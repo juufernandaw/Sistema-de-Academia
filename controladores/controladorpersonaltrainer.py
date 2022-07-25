@@ -68,7 +68,7 @@ class ControladorPersonalTrainer:
 
     def alterar_personal(self):  # aqui ele está alterando os dados do personal baseado no dicionario da tela
         if self.__personal is not None:  # OK
-            novos_dados = self.__tela_personal.tela_alterar_dados()  # vai ser um dicionario
+            novos_dados = self.__tela_personal.tela_alterar_dados(self.__personal)  # vai ser um dicionario
             self.__personal.nome = novos_dados["nome"]
             self.__personal.cpf = novos_dados["habilitacao"]
             self.__personal.login = novos_dados["login"]

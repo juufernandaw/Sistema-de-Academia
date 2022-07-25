@@ -72,26 +72,6 @@ class TelaAluno:
         self.close()
         return treino_escolhido
 
-    def escolher_opcao_treino(self):
-        self.layout_escolher_opcao_treino()
-        button, values = self.__window.Read()
-        escolha = 0
-        if values['1']:
-            escolha = 1
-        elif values['2']:
-            escolha = 2
-        self.close()
-        return escolha
-
-    def layout_escolher_opcao_treino(self): #necessário mudar
-        layout = [
-            [sg.Text('O que você deseja fazer?', font=("Helvica", 25))],
-            [sg.Radio('Excluir um treino de um aluno', "RD2", key='1')],
-            [sg.Radio('Adicionar um treino ao aluno', "RD2", key='2')],
-            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
-        ]
-        self.__window = sg.Window('').Layout(layout)
-
     def pega_dados_aluno(self):
         self.layout_pega_dados_aluno()
         button, values = self.__window.Read()
