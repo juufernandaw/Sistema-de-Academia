@@ -18,7 +18,7 @@ class TelaTreinoDiario:
     def layout_mostrar_tela_desempenho(self):
         sg.ChangeLookAndFeel('DarkTeal4')
         layout = [
-            [sg.Text("----- ABA ALUNO -----", font=("Helvica", 25))],
+            [sg.Text("----- ABA ALUNO -----", font=("Helvica", 15))],
             [sg.Text('Olá, o quê deseja fazer hoje?', font=("Helvica", 15))],
             [sg.Radio('Efetuar Check-in!', "RD12", key='1')],
             [sg.Radio('Consultar meu desempenho!', "RD12", key='2')],
@@ -43,7 +43,6 @@ class TelaTreinoDiario:
     def layout_printar_tela_treino_diario(self):
         sg.ChangeLookAndFeel('DarkTeal4')
         layout = [
-            [sg.Text("Ola Personal, você que você deseja?", font=("Helvica", 25))],
             [sg.Text('O que você deseja fazer hoje ?', font=("Helvica", 15))],
             [sg.Radio('Consultar o desempenho', "RD11", key='1')],
             [sg.Radio('Voltar ao menu inicial', "RD11", key='2')],
@@ -67,10 +66,10 @@ class TelaTreinoDiario:
     def layout_printar_tela_escolher_aluno(self):
         sg.ChangeLookAndFeel('DarkTeal4')
         layout = [
-            [sg.Text("Digite o cpf do aluno, para saber seu desempenho:", font=("Helvica", 25))],
+            [sg.Text("Digite o cpf do aluno, para saber seu desempenho:", font=("Helvica", 15))],
             [sg.Text('O que você deseja fazer hoje ?', font=("Helvica", 15))],
             [sg.Text('CPF:', size=(15, 1)), sg.InputText('', key='cpf')],
-            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+            [sg.Button('Confirmar'), sg.Button('Retornar')]
         ]
         self.__window = sg.Window('Personal').Layout(layout)
 
@@ -78,7 +77,7 @@ class TelaTreinoDiario:
         self.layout_printar_tela_escolher_aluno()
         button, values = self.__window.Read()
         cpf = values['cpf']
-        if button in (None, 'Retornar'):
+        if button == 'Retornar':
             self.close()
         self.close()
         return cpf
@@ -91,16 +90,13 @@ class TelaTreinoDiario:
         for id, treino in enumerate(lista_treinos):
             botoes_treinos.append([sg.Radio(treino.nome, "RD1", key=id)])
         layout = [
-            [sg.Text("Qual treino você fará hoje?", font=("Helvica", 25))],
+            [sg.Text("Qual treino você fará hoje?", font=("Helvica", 20))],
             botoes_treinos,
             [sg.Button('Confirmar'), sg.Cancel('Retornar')]
         ]
         self.__window = sg.Window("Seleciona treino").Layout(layout)
         button, values = self.__window.Read()
-        for treinos in lista_treinos:
-            if id == contador:
-                escolha_treino = contador
-                contador += 1
+        escolha_treino = int(values[id])
         if button in (None, 'Retornar'):
             self.close()
         self.close()
@@ -114,10 +110,10 @@ class TelaTreinoDiario:
     def layout_montar_treino_diario_2(self):
         sg.ChangeLookAndFeel('DarkTeal4')
         layout = [
-            [sg.Text(f"Você gostaria de fazer outro treino?", font=("Helvica", 25))],
+            [sg.Text(f"Você gostaria de fazer outro treino?", font=("Helvica", 20))],
             [sg.Radio('Sim', 'RD10', key='1')],
             [sg.Radio('Não', 'RD10', key='2')],
-            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+            [sg.Button('Confirmar')]
         ]
         self.__window = sg.Window('Personal').Layout(layout)
 

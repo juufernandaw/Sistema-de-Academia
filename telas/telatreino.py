@@ -21,7 +21,7 @@ class TelaTreino:
             botoes_exercicios.append([sg.InputText(exercicio.tempo_descanso, key=exercicio.tempo_descanso)])
             #botoes_exercicios.append([sg.InputText(exercicio.tipo_exercicio.categoria_exercicio, key=exercicio.tipo_exercicio.categoria_exercicio)])
         layout = [
-            [sg.Text('Nome do treino:', font=("Helvica", 25))],
+            [sg.Text('NOME DO TREINO: ', font=("Helvica", 25))],
             [sg.InputText(treino["nome"], key='nome')],
             [sg.Text('Exercícios:', font=("Helvica", 25))],
             botoes_exercicios,
@@ -56,20 +56,20 @@ class TelaTreino:
     def mostrar_tela_treino(self, treino):  # mostra tela com os dados do treino
         infos_treino = ""
         for t in treino:
-            infos_treino += "Nome:" + t.nome + '\n'
+            infos_treino += "NOME DO TREINO: " + t.nome + '\n'
             for exercicio in t.exercicios:
-                infos_treino = infos_treino + "Nome do exercicio:" + exercicio.nome + '\n'
-                infos_treino = infos_treino + "Serie:" + exercicio.serie + '\n'
-                infos_treino = infos_treino + "Repeticao:" + exercicio.repeticao + '\n'
-                infos_treino = infos_treino + "Tempo de Descanso:" + exercicio.tempo_descanso + '\n'
-                infos_treino = infos_treino + "Tipo exercicio:" + exercicio.tipo_exercicio.categoria_exercicio + '\n' + '\n'
-        sg.popup("------DADOS TREINO------", infos_treino)
-        self.close()
+                infos_treino = infos_treino + "NOME DO EXERCICIO: " + exercicio.nome + '\n'
+                infos_treino = infos_treino + "SERIE: " + exercicio.serie + '\n'
+                infos_treino = infos_treino + "REPETIÇÃO: " + exercicio.repeticao + '\n'
+                infos_treino = infos_treino + "TEMPO DESCANSO: " + exercicio.tempo_descanso + '\n'
+                infos_treino = infos_treino + "TIPO EXERCICIO: " + exercicio.tipo_exercicio.categoria_exercicio + '\n' + '\n'
+        sg.popup("------ INFORMAÇÕES TREINO ------", infos_treino)
+        #self.close()
 
     def montar_treino(self):  # mostra tela perguntando se quer cadastrar novo treino
         try:
             layout = [
-                [sg.Text('Digite o nome do treino:', font=("Helvica", 25))],
+                [sg.Text('Digite o nome do treino:', font=("Helvica", 15))],
                 [sg.InputText('', key='nome')],
                 [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
             ]
@@ -90,15 +90,15 @@ class TelaTreino:
             botoes_tipos.append(
                 [sg.Radio(tipo_exercicio.categoria_exercicio, "RD9", key=tipo_exercicio.categoria_exercicio)])
         layout = [
-            [sg.Text('Nome do exercicio:', font=("Helvica", 25))],
+            [sg.Text('Nome do exercicio:', font=("Helvica", 15))],
             [sg.InputText('', key='nome')],
-            [sg.Text('Serie:', font=("Helvica", 25))],
+            [sg.Text('Serie:', font=("Helvica", 15))],
             [sg.InputText('', key='serie')],
-            [sg.Text('Repeticao:', font=("Helvica", 25))],
+            [sg.Text('Repeticao:', font=("Helvica", 15))],
             [sg.InputText('', key='repeticao')],
-            [sg.Text('Tempo de descanso:', font=("Helvica", 25))],
+            [sg.Text('Tempo de descanso:', font=("Helvica", 15))],
             [sg.InputText('', key='tempo_descanso')],
-            [sg.Text('Tipo do exercício:', font=("Helvica", 25))],
+            [sg.Text('Tipo do exercício:', font=("Helvica", 15))],
             botoes_tipos,
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
@@ -127,9 +127,9 @@ class TelaTreino:
 
     def mexer_treino(self):
         layout = [
-            [sg.Text('----- INÍCIO -----', font=("Helvica", 25))],
-            [sg.Text('----- ABA TREINO -----', font=("Helvica", 25))],
-            [sg.Text('O que você deseja fazer?', font=("Helvica", 25))],
+            [sg.Text('----- INÍCIO -----', font=("Helvica", 20))],
+            [sg.Text('----- ABA TREINO -----', font=("Helvica", 20))],
+            [sg.Text('O que você deseja fazer?', font=("Helvica", 15))],
             [sg.Radio('Cadastrar treino', "RD8", key='1')],
             [sg.Radio('Alterar treino', "RD8", key='2')],
             [sg.Radio('Excluir treino', "RD8", key='3')],

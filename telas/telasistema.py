@@ -20,7 +20,7 @@ class TelaSistema:
         login = values['login']
         senha = values['senha']
         # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
-        if button in (None, 'Cancelar'):
+        if button == 'Retornar':
             self.close()
         self.close()
         return login, senha
@@ -34,7 +34,7 @@ class TelaSistema:
         elif values['2']:
             opcao = 2
         # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
-        elif values['0'] or button in (None, 'Sair'):
+        elif button == 'Sair':
             opcao = 0
         self.close()
         return opcao
@@ -50,8 +50,7 @@ class TelaSistema:
             [sg.Text('Faça o seu login', font=("Helvica", 15))],
             [sg.Radio('Aluno', "RD13", key='1')],
             [sg.Radio('Professor', "RD13", key='2')],
-            [sg.Radio('Sair', "RD13", key='0')],
-            [sg.Button('Confirmar'), sg.Cancel('Sair')]
+            [sg.Button('Confirmar'), sg.Button('Sair')]
         ]
         self.__window = sg.Window('Sistema de login').Layout(layout)
 
@@ -59,11 +58,11 @@ class TelaSistema:
         sg.ChangeLookAndFeel('DarkTeal4')
         layout = [
                 [sg.Text('Bem vindo ao login!', font=("Helvica", 25))],
-                [sg.Text('Aluno, digite seu login', font=("Helvica", 25))],
+                [sg.Text('Aluno, digite seu login', font=("Helvica", 15))],
                 [sg.InputText('', key='login')],
-                [sg.Text('Aluno, digite sua senha', font=("Helvica", 25))],
+                [sg.Text('Aluno, digite sua senha', font=("Helvica", 15))],
                 [sg.InputText('', key='senha')],
-                [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+                [sg.Button('Confirmar'), sg.Button('Retornar')]
                 ]
         self.__window = sg.Window('Sistema de login!!').Layout(layout)
 
@@ -71,11 +70,11 @@ class TelaSistema:
         sg.ChangeLookAndFeel('DarkTeal4')
         layout = [
              [sg.Text('Bem vindo ao login!', font=("Helvica", 25))],
-             [sg.Text('Personal, digite seu login', font=("Helvica", 25))],
+             [sg.Text('Personal, digite seu login', font=("Helvica", 15))],
              [sg.InputText('', key='login')],
-             [sg.Text('Personal, digite sua senha', font=("Helvica", 25))],
+             [sg.Text('Personal, digite sua senha', font=("Helvica", 15))],
              [sg.InputText('', key='senha')],
-             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+             [sg.Button('Confirmar'), sg.Button('Retornar')]
          ]
         self.__window = sg.Window('Sistema de login!!').Layout(layout)
 

@@ -3,7 +3,6 @@ from controladores.controladortreino import ControladorTreino
 from controladores.controladortreinodiario import ControladorTreinoDiario
 from controladores.controladorpersonaltrainer import ControladorPersonalTrainer
 from telas.telasistema import TelaSistema
-from excecoes.typeErrorException import TypeErrorException
 from excecoes.valueErrorException import ValueErrorException
 from excecoes.usuarioinexistenteException import UsuarioInexistenteException
 

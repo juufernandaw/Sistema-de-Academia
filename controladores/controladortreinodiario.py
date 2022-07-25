@@ -42,10 +42,7 @@ class ControladorTreinoDiario:
     def verificar_calorias(self, usuario):
         soma_calorias = 0
         for treino_diario in self.__lista_treinos_diarios_dao.get_all():  # lista de treinos que tem os treinos
-            print("treino_diario", treino_diario)
-            print("treino_diario.aluno", treino_diario.aluno)
             if treino_diario.aluno.cpf == usuario.cpf:  # lembrar de validar se é do aluno o treinodiario
-                print("passou aqui")
                 for treino in treino_diario.treinos:
                     for exercicio in treino.exercicios:
                         soma_calorias += exercicio.tipo_exercicio.qtd_kcal_gasta
@@ -71,7 +68,7 @@ class ControladorTreinoDiario:
                             calorias = self.verificar_calorias(aluno_escolhido)
                             self.__tela_treinoDiario.mostrar_dias_treino_aluno(aluno_escolhido.cpf, dias)
                             self.__tela_treinoDiario.contar_calorias_aluno(aluno_escolhido.cpf, calorias)
-                        elif treino_diario.alun.cpf != aluno.cpf:
+                        elif treino_diario.aluno.cpf != aluno.cpf:
                             raise UsuarioInexistenteException
             # return self.__controlador_sistema.controlador_aluno.abre_tela_funcoes_aluno()
             return self.mostrar_tela_treino_diario()

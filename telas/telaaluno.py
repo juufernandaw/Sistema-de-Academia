@@ -17,7 +17,7 @@ class TelaAluno:
     def layout_abre_tela_inicial(self):
         sg.ChangeLookAndFeel('DarkTeal4')
         layout = [
-            [sg.Text('----- ABA ALUNO -----', font=("Helvica", 25))],
+            [sg.Text('----- ABA ALUNO -----', font=("Helvica", 20))],
             [sg.Text('O que você deseja fazer hoje?', font=("Helvica", 15))],
             [sg.Radio('Consultar treino', "RD3", key='1')],
             [sg.Radio('Fazer Checkin e Desempenho', "RD3", key='2')],
@@ -42,19 +42,19 @@ class TelaAluno:
     def mostrar_aluno(self, dados_aluno):  # mostra os dados do aluno
         infos_aluno = ""
         for aluno in dados_aluno:
-            infos_aluno += "Nome:" + aluno["nome"] + '\n'
-            infos_aluno += "Login:" + aluno["login"] + '\n'
-            infos_aluno += "Senha:" + aluno["senha"] + '\n'
-            infos_aluno += "CPF:" + aluno["cpf"] + '\n'
+            infos_aluno += "NOME: " + aluno["nome"] + '\n'
+            infos_aluno += "LOGIN: " + aluno["login"] + '\n'
+            infos_aluno += "SENHA: " + aluno["senha"] + '\n'
+            infos_aluno += "CPF: " + aluno["cpf"] + '\n' + '\n'
             for treino in aluno["treinos"]:
-                infos_aluno += "Nome do treino:" + treino.nome + '\n'
+                infos_aluno += "NOME DO TREINO: " + treino.nome + '\n'
                 for exercicio in treino.exercicios:
-                    infos_aluno += "Nome do exercício:" + exercicio.nome + '\n'
-                    infos_aluno += "Repeticao:" + exercicio.repeticao + '\n'
-                    infos_aluno += "Series:" + exercicio.serie + '\n'
-                    infos_aluno += "Tempo descanso:" + exercicio.tempo_descanso + '\n' + '\n'
-                    #infos_aluno += "Tipo exercicio:" + exercicio.tipo_exercicio.categoria_exercicio + '\n' + '\n'
-        sg.popup("------DADOS ALUNO------", infos_aluno)
+                    infos_aluno += "NOME DO EXERCICIO: " + exercicio.nome + '\n'
+                    infos_aluno += "REPETICAO: " + exercicio.repeticao + '\n'
+                    infos_aluno += "SERIES: " + exercicio.serie + '\n'
+                    infos_aluno += "TEMPO DESCANSO: " + exercicio.tempo_descanso + '\n'
+                    infos_aluno += "TIPO DO EXERCICIO: " + exercicio.tipo_exercicio.categoria_exercicio + '\n' + '\n'
+        sg.popup("------ INFORMAÇÕES DO ALUNO ------", infos_aluno)
         self.close()
 
     def mostrar_treino_aluno(self, treinos):
@@ -84,13 +84,13 @@ class TelaAluno:
 
     def layout_pega_dados_aluno(self):
         layout = [
-            [sg.Text('Digite o nome do aluno:', font=("Helvica", 25))],
+            [sg.Text('Digite o nome do aluno:', font=("Helvica", 15))],
             [sg.InputText('', key='nome')],
-            [sg.Text('Digite o login do aluno:', font=("Helvica", 25))],
+            [sg.Text('Digite o login do aluno:', font=("Helvica", 15))],
             [sg.InputText('', key='login')],
-            [sg.Text('Digite a senha do aluno:', font=("Helvica", 25))],
+            [sg.Text('Digite a senha do aluno:', font=("Helvica", 15))],
             [sg.InputText('', key='senha')],
-            [sg.Text('Digite o cpf do aluno:', font=("Helvica", 25))],
+            [sg.Text('Digite o cpf do aluno:', font=("Helvica", 15))],
             [sg.InputText('', key='cpf')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
@@ -110,8 +110,8 @@ class TelaAluno:
             opcao = 4
         elif values['5']:
             opcao = 5
-        elif values['6']:
-            opcao = 6
+        # elif values['6']:
+        #     opcao = 6
         elif button == 'Retornar':
             opcao = 0
         self.close()
@@ -120,15 +120,15 @@ class TelaAluno:
     def layout_mexer_aluno(self):
         sg.ChangeLookAndFeel('DarkTeal4')
         layout = [
-            [sg.Text('----- INÍCIO -----', font=("Helvica", 25))],
-            [sg.Text('----- ABA ALUNO -----', font=("Helvica", 25))],
+            [sg.Text('----- INÍCIO -----', font=("Helvica", 20))],
+            [sg.Text('----- ABA ALUNO -----', font=("Helvica", 20))],
             [sg.Text('O que você deseja fazer hoje?', font=("Helvica", 15))],
             [sg.Radio('Cadastrar aluno', "RD3", key='1')],
             [sg.Radio('Alterar aluno', "RD3", key='2')],
             [sg.Radio('Excluir aluno', "RD3", key='3')],
             [sg.Radio('Listar alunos', "RD3", key='4')],
             [sg.Radio('Consultar aluno', "RD3", key='5')],
-            [sg.Radio('Consultar Desempenho do aluno', "RD3", key='6')],
+            #[sg.Radio('Consultar Desempenho do aluno', "RD3", key='6')],
             [sg.Button('Confirmar'), sg.Cancel('Retornar')]
         ]
         self.__window = sg.Window('mx').Layout(layout)
@@ -136,7 +136,7 @@ class TelaAluno:
     def layout_pegar_nome(self):
         sg.ChangeLookAndFeel('DarkTeal4')
         layout = [
-                [sg.Text('Digite o nome do aluno:', font=("Helvica", 25))],
+                [sg.Text('Digite o nome do aluno:', font=("Helvica", 15))],
                 [sg.InputText('', key='nome')],
                 [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
                 ]
@@ -165,7 +165,7 @@ class TelaAluno:
     def layout_pegar_cpf(self):
         sg.ChangeLookAndFeel('DarkTeal4')
         layout = [
-                [sg.Text('Digite o cpf do aluno:', font=("Helvica", 25))],
+                [sg.Text('Digite o cpf do aluno:', font=("Helvica", 15))],
                 [sg.InputText('', key='cpf')],
                 [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
                 ]
@@ -184,7 +184,7 @@ class TelaAluno:
     def layout_pegar_login(self):
         sg.ChangeLookAndFeel('DarkTeal4')
         layout = [
-                [sg.Text('Digite o login do aluno:', font=("Helvica", 25))],
+                [sg.Text('Digite o login do aluno:', font=("Helvica", 15))],
                 [sg.InputText('', key='login')],
                 [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
                 ]
@@ -203,7 +203,7 @@ class TelaAluno:
     def layout_pegar_senha(self):
         sg.ChangeLookAndFeel('DarkTeal4')
         layout = [
-                [sg.Text('Digite a senha do aluno:', font=("Helvica", 25))],
+                [sg.Text('Digite a senha do aluno:', font=("Helvica", 15))],
                 [sg.InputText('', key='senha')],
                 [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
                 ]
@@ -211,13 +211,13 @@ class TelaAluno:
 
     def layout_alterar_aluno(self, aluno):
         layout = [
-            [sg.Text('Nome:', font=("Helvica", 25))],
+            [sg.Text('Nome:', font=("Helvica", 15))],
             [sg.InputText(aluno.nome, key='nome')],
-            [sg.Text('CPF:', font=("Helvica", 25))],
+            [sg.Text('CPF:', font=("Helvica", 15))],
             [sg.InputText(aluno.cpf, key='cpf')],
-            [sg.Text('Login:', font=("Helvica", 25))],
+            [sg.Text('Login:', font=("Helvica", 15))],
             [sg.InputText(aluno.login, key='login')],
-            [sg.Text('Senha:', font=("Helvica", 25))],
+            [sg.Text('Senha:', font=("Helvica", 15))],
             [sg.InputText(aluno.senha, key='senha')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
