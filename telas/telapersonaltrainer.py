@@ -47,26 +47,26 @@ class TelaPersonalTrainer:
         self.close()
         return opcao
 
-    def layout_tela_alterar_dados(self):
+    def layout_tela_alterar_dados(self, personal):
         sg.ChangeLookAndFeel('DarkTeal4')
         layout = [
                 [sg.Text('Olá, Renove seus Dados:', font=("Helvica", 25))],
                 [sg.Text('Digite o nome: ', font=("Helvica", 25))],
-                [sg.InputText('', key='nome')],
+                [sg.InputText(personal.nome, key='nome')],
                 [sg.Text('Digite o cpf:', font=("Helvica", 25))],
-                [sg.InputText('', key='cpf')],
+                [sg.InputText(personal.cpf, key='cpf')],
                 [sg.Text('Digite o login:', font=("Helvica", 25))],
-                [sg.InputText('', key='login')],
+                [sg.InputText(personal.login, key='login')],
                 [sg.Text('Digite a senha:', font=("Helvica", 25))],
-                [sg.InputText('', key='senha')],
+                [sg.InputText(personal.senha, key='senha')],
                 [sg.Text('Digite a habilitação:', font=("Helvica", 25))],
-                [sg.InputText('', key='habilitacao')],
+                [sg.InputText(personal.habilitacao, key='habilitacao')],
                 [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
                 ]
         self.__window = sg.Window('Renovação dos dados, personal').Layout(layout)
 
-    def tela_alterar_dados(self):  # alterando personal
-        self.layout_tela_alterar_dados()
+    def tela_alterar_dados(self, personal):  # alterando personal
+        self.layout_tela_alterar_dados(personal)
         button, values = self.__window.Read()
         if button in (None, 'Cancelar'):
             nome = None
