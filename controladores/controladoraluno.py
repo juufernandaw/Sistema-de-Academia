@@ -26,6 +26,7 @@ class ControladorAluno:
             except LoginSenhaException as e:
                 #  self.__tela_aluno.mostrar_msg("Login e senha inválidos")
                 self.__tela_aluno.mostrar_msg(e)
+                self.__controlador_sistema.iniciar_tela_sistema()
             else:
                 return False
 
@@ -89,7 +90,7 @@ class ControladorAluno:
                 raise UsuarioInexistenteException
         except UsuarioInexistenteException as e:
             self.__tela_aluno.mostrar_msg(e)
-            #self.__tela_aluno.mostrar_msg("ATENCAO: aluno não existente. Favor escolher um aluno existente.")
+            #  self.__tela_aluno.mostrar_msg("ATENCAO: aluno não existente. Favor escolher um aluno existente.")
             return self.excluir_aluno()
 
     def consultar_aluno(self):
@@ -102,9 +103,10 @@ class ControladorAluno:
                          "treinos": aluno.treinos}])
                     return self.abre_tela_funcoes_aluno()
             else:
-                raise Exception
-        except Exception:
-            self.__tela_aluno.mostrar_msg("ATENCAO: aluno não existente. Favor escolher um aluno existente.")
+                raise UsuarioInexistenteException
+        except UsuarioInexistenteException as e:
+            self.__tela_aluno.mostrar_msg(e)
+            #  self.__tela_aluno.mostrar_msg("ATENCAO: aluno não existente. Favor escolher um aluno existente.")
             return self.abre_tela_funcoes_aluno()
 
     def listar_alunos(self):
