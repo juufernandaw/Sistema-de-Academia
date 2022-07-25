@@ -153,7 +153,7 @@ class ControladorAluno():
             self.abre_tela_inicial()
 
     def consultar_treino_aluno(self, treinos): #para o aluno ter acesso ao treino
-        for treino in treinos:
-            treino = {"nome": treino.nome, "exercicios": treino.exercicios}
-            self.__controlador_sistema.controlador_treino.tela_treino.mostrar_tela_treino(treino)
+        # for treino in treinos:
+        #     treino = {"nome": treino.nome, "exercicios": treino.exercicios}
+        self.__controlador_sistema.controlador_treino.tela_treino.mostrar_tela_treino(treinos)
         return self.abre_tela_inicial()
