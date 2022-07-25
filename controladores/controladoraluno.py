@@ -14,6 +14,10 @@ class ControladorAluno:
         self.__tela_aluno = TelaAluno()
 
     @property
+    def aluno_dao(self):
+        return self.__aluno_dao
+
+    @property
     def alunos(self):
         return self.__aluno_dao
 

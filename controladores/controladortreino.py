@@ -2,13 +2,14 @@ from entidades.treino import Treino
 from excecoes.treinoinvalidoException import TreinoInvalidoException
 from telas.telatreino import TelaTreino
 from entidades.tipoexercicio import TipoExercicio
+from persistencia.treinoDAO import TreinoDAO
 
 
 class ControladorTreino:
 
     def __init__(self, controlador_sistema):
         self.__controlador_sistema = controlador_sistema
-        self.__treinos = []
+        self.__treinos_dao = TreinoDAO()
         self.tela_treino = TelaTreino()
         self.__tipos_exercicio = [TipoExercicio("Muscular - Superior", 200), TipoExercicio("Muscular - Inferior", 150),
                                   TipoExercicio("Cardiovascular", 300)]
@@ -19,25 +20,26 @@ class ControladorTreino:
 
     @property
     def treinos(self):
-        return self.__treinos
+        return self.__treinos_dao
 
     def incluir_treino(self):
             nome_treino = self.tela_treino.montar_treino()  # pedir se quer incluir novo treino e o nome do treino
             if nome_treino is not None:  # pra criar novo treino
-                for treino in self.__treinos:
+                for treino in self.__treinos_dao.get_all():
                     if treino.nome == nome_treino:
                         self.tela_treino.mostrar_msg("ATENÇÃO: Treino já existe no sistema. Favor cadastrar outro.")
                         return self.incluir_treino()
                 else:
                     treino = Treino(nome_treino)  # instancia o treino
                     self.criar_exercicio(treino)  # chama o método para incluir exercicios no treino
-                    self.__treinos.append(treino)
+                    self.__treinos_dao.add(treino)
                     self.tela_treino.mostrar_msg("Treino cadastrado com sucesso!")
                     aluno = self.__controlador_sistema.controlador_aluno.selecionar_aluno()  # seleciona o aluno pra vincular #seleciona a instancia do aluno
                     while (aluno is None):
                         self.tela_treino.mostrar_msg("ATENÇÃO: Aluno inexistente! Favor digite um aluno válido")
                         aluno = self.__controlador_sistema.controlador_aluno.selecionar_aluno()
                     aluno.adicionar_treino_aluno(treino)  # chama o método pela instancia do aluno
+                    self.__controlador_sistema.controlador_aluno.aluno_dao.update() # alterado
                     self.tela_treino.mostrar_msg("Treino vinculado ao aluno!")
                     return self.abre_tela_funcoes_treino()
             else:
@@ -57,7 +59,7 @@ class ControladorTreino:
     def excluir_treino(self):
         treino = self.pegar_treino_por_nome()  # busca infos do treino requisitado
         if treino is not None:
-            self.__treinos.remove(treino)  # remove o treino da lista de treinos do sistema
+            self.__treinos_dao.remove(treino)  # remove o treino da lista de treinos do sistema
             aluno = self.__controlador_sistema.controlador_aluno.buscar_aluno_por_treino(
                 treino)  # verifica se há algum aluno vinculado ao treino
             if aluno is not None:
@@ -68,12 +70,12 @@ class ControladorTreino:
         return self.abre_tela_funcoes_treino()
 
     def listar_treinos(self):
-        self.tela_treino.mostrar_tela_treino(self.__treinos)
+        self.tela_treino.mostrar_tela_treino(self.__treinos_dao.get_all())
         return self.abre_tela_funcoes_treino()
 
     def pegar_treino_por_nome(self):
         nome_treino = self.tela_treino.selecionar_treino_por_nome()
-        for treino in self.__treinos:
+        for treino in self.__treinos_dao.get_all():
             if treino.nome == nome_treino:
                 return treino
 
@@ -92,6 +94,7 @@ class ControladorTreino:
                 treino.exercicios[ex].serie = treino_alterado["exercicios"][ex]["serie"]
                 treino.exercicios[ex].repeticao = treino_alterado["exercicios"][ex]["repeticao"]
                 treino.exercicios[ex].tempo_descanso = treino_alterado["exercicios"][ex]["tempo_descanso"]
+            self.__treinos_dao.update()
             self.__controlador_sistema.controlador_aluno.vincular_aluno_treino(aluno, treino) #vinculando o novo treino ao aluno
             if treino_alterado is not None:
                 self.tela_treino.mostrar_msg("Treino alterado!")
