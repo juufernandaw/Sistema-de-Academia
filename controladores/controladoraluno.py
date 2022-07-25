@@ -136,12 +136,11 @@ class ControladorAluno():
             usuario = self.__controlador_sistema.usuario_logado
             mexer_aluno_opcoes = {1: self.consultar_treino_aluno,
                                   2: self.__controlador_sistema.controlador_treino_diario.mostrar_tela_treino_diario,
-                                  3: self.__controlador_sistema.controlador_treino_diario.desempenho_aluno,
                                   0: self.retornar
                                   }
             while True:
-                opcao_escolhida = self.__controlador_sistema.controlador_treino_diario.mostrar_tela_treino_diario()
-                if opcao_escolhida != 1 and opcao_escolhida != 2 and opcao_escolhida != 3 and opcao_escolhida != 0:
+                opcao_escolhida = self.__tela_aluno.abre_tela_inicial_tela_aluno()
+                if opcao_escolhida != 1 and opcao_escolhida != 2 and opcao_escolhida != 0:
                     raise ValueError
                 if opcao_escolhida == 1:
                     return self.consultar_treino_aluno(usuario.treinos)

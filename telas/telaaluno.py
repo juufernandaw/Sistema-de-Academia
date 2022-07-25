@@ -14,6 +14,31 @@ class TelaAluno:
     def close(self):
         self.__window.Close()
 
+    def layout_abre_tela_inicial(self):
+        sg.ChangeLookAndFeel('DarkTeal4')
+        layout = [
+            [sg.Text('----- ABA ALUNO -----', font=("Helvica", 25))],
+            [sg.Text('O que você deseja fazer hoje?', font=("Helvica", 15))],
+            [sg.Radio('Consultar treino', "RD3", key='1')],
+            [sg.Radio('Fazer Checkin e Desempenho', "RD3", key='2')],
+            [sg.Radio('Retornar', "RD3", key='0')],
+            [sg.Button('Confirmar'), sg.Cancel('Retornar')]
+        ]
+        self.__window = sg.Window('mx').Layout(layout)
+
+    def abre_tela_inicial_tela_aluno(self):
+        self.layout_abre_tela_inicial()
+        button, values = self.__window.Read()
+        escolha = 0
+        if values['1']:
+            escolha = 1
+        elif values['2']:
+            escolha = 2
+        elif values['0'] or button in (None, 'Retornar'):
+            escolha = 0
+        self.close()
+        return escolha
+
     def mostrar_aluno(self, dados_aluno):  # mostra os dados do aluno
         infos_aluno = ""
         for aluno in dados_aluno:
@@ -68,7 +93,7 @@ class TelaAluno:
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
         self.__window = sg.Window('').Layout(layout)
-        
+
     def pega_dados_aluno(self):
         self.layout_pega_dados_aluno()
         button, values = self.__window.Read()
