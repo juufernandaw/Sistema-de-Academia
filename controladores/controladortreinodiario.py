@@ -26,7 +26,7 @@ class ControladorTreinoDiario:
         try:
             treino_diario_opcoes = {1: self.confirmar_checkin,
                                     2: self.desempenho_aluno,
-                                    0: self.__controlador_sistema.iniciar_tela_sistema
+                                    0: self.__controlador_sistema.controlador_aluno.abre_tela_inicial
                                     }
             while True:
                 opcao_treino_diario = self.__tela_treinoDiario.mostrar_tela_desempenho()
@@ -87,7 +87,7 @@ class ControladorTreinoDiario:
         if isinstance(escolha_treino, Treino):
             self.__lista_treinos.append(escolha_treino)
             self.__tela_treinoDiario.mensagem("Treino iniciado")
-            self.__controlador_sistema.controlador_aluno.consultar_treino_aluno([escolha_treino])
+            #self.__controlador_sistema.controlador_aluno.consultar_treino_aluno([escolha_treino])
 
     def adicionar_treino_diario_a_treinodiarios(self, treino_diario: TreinoDiario):
         # adiciona o treino diario escolhido na lista de treinoDiario
