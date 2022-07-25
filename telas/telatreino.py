@@ -3,7 +3,6 @@ from excecoes.treinoinvalidoException import TreinoInvalidoException
 
 
 class TelaTreino:
-
     def __int__(self):
         self.__window = None
 
