@@ -4,6 +4,7 @@ from telas.telasistema import TelaSistema
 from telas.telaaluno import TelaAluno
 from excecoes.valueErrorException import ValueErrorException
 
+
 class ControladorPersonalTrainer:
 
     def __init__(self, controlador_sistema):

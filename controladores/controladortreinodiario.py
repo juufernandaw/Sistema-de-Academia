@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import datetime
 from entidades.treinodiario import TreinoDiario
 from telas.telatreinodiario import TelaTreinoDiario
 from entidades.treino import Treino
@@ -41,10 +41,6 @@ class ControladorTreinoDiario:
 
     def verificar_calorias(self, usuario):
         soma_calorias = 0
-        # print("treino_diario.aluno", self.__lista_treinos_diarios_dao.get_all()[0].aluno.nome)
-        # print("treino_diario.aluno", self.__lista_treinos_diarios_dao.get_all()[0].aluno.cpf)
-        # print("treino_diario.aluno", self.__lista_treinos_diarios_dao.get_all()[0].aluno.login)
-        # print("treino_diario.aluno", self.__lista_treinos_diarios_dao.get_all()[0].aluno.treinos)
         for treino_diario in self.__lista_treinos_diarios_dao.get_all():  # lista de treinos que tem os treinos
             print("treino_diario", treino_diario)
             print("treino_diario.aluno", treino_diario.aluno)
@@ -66,18 +62,19 @@ class ControladorTreinoDiario:
         try:
             aluno_escolhido = None
             cpf_aluno = self.__tela_treinoDiario.printar_tela_escolher_aluno()
-            for aluno in self.__controlador_sistema.controlador_aluno.alunos:
+            for aluno in self.__controlador_sistema.controlador_aluno.alunos.get_all():
                 if aluno.cpf == cpf_aluno:
                     for treino_diario in self.__lista_treinos_diarios_dao.get_all():
-                        if treino_diario.aluno == aluno:
+                        if treino_diario.aluno.cpf == aluno.cpf:
                             aluno_escolhido = aluno
                             dias = self.verificar_dias_treino(aluno_escolhido)
                             calorias = self.verificar_calorias(aluno_escolhido)
                             self.__tela_treinoDiario.mostrar_dias_treino_aluno(aluno_escolhido.cpf, dias)
                             self.__tela_treinoDiario.contar_calorias_aluno(aluno_escolhido.cpf, calorias)
-                        elif treino_diario.aluno != aluno:
+                        elif treino_diario.alun.cpf != aluno.cpf:
                             raise UsuarioInexistenteException
-            return self.__controlador_sistema.controlador_aluno.abre_tela_funcoes_aluno()
+            # return self.__controlador_sistema.controlador_aluno.abre_tela_funcoes_aluno()
+            return self.mostrar_tela_treino_diario()
         except UsuarioInexistenteException as e:
             self.__tela_treinoDiario.mensagem(e)
             self.achar_desempenho_aluno_personal()
@@ -106,7 +103,7 @@ class ControladorTreinoDiario:
 
     def confirmar_checkin(self):  # TREINO DIARIO É UMA LISTA DE TREINO!
         aluno = self.__controlador_sistema.usuario_logado
-        dia_atual = date.today()
+        dia_atual = datetime.today()
         escolha_treino = self.__tela_treinoDiario.montar_treino_diario(aluno.treinos)  # retorna treino q ele escolheu
         self.adicionar_treino_a_treinos(aluno.treinos[escolha_treino])  # colocar o valor da lista para o metodo
         opcao = self.__tela_treinoDiario.montar_treino_diario_2()

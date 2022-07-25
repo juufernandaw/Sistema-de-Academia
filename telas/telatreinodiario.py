@@ -135,7 +135,7 @@ class TelaTreinoDiario:
         return opcao
 
     def mostrar_dias_treino(self, dias):
-        sg.popup(f"Parabéns! Você foi {dias} dia(s) treinar")
+        sg.popup(f"Parabéns! Você foi {dias} vezes(s) treinar")
 
     def contar_calorias(self, calorias):
         sg.popup(f"Parabéns! Você perdeu {calorias} calorias")
