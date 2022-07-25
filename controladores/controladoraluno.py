@@ -98,7 +98,7 @@ class ControladorAluno:
             cpf = self.__tela_aluno.pegar_cpf()
             for aluno in self.__alunos:
                 if aluno.cpf == cpf:
-                    self.__tela_aluno.mostrar_aluno([ #pra tela mostra em formato de dict
+                    self.__tela_aluno.mostrar_aluno([  # pra tela mostra em formato de dict
                         {"nome": aluno.nome, "login": aluno.login, "senha": aluno.senha, "cpf": aluno.cpf,
                          "treinos": aluno.treinos}])
                     return self.abre_tela_funcoes_aluno()
@@ -113,7 +113,7 @@ class ControladorAluno:
         dict_alunos = []
         for aluno in self.__alunos:
             dict_alunos.append({"nome": aluno.nome, "login": aluno.login, "senha": aluno.senha, "cpf": aluno.cpf,
-                 "treinos": aluno.treinos})
+                                "treinos": aluno.treinos})
         if self.__alunos == []:
             self.__tela_aluno.mostrar_msg("Não há nenhum aluno cadastrado")
         else:
@@ -121,15 +121,15 @@ class ControladorAluno:
         return self.abre_tela_funcoes_aluno()
 
     def abre_tela_funcoes_aluno(self):
-            lista_opcoes = {1: self.incluir_aluno, 2: self.alterar_aluno,
-                            3: self.excluir_aluno, 4: self.listar_alunos, 5: self.consultar_aluno,
-                            6: self.__controlador_sistema.controlador_treino_diario.achar_desempenho_aluno_personal,
-                            0: self.retornar
-                            }
-            while True:
-                opcao = self.__tela_aluno.mexer_aluno()
-                funcao_escolhida = lista_opcoes[opcao]
-                return funcao_escolhida()
+        lista_opcoes = {1: self.incluir_aluno, 2: self.alterar_aluno,
+                        3: self.excluir_aluno, 4: self.listar_alunos, 5: self.consultar_aluno,
+                        6: self.__controlador_sistema.controlador_treino_diario.achar_desempenho_aluno_personal,
+                        0: self.retornar
+                        }
+        while True:
+            opcao = self.__tela_aluno.mexer_aluno()
+            funcao_escolhida = lista_opcoes[opcao]
+            return funcao_escolhida()
 
     def voltar_tela_sistema(self):
         return self.__controlador_sistema.iniciar_tela_sistema()
@@ -157,6 +157,6 @@ class ControladorAluno:
             self.__tela_aluno.mostrar_msg("Digite uma das opções sugeridas, por favor")
             self.abre_tela_inicial()
 
-    def consultar_treino_aluno(self, treinos): #para o aluno ter acesso ao treino
+    def consultar_treino_aluno(self, treinos):  # para o aluno ter acesso ao treino
         self.__controlador_sistema.controlador_treino.tela_treino.mostrar_tela_treino(treinos)
         return self.abre_tela_inicial()
