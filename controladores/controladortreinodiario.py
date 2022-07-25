@@ -119,6 +119,7 @@ class ControladorTreinoDiario:
             opcao = self.__tela_treinoDiario.montar_treino_diario_2()
         treino_diario = TreinoDiario(aluno, dia_atual, self.__lista_treinos)
         self.adicionar_treino_diario_a_treinodiarios(treino_diario)
+        self.__lista_treinos_diarios_dao.update()
 
     def voltar_login(self):
         self.__controlador_sistema.iniciar_tela_sistema()

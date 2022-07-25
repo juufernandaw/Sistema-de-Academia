@@ -36,6 +36,6 @@ class TreinoDiario:
             self.__treinos = lista_treinos
 
     def chave(self):  # ve se funciona se nao converter em str antes :isso é pra usar ac chave na persistencia
-        chave = self.__aluno.nome + str(self.__data.strftime("%m%d%Y, %H:%M:%S"))  # date_str = dia_atual.strftime(
+        chave = self.__aluno.nome + str(self.__data.strftime("%m%d%Y, %:H%M:%S"))  # date_str = dia_atual.strftime(
         # "%m%d%Y, %H:%M:%S")
         return chave
