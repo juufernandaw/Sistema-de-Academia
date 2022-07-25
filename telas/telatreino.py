@@ -11,7 +11,7 @@ class TelaTreino:
         sg.popup("", msg)
 
     def close(self):
-        self.__window.close()
+        self.__window.Close()
 
     def layout_alterar_treino(self, treino: {}):
         botoes_exercicios = []
