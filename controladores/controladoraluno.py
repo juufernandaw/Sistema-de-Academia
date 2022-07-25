@@ -1,8 +1,10 @@
 from telas.telaaluno import TelaAluno
 from entidades.aluno import Aluno
+from loginsenhaException import LoginSenhaException
+from usuarioinexistenteException import UsuarioInexistenteException
 
 
-class ControladorAluno():
+class ControladorAluno:
 
     def __init__(self, controlador_sistema):
         self.__controlador_sistema = controlador_sistema
@@ -20,9 +22,10 @@ class ControladorAluno():
                     if (aluno.login == login) and (aluno.senha == senha):
                         return True, aluno  # aluno q achou retornar
                     if not aluno.login and not aluno.senha:
-                        raise TypeError
-            except TypeError:
-                self.__tela_aluno.mostrar_msg("Login e senha inválidos")
+                        raise LoginSenhaException
+            except LoginSenhaException as e:
+                #  self.__tela_aluno.mostrar_msg("Login e senha inválidos")
+                self.__tela_aluno.mostrar_msg(e)
             else:
                 return False
 
@@ -83,9 +86,10 @@ class ControladorAluno():
                 self.__tela_aluno.mostrar_msg("Aluno removido com sucesso!")
                 return self.abre_tela_funcoes_aluno()
             else:
-                raise Exception
-        except Exception:
-            self.__tela_aluno.mostrar_msg("ATENCAO: aluno não existente. Favor escolher um aluno existente.")
+                raise UsuarioInexistenteException
+        except UsuarioInexistenteException as e:
+            self.__tela_aluno.mostrar_msg(e)
+            #self.__tela_aluno.mostrar_msg("ATENCAO: aluno não existente. Favor escolher um aluno existente.")
             return self.excluir_aluno()
 
     def consultar_aluno(self):
