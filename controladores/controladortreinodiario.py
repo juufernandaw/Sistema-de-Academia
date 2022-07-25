@@ -88,10 +88,6 @@ class ControladorTreinoDiario:
         calorias = self.verificar_calorias(usuario)
         self.__tela_treinoDiario.mostrar_dias_treino(dias_treino)
         self.__tela_treinoDiario.contar_calorias(calorias)
-        print("usuario", usuario.nome)
-        print("usuario", usuario.login)
-        print("usuario", usuario.senha)
-        print("usuario", usuario.cpf)
         return self.mostrar_tela_treino_diario()
 
     def adicionar_treino_a_treinos(self, escolha_treino: Treino):
@@ -99,7 +95,6 @@ class ControladorTreinoDiario:
         if isinstance(escolha_treino, Treino):
             self.__lista_treinos.append(escolha_treino)
             self.__tela_treinoDiario.mensagem("Treino iniciado")
-            #self.__controlador_sistema.controlador_aluno.consultar_treino_aluno([escolha_treino])
 
     def adicionar_treino_diario_a_treinodiarios(self, treino_diario: TreinoDiario):
         # adiciona o treino diario escolhido na lista de treinoDiario
