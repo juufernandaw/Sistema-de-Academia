@@ -87,8 +87,7 @@ class ControladorTreinoDiario:
         if isinstance(escolha_treino, Treino):
             self.__lista_treinos.append(escolha_treino)
             self.__tela_treinoDiario.mensagem("Treino iniciado")
-            for treinos in self.__lista_treinos:
-                self.__tela_treinoDiario.listar_treino_escolhido(treinos.exercicios)
+            self.__controlador_sistema.controlador_aluno.consultar_treino_aluno([escolha_treino])
 
     def adicionar_treino_diario_a_treinodiarios(self, treino_diario: TreinoDiario):
         # adiciona o treino diario escolhido na lista de treinoDiario

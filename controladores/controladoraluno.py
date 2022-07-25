@@ -129,6 +129,9 @@ class ControladorAluno():
                 funcao_escolhida = lista_opcoes[opcao]
                 return funcao_escolhida()
 
+    def voltar_tela_sistema(self):
+        return self.__controlador_sistema.iniciar_tela_sistema()
+
     def retornar(self):
         return self.__controlador_sistema.controlador_personal_trainer.abre_tela_inicial()
 
@@ -137,7 +140,7 @@ class ControladorAluno():
             usuario = self.__controlador_sistema.usuario_logado
             mexer_aluno_opcoes = {1: self.consultar_treino_aluno,
                                   2: self.__controlador_sistema.controlador_treino_diario.mostrar_tela_treino_diario,
-                                  0: self.retornar
+                                  0: self.voltar_tela_sistema
                                   }
             while True:
                 opcao_escolhida = self.__tela_aluno.abre_tela_inicial_tela_aluno()
