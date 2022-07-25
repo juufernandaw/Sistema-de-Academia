@@ -1,5 +1,5 @@
 from entidades.treino import Treino
-from excecoes.listavaziaexception import ListaVaziaException
+from excecoes.treinoinvalidoException import TreinoInvalidoException
 from telas.telatreino import TelaTreino
 from entidades.tipoexercicio import TipoExercicio
 
@@ -81,20 +81,26 @@ class ControladorTreino:
             return None
 
     def alterar_treino(self):
-        treino = self.pegar_treino_por_nome() #retorna a instancia do treino
-        aluno = self.__controlador_sistema.controlador_aluno.buscar_aluno_por_treino(treino)
-        self.__controlador_sistema.controlador_aluno.desvincular_aluno_treino(aluno, treino) #desvinculando o treino do aluno
-        treino_alterado = self.tela_treino.layout_alterar_treino({"nome": treino.nome, "exercicios": treino.exercicios}) #passando em formato de dict
-        treino.nome = treino_alterado["nome"]
-        for ex in range(len(treino.exercicios)):
-            treino.exercicios[ex].nome = treino_alterado["exercicios"][ex]["nome"]
-            treino.exercicios[ex].serie = treino_alterado["exercicios"][ex]["serie"]
-            treino.exercicios[ex].repeticao = treino_alterado["exercicios"][ex]["repeticao"]
-            treino.exercicios[ex].tempo_descanso = treino_alterado["exercicios"][ex]["tempo_descanso"]
-        self.__controlador_sistema.controlador_aluno.vincular_aluno_treino(aluno, treino) #vinculando o novo treino ao aluno
-        if treino_alterado is not None:
-            self.tela_treino.mostrar_msg("Treino alterado!")
-        return self.abre_tela_funcoes_treino()
+        try:
+            treino = self.pegar_treino_por_nome() #retorna a instancia do treino
+            aluno = self.__controlador_sistema.controlador_aluno.buscar_aluno_por_treino(treino)
+            self.__controlador_sistema.controlador_aluno.desvincular_aluno_treino(aluno, treino) #desvinculando o treino do aluno
+            treino_alterado = self.tela_treino.layout_alterar_treino({"nome": treino.nome, "exercicios": treino.exercicios}) #passando em formato de dict
+            treino.nome = treino_alterado["nome"]
+            for ex in range(len(treino.exercicios)):
+                treino.exercicios[ex].nome = treino_alterado["exercicios"][ex]["nome"]
+                treino.exercicios[ex].serie = treino_alterado["exercicios"][ex]["serie"]
+                treino.exercicios[ex].repeticao = treino_alterado["exercicios"][ex]["repeticao"]
+                treino.exercicios[ex].tempo_descanso = treino_alterado["exercicios"][ex]["tempo_descanso"]
+            self.__controlador_sistema.controlador_aluno.vincular_aluno_treino(aluno, treino) #vinculando o novo treino ao aluno
+            if treino_alterado is not None:
+                self.tela_treino.mostrar_msg("Treino alterado!")
+            if treino_alterado is None:
+                raise TreinoInvalidoException
+            return self.abre_tela_funcoes_treino()
+        except TreinoInvalidoException as e:
+            self.tela_treino.mostrar_msg(e)
+            self.abre_tela_funcoes_treino()
 
     def consultar_treino(self):
         treino = self.pegar_treino_por_nome()

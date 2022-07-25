@@ -2,6 +2,7 @@ from telas.telaaluno import TelaAluno
 from entidades.aluno import Aluno
 from excecoes.loginsenhaException import LoginSenhaException
 from excecoes.usuarioinexistenteException import UsuarioInexistenteException
+from excecoes.valueErrorException import ValueErrorException
 
 
 class ControladorAluno:
@@ -147,14 +148,15 @@ class ControladorAluno:
             while True:
                 opcao_escolhida = self.__tela_aluno.abre_tela_inicial_tela_aluno()
                 if opcao_escolhida != 1 and opcao_escolhida != 2 and opcao_escolhida != 0:
-                    raise ValueError
+                    raise ValueErrorException
                 if opcao_escolhida == 1:
                     return self.consultar_treino_aluno(usuario.treinos)
                 else:
                     funcao_escolhida = mexer_aluno_opcoes[opcao_escolhida]
                     return funcao_escolhida()
-        except ValueError:
-            self.__tela_aluno.mostrar_msg("Digite uma das opções sugeridas, por favor")
+        except ValueErrorException as e:
+            self.__tela_aluno.mostrar_msg(e)
+            #  self.__tela_aluno.mostrar_msg("Digite uma das opções sugeridas, por favor")
             self.abre_tela_inicial()
 
     def consultar_treino_aluno(self, treinos):  # para o aluno ter acesso ao treino
