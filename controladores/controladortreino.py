@@ -51,9 +51,7 @@ class ControladorTreino:
                                 self.__tipos_exercicio[dados_exercicio["tipo_exercicio"]])
         self.tela_treino.mostrar_msg("Exercicio cadastrado com sucesso!")
         novo_exercicio = self.tela_treino.exercicio_novamente() #opcao = 1 novo exercicio
-        print("novo_exercicio", novo_exercicio)
         if novo_exercicio == 2:
-            print("Treino", treino)
             self.criar_exercicio(treino)
 
     def excluir_treino(self):
@@ -77,7 +75,6 @@ class ControladorTreino:
         nome_treino = self.tela_treino.selecionar_treino_por_nome()
         for treino in self.__treinos:
             if treino.nome == nome_treino:
-                print("Treino", treino)
                 return treino
 
         else:
@@ -114,8 +111,6 @@ class ControladorTreino:
                         0: self.retornar}
         while True:
             opcao = self.tela_treino.mexer_treino()
-            print(" 1 __name__", __name__)
-            print("opcao!!", opcao)
             funcao_escolhida = lista_opcoes[opcao]
             return funcao_escolhida()
 
