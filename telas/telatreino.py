@@ -10,6 +10,9 @@ class TelaTreino:
     def mostrar_msg(self, msg: str):
         sg.popup("", msg)
 
+    def close(self):
+        self.__window.close()
+
     def layout_alterar_treino(self, treino: {}):
         botoes_exercicios = []
         for i, exercicio in enumerate(treino["exercicios"]):
@@ -17,7 +20,7 @@ class TelaTreino:
             botoes_exercicios.append([sg.InputText(exercicio.repeticao, key=exercicio.repeticao)])
             botoes_exercicios.append([sg.InputText(exercicio.serie, key=exercicio.serie)])
             botoes_exercicios.append([sg.InputText(exercicio.tempo_descanso, key=exercicio.tempo_descanso)])
-            # botoes_exercicios.append([sg.InputText(exercicio.tipo_exercicio.categoria_exercicio, key=exercicio.tipo_exercicio.categoria_exercicio)])
+            #botoes_exercicios.append([sg.InputText(exercicio.tipo_exercicio.categoria_exercicio, key=exercicio.tipo_exercicio.categoria_exercicio)])
         layout = [
             [sg.Text('Nome do treino:', font=("Helvica", 25))],
             [sg.InputText(treino["nome"], key='nome')],
@@ -153,5 +156,3 @@ class TelaTreino:
         self.close()
         return escolha
 
-    def close(self):
-        self.__window.Close()
