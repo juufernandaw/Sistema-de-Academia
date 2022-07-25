@@ -49,8 +49,10 @@ class TelaAluno:
             for treino in aluno["treinos"]:
                 print("treino", treino)
                 print("treinos aluno: ", aluno["treinos"])
-                infos_aluno += "Nome do treino:" + treino["nome"] + '\n'
-                for exercicio in treino["exercicios"]:
+                print("exercicios ", treino.exercicios)
+                infos_aluno += "Nome do treino:" + treino.nome + '\n'
+                for exercicio in treino.exercicios:
+                    print("exercicio ", exercicio)
                     infos_aluno += "Nome do exercício:" + exercicio.nome + '\n'
                     infos_aluno += "Repeticao:" + exercicio.repeticao + '\n'
                     infos_aluno += "Series:" + exercicio.serie + '\n'
@@ -233,18 +235,6 @@ class TelaAluno:
         self.__window = sg.Window('').Layout(layout)
 
     def layout_alterar_aluno(self, aluno):
-        botoes_treinos = []
-        botoes_exercicios = []
-        print("1) ", aluno.treinos)
-        for id, treino in enumerate(aluno.treinos):
-            botoes_treinos.append([sg.InputText(treino["nome"], key=treino["nome"])])
-            # for i, exercicio in enumerate(treino["exercicios"]):
-            #     print("2) ", exercicio)
-            #     print("3) ", treino["exercicios"])
-            #     botoes_exercicios.append([sg.InputText(exercicio["nome"], key=exercicio["nome"])])
-            #     botoes_exercicios.append([sg.InputText(exercicio["repeticao"], key=exercicio["repeticao"])])
-            #     botoes_exercicios.append([sg.InputText(exercicio["serie"], key=exercicio["serie"])])
-            #     botoes_exercicios.append([sg.InputText(exercicio["tempo_descanso"], key=exercicio["tempo_descanso"])])
         layout = [
             [sg.Text('Nome:', font=("Helvica", 25))],
             [sg.InputText(aluno["nome"], key='nome')],
@@ -254,8 +244,6 @@ class TelaAluno:
             [sg.InputText(aluno["login"], key='login')],
             [sg.Text('Senha:', font=("Helvica", 25))],
             [sg.InputText(aluno["senha"], key='senha')],
-            botoes_treinos,
-            #botoes_exercicios,
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
         self.__window = sg.Window('').Layout(layout)
