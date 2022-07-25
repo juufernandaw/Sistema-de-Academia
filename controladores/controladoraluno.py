@@ -1,7 +1,7 @@
 from telas.telaaluno import TelaAluno
 from entidades.aluno import Aluno
-from loginsenhaException import LoginSenhaException
-from usuarioinexistenteException import UsuarioInexistenteException
+from excecoes.loginsenhaException import LoginSenhaException
+from excecoes.usuarioinexistenteException import UsuarioInexistenteException
 
 
 class ControladorAluno:

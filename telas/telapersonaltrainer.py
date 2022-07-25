@@ -5,7 +5,7 @@ class TelaPersonalTrainer:
     def __init__(self):
         self.__window = None
         self.layout_tela_aba_personal()
-        self.layout_tela_alterar_dados()
+        #self.layout_tela_alterar_dados()
         self.layout_mexer_personal()
 
     def close(self):
