@@ -3,23 +3,24 @@ from entidades.aluno import Aluno
 from excecoes.loginsenhaException import LoginSenhaException
 from excecoes.usuarioinexistenteException import UsuarioInexistenteException
 from excecoes.valueErrorException import ValueErrorException
+from persistencia.alunoDAO import AlunoDAO
 
 
 class ControladorAluno:
 
     def __init__(self, controlador_sistema):
         self.__controlador_sistema = controlador_sistema
-        self.__alunos = []
+        self.__aluno_dao = AlunoDAO()
         self.__tela_aluno = TelaAluno()
 
     @property
     def alunos(self):
-        return self.__alunos
+        return self.__aluno_dao
 
     def verificar_login_senha(self, login, senha):  # VERIFICAR o login e senha.
         if isinstance(login, str) and isinstance(senha, str):
             try:
-                for aluno in self.__alunos:
+                for aluno in self.__aluno_dao.get_all():
                     if (aluno.login == login) and (aluno.senha == senha):
                         return True, aluno  # aluno q achou retornar
                     if not aluno.login and not aluno.senha:
@@ -39,7 +40,7 @@ class ControladorAluno:
 
     def incluir_aluno(self):
         dados_aluno = self.__tela_aluno.pega_dados_aluno()
-        for aluno in self.__alunos:
+        for aluno in self.__aluno_dao.get_all():
             if dados_aluno["login"] == aluno.login:
                 self.__tela_aluno.mostrar_msg("Este login já consta no sistema!")
                 return self.incluir_aluno()
@@ -48,21 +49,21 @@ class ControladorAluno:
                 return self.incluir_aluno()
         else:
             aluno = Aluno(dados_aluno["nome"], dados_aluno["login"], dados_aluno["senha"], dados_aluno["cpf"])
-            self.__alunos.append(aluno)
+            self.__aluno_dao.add(aluno)
             if aluno is not None:
                 self.__tela_aluno.mostrar_msg("Aluno cadastrado com sucesso!")
                 return self.abre_tela_funcoes_aluno()
 
     def selecionar_aluno(self):
         cpf_aluno = self.__tela_aluno.pegar_cpf()
-        for aluno in self.__alunos:
+        for aluno in self.__aluno_dao.get_all():
             if aluno.cpf == cpf_aluno:
                 return aluno
         else:
             return None
 
     def buscar_aluno_por_treino(self, treino):
-        for aluno in self.__alunos:
+        for aluno in self.__aluno_dao.get_all():
             for treino_individual in aluno.treinos:
                 if treino_individual.nome == treino.nome:
                     return aluno
@@ -78,13 +79,14 @@ class ControladorAluno:
         aluno.senha = aluno_novo["senha"]
         if aluno_novo is not None:
             self.__tela_aluno.mostrar_msg("Aluno alterado com sucesso!")
+        self.__aluno_dao.update()
         return self.abre_tela_funcoes_aluno()
 
     def excluir_aluno(self):
         try:
             aluno = self.selecionar_aluno()
             if aluno is not None:
-                self.__alunos.remove(aluno)
+                self.__aluno_dao.remove(aluno)
                 self.__tela_aluno.mostrar_msg("Aluno removido com sucesso!")
                 return self.abre_tela_funcoes_aluno()
             else:
@@ -97,7 +99,7 @@ class ControladorAluno:
     def consultar_aluno(self):
         try:
             cpf = self.__tela_aluno.pegar_cpf()
-            for aluno in self.__alunos:
+            for aluno in self.__aluno_dao.get_all():
                 if aluno.cpf == cpf:
                     self.__tela_aluno.mostrar_aluno([  # pra tela mostra em formato de dict
                         {"nome": aluno.nome, "login": aluno.login, "senha": aluno.senha, "cpf": aluno.cpf,
@@ -112,10 +114,10 @@ class ControladorAluno:
 
     def listar_alunos(self):
         dict_alunos = []
-        for aluno in self.__alunos:
+        for aluno in self.__aluno_dao.get_all():
             dict_alunos.append({"nome": aluno.nome, "login": aluno.login, "senha": aluno.senha, "cpf": aluno.cpf,
                                 "treinos": aluno.treinos})
-        if self.__alunos == []:
+        if self.__aluno_dao.get_all() == []:
             self.__tela_aluno.mostrar_msg("Não há nenhum aluno cadastrado")
         else:
             self.__tela_aluno.mostrar_aluno(dict_alunos)

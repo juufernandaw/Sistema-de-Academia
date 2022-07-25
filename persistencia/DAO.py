@@ -4,7 +4,7 @@ import pickle
 
 class DAO(ABC):
     @abstractmethod
-    def __int__(self, nome_arquivo=""):
+    def __init__(self, nome_arquivo = ""):
         self.__nome_arquivo = nome_arquivo
         self.__object_cache = {}
         try:
@@ -20,7 +20,7 @@ class DAO(ABC):
 
     def add(self, key, obj):
         self.__object_cache[key] = obj
-        self.__dump()
+        self.__dump()   # grava no arquivo
 
     def get(self, key):
         try:
@@ -36,4 +36,7 @@ class DAO(ABC):
             pass
 
     def get_all(self):  # lista completa
-        return self.__object_cache.values()
+        return list(self.__object_cache.values())
+
+    def update(self):
+        self.__dump()
