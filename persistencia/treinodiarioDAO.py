@@ -1,11 +1,10 @@
 from persistencia.DAO import DAO
 from entidades.treinodiario import TreinoDiario
-from entidades.aluno import Aluno
 
 
-class TreinoDiariDAO(DAO):
-    def __int__(self):
-        super().__int__("treino diario.pkl")
+class TreinoDiarioDAO(DAO):
+    def __init__(self):
+        super().__init__("treinodiario.pkl")
 
     def add(self, treino_diario: TreinoDiario):
         if treino_diario is not None:

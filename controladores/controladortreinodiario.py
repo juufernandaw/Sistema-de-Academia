@@ -4,13 +4,14 @@ from telas.telatreinodiario import TelaTreinoDiario
 from entidades.treino import Treino
 from excecoes.valueErrorException import ValueErrorException
 from excecoes.usuarioinexistenteException import UsuarioInexistenteException
+from persistencia.treinodiarioDAO import TreinoDiarioDAO
 
 
 class ControladorTreinoDiario:
 
     def __init__(self, controlador_sistema):
         self.__lista_treinos = []
-        self.__lista_treinos_diarios = []
+        self.__lista_treinos_diarios_dao = TreinoDiarioDAO()
         self.__tela_treinoDiario = TelaTreinoDiario()
         self.__controlador_sistema = controlador_sistema
 
@@ -20,7 +21,7 @@ class ControladorTreinoDiario:
 
     @property
     def lista_treinos_diarios(self):  # lista de treino diario
-        return self.__lista_treinos_diarios
+        return self.__lista_treinos_diarios_dao
 
     def mostrar_tela_treino_diario(self):  # ABA Treino Diario
         try:
@@ -40,8 +41,13 @@ class ControladorTreinoDiario:
 
     def verificar_calorias(self, usuario):
         soma_calorias = 0
-        for treino_diario in self.__lista_treinos_diarios:  # lista de treinos que tem os treinos
-            if treino_diario.aluno == usuario:  # lembrar de validar se é do aluno o treinodiario
+        # print("treino_diario.aluno", self.__lista_treinos_diarios_dao.get_all()[0].aluno.nome)
+        # print("treino_diario.aluno", self.__lista_treinos_diarios_dao.get_all()[0].aluno.cpf)
+        # print("treino_diario.aluno", self.__lista_treinos_diarios_dao.get_all()[0].aluno.login)
+        # print("treino_diario.aluno", self.__lista_treinos_diarios_dao.get_all()[0].aluno.treinos)
+        for treino_diario in self.__lista_treinos_diarios_dao.get_all():  # lista de treinos que tem os treinos
+            if treino_diario.aluno.cpf == usuario.cpf:  # lembrar de validar se é do aluno o treinodiario
+                print("passou aqui")
                 for treino in treino_diario.treinos:
                     for exercicio in treino.exercicios:
                         soma_calorias += exercicio.tipo_exercicio.qtd_kcal_gasta
@@ -49,8 +55,8 @@ class ControladorTreinoDiario:
 
     def verificar_dias_treino(self, usuario):
         dias_de_treino = 0
-        for treinodiario in self.__lista_treinos_diarios:
-            if treinodiario.aluno == usuario:
+        for treinodiario in self.__lista_treinos_diarios_dao.get_all():
+            if treinodiario.aluno.cpf == usuario.cpf:
                 dias_de_treino += 1
         return dias_de_treino
 
@@ -60,7 +66,7 @@ class ControladorTreinoDiario:
             cpf_aluno = self.__tela_treinoDiario.printar_tela_escolher_aluno()
             for aluno in self.__controlador_sistema.controlador_aluno.alunos:
                 if aluno.cpf == cpf_aluno:
-                    for treino_diario in self.__lista_treinos_diarios:
+                    for treino_diario in self.__lista_treinos_diarios_dao.get_all():
                         if treino_diario.aluno == aluno:
                             aluno_escolhido = aluno
                             dias = self.verificar_dias_treino(aluno_escolhido)
@@ -80,6 +86,10 @@ class ControladorTreinoDiario:
         calorias = self.verificar_calorias(usuario)
         self.__tela_treinoDiario.mostrar_dias_treino(dias_treino)
         self.__tela_treinoDiario.contar_calorias(calorias)
+        print("usuario", usuario.nome)
+        print("usuario", usuario.login)
+        print("usuario", usuario.senha)
+        print("usuario", usuario.cpf)
         return self.mostrar_tela_treino_diario()
 
     def adicionar_treino_a_treinos(self, escolha_treino: Treino):
@@ -92,7 +102,7 @@ class ControladorTreinoDiario:
     def adicionar_treino_diario_a_treinodiarios(self, treino_diario: TreinoDiario):
         # adiciona o treino diario escolhido na lista de treinoDiario
         if isinstance(treino_diario, TreinoDiario):
-            self.__lista_treinos_diarios.append(treino_diario)
+            self.__lista_treinos_diarios_dao.add(treino_diario)
             self.__tela_treinoDiario.mensagem("checkin finalizado, bom treino")
             self.__lista_treinos = []  # para que seja renovado a lista de treino para cada aluno
             return self.mostrar_tela_treino_diario()
