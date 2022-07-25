@@ -237,13 +237,13 @@ class TelaAluno:
     def layout_alterar_aluno(self, aluno):
         layout = [
             [sg.Text('Nome:', font=("Helvica", 25))],
-            [sg.InputText(aluno["nome"], key='nome')],
+            [sg.InputText(aluno.nome, key='nome')],
             [sg.Text('CPF:', font=("Helvica", 25))],
-            [sg.InputText(aluno["cpf"], key='cpf')],
+            [sg.InputText(aluno.cpf, key='cpf')],
             [sg.Text('Login:', font=("Helvica", 25))],
-            [sg.InputText(aluno["login"], key='login')],
+            [sg.InputText(aluno.login, key='login')],
             [sg.Text('Senha:', font=("Helvica", 25))],
-            [sg.InputText(aluno["senha"], key='senha')],
+            [sg.InputText(aluno.senha, key='senha')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
         self.__window = sg.Window('').Layout(layout)
