@@ -46,6 +46,8 @@ class ControladorTreinoDiario:
         # print("treino_diario.aluno", self.__lista_treinos_diarios_dao.get_all()[0].aluno.login)
         # print("treino_diario.aluno", self.__lista_treinos_diarios_dao.get_all()[0].aluno.treinos)
         for treino_diario in self.__lista_treinos_diarios_dao.get_all():  # lista de treinos que tem os treinos
+            print("treino_diario", treino_diario)
+            print("treino_diario.aluno", treino_diario.aluno)
             if treino_diario.aluno.cpf == usuario.cpf:  # lembrar de validar se é do aluno o treinodiario
                 print("passou aqui")
                 for treino in treino_diario.treinos:
