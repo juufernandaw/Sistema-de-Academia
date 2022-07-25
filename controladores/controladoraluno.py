@@ -71,7 +71,6 @@ class ControladorAluno():
         aluno.cpf = aluno_novo["cpf"]
         aluno.login = aluno_novo["login"]
         aluno.senha = aluno_novo["senha"]
-        print("aluno nome", aluno.nome, "aluno cpf", aluno.cpf, "aluno login", aluno.login, "aluno senha", aluno.senha)
         if aluno_novo is not None:
             self.__tela_aluno.mostrar_msg("Aluno alterado com sucesso!")
         return self.abre_tela_funcoes_aluno()
@@ -94,7 +93,6 @@ class ControladorAluno():
             cpf = self.__tela_aluno.pegar_cpf()
             for aluno in self.__alunos:
                 if aluno.cpf == cpf:
-                    print("Entrouuu")
                     self.__tela_aluno.mostrar_aluno([ #pra tela mostra em formato de dict
                         {"nome": aluno.nome, "login": aluno.login, "senha": aluno.senha, "cpf": aluno.cpf,
                          "treinos": aluno.treinos}])

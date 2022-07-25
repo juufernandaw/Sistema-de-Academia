@@ -180,7 +180,6 @@ class TelaAluno:
         else:
             cpf = values['cpf']
         self.close()
-        print("CPF:", cpf)
         return cpf
 
     def layout_pegar_cpf(self):

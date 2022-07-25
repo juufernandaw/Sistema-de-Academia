@@ -22,13 +22,6 @@ class TelaPersonalTrainer:
         infos_personal = infos_personal + "Habilitação:" + dados_personal["habilitacao"] + '\n'
         sg.popup("------DADOS PERSONAL------", infos_personal)
 
-    # def mostrar_personal_trainer(self, dados_personal):  # mostra os dados do personal
-    #     print("Nome:", dados_personal["nome"])
-    #     print("Login:", dados_personal["login"])
-    #     print("Senha:", dados_personal["senha"])
-    #     print("CPF:", dados_personal["cpf"])
-    #     print("habilitacao:", dados_personal["habilitacao"])
-
     def layout_tela_aba_personal(self):
         sg.ChangeLookAndFeel('DarkTeal4')
         layout = [
@@ -53,13 +46,6 @@ class TelaPersonalTrainer:
             opcao = 0
         self.close()
         return opcao
-        # print("----- ABA PERSONAL -----")
-        # print("O que você deseja fazer hoje ?")
-        # print("1 - Consultar seus dados")
-        # print("2 - Alterar seus dados")
-        # print("0 - Retornar à tela inicial")
-        # opcao = int(input())
-        # return opcao
 
     def layout_tela_alterar_dados(self):
         sg.ChangeLookAndFeel('DarkTeal4')
@@ -96,14 +82,6 @@ class TelaPersonalTrainer:
             habilitacao = values["habilitacao"]
         self.close()
         return {"cpf": cpf, "nome": nome, "login": login, "senha": senha, "habilitacao": habilitacao}
-
-        # print("Olá, Renove seus Dados:")
-        # nome = input("Digite o nome:")
-        # cpf = input("Digite o cpf:")
-        # login = input("Digite o login:")
-        # senha = input("Digite a senha:")
-        # habilitacao = input("Digite a habilitação:")
-        # return {"cpf": cpf, "nome": nome, "login": login, "senha": senha, "habilitacao": habilitacao}
 
     def layout_mexer_personal(self):
         sg.ChangeLookAndFeel('DarkTeal4')
