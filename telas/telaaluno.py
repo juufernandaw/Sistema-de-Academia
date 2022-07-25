@@ -47,12 +47,8 @@ class TelaAluno:
             infos_aluno += "Senha:" + aluno["senha"] + '\n'
             infos_aluno += "CPF:" + aluno["cpf"] + '\n'
             for treino in aluno["treinos"]:
-                print("treino", treino)
-                print("treinos aluno: ", aluno["treinos"])
-                print("exercicios ", treino.exercicios)
                 infos_aluno += "Nome do treino:" + treino.nome + '\n'
                 for exercicio in treino.exercicios:
-                    print("exercicio ", exercicio)
                     infos_aluno += "Nome do exercício:" + exercicio.nome + '\n'
                     infos_aluno += "Repeticao:" + exercicio.repeticao + '\n'
                     infos_aluno += "Series:" + exercicio.serie + '\n'

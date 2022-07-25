@@ -12,7 +12,6 @@ class TelaTreino:
     def layout_alterar_treino(self, treino: {}):
         botoes_exercicios = []
         for i, exercicio in enumerate(treino["exercicios"]):
-            print("exercicio", exercicio)
             botoes_exercicios.append([sg.InputText(exercicio.nome, key=exercicio.nome)])
             botoes_exercicios.append([sg.InputText(exercicio.repeticao, key=exercicio.repeticao)])
             botoes_exercicios.append([sg.InputText(exercicio.serie, key=exercicio.serie)])
@@ -35,7 +34,6 @@ class TelaTreino:
             serie_ex = values[exercicio.serie]
             tempo_descanso_ex = values[exercicio.tempo_descanso]
             lista_exercicios.append({"nome": nome_ex, "repeticao": repeticao_ex, "serie": serie_ex, "tempo_descanso": tempo_descanso_ex})
-        print(lista_exercicios)
         self.close()
         return {"nome": nome, "exercicios": lista_exercicios}
 
@@ -44,7 +42,6 @@ class TelaTreino:
             [sg.Button('Sim'), sg.Button('Nao')]]
         self.__window = sg.Window('').Layout(layout)
         button, values = self.__window.Read()
-        print("Botao", button)
         if button == 'Nao':
             opcao = 1
         else:
@@ -53,11 +50,8 @@ class TelaTreino:
         return opcao
 
     def mostrar_tela_treino(self, treino):  # mostra tela com os dados do treino
-        print("CHEGUEI AQUI")
-        print("MISERICORDIA TREINO", treino)
         infos_treino = ""
         for t in treino:
-            print("MISERICORDIA T", t)
             infos_treino += "Nome:" + t.nome + '\n'
             for exercicio in t.exercicios:
                 infos_treino = infos_treino + "Nome do exercicio:" + exercicio.nome + '\n'
@@ -118,7 +112,6 @@ class TelaTreino:
         nome = values['nome']
         self.close()
         return nome
-
 
     def mexer_treino(self):
         layout = [

@@ -28,11 +28,9 @@ class ControladorAluno():
 
     def vincular_aluno_treino(self, aluno: Aluno, treino):
         aluno.adicionar_treino_aluno(treino)
-        self.__tela_aluno.mostrar_msg("Treino vinculado ao aluno!")
 
     def desvincular_aluno_treino(self, aluno: Aluno, treino):
         aluno.remover_treino_aluno(treino)
-        self.__tela_aluno.mostrar_msg("Treino desvinculado do aluno!")
 
     def incluir_aluno(self):
         dados_aluno = self.__tela_aluno.pega_dados_aluno()
@@ -153,7 +151,5 @@ class ControladorAluno():
             self.abre_tela_inicial()
 
     def consultar_treino_aluno(self, treinos): #para o aluno ter acesso ao treino
-        # for treino in treinos:
-        #     treino = {"nome": treino.nome, "exercicios": treino.exercicios}
         self.__controlador_sistema.controlador_treino.tela_treino.mostrar_tela_treino(treinos)
         return self.abre_tela_inicial()
