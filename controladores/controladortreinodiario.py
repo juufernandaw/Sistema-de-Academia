@@ -87,13 +87,14 @@ class ControladorTreinoDiario:
         if isinstance(escolha_treino, Treino):
             self.__lista_treinos.append(escolha_treino)
             self.__tela_treinoDiario.mensagem("Treino iniciado")
+            for treinos in self.__lista_treinos:
+                self.__tela_treinoDiario.listar_treino_escolhido(treinos.exercicios)
 
     def adicionar_treino_diario_a_treinodiarios(self, treino_diario: TreinoDiario):
         # adiciona o treino diario escolhido na lista de treinoDiario
         if isinstance(treino_diario, TreinoDiario):
             self.__lista_treinos_diarios.append(treino_diario)
             self.__tela_treinoDiario.mensagem("checkin finalizado, bom treino")
-            self.__tela_treinoDiario.listar_treino_escolhido(self.__lista_treinos)
             self.__lista_treinos = []  # para que seja renovado a lista de treino para cada aluno
             return self.mostrar_tela_treino_diario()
 
@@ -109,7 +110,6 @@ class ControladorTreinoDiario:
             opcao = self.__tela_treinoDiario.montar_treino_diario_2()
         treino_diario = TreinoDiario(aluno, dia_atual, self.__lista_treinos)
         self.adicionar_treino_diario_a_treinodiarios(treino_diario)
-        # self.__tela_treinoDiario.listar_treino_escolhido(self.__lista_treinos)
 
     def voltar_login(self):
         self.__controlador_sistema.iniciar_tela_sistema()
