@@ -97,7 +97,7 @@ class TelaTreinoDiario:
         botoes_treinos = []
         contador = 0
         for id, treino in enumerate(lista_treinos):
-            botoes_treinos.append([sg.Radio(treino['nome'], "RD1", key=id)])
+            botoes_treinos.append([sg.Radio(treino.nome, "RD1", key=id)])
         layout = [
             [sg.Text("Qual treino você fará hoje?", font=("Helvica", 25))],
             botoes_treinos,
@@ -124,7 +124,7 @@ class TelaTreinoDiario:
 
     def listar_treino_escolhido(self, lista: []):  # método n usado
         layout = [
-            sg.popup_scrolled(*lista, title="Treino Escolhido")
+            sg.popup_scrolled(lista, title="Treino Escolhido")
         ]
 
     def layout_montar_treino_diario_2(self):
