@@ -27,7 +27,7 @@ class ControladorAluno:
                 for aluno in self.__aluno_dao.get_all():
                     if (aluno.login == login) and (aluno.senha == senha):
                         return True, aluno  # aluno q achou retornar
-                    if not aluno.login and not aluno.senha:
+                    if not aluno.login or not aluno.senha:
                         raise LoginSenhaException
             except LoginSenhaException as e:
                 #  self.__tela_aluno.mostrar_msg("Login e senha inválidos")
