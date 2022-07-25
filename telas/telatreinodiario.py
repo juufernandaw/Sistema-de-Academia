@@ -124,7 +124,7 @@ class TelaTreinoDiario:
 
     def listar_treino_escolhido(self, lista: []):  # método n usado
         layout = [
-            sg.popup_scrolled(lista, title="Treino Escolhido")
+            sg.popup_scrolled(*lista, title="Treino Escolhido")
         ]
 
     def layout_montar_treino_diario_2(self):
